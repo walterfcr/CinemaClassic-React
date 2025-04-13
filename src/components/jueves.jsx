@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 import { useLocation } from 'react-router-dom';
+import Proximamente from './Proximamente';
 
 function Jueves() {
 
@@ -38,7 +39,7 @@ function Jueves() {
               </div>
             </div>
           </div>
-
+    <Proximamente />
     </main>
   );
 }

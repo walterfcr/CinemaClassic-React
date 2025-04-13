@@ -1,6 +1,9 @@
+
+
 .proximamente {
     text-align: center;
-}
+    margin-bottom: 20px;
+  }
 
 .proximamente h2{
     color:var(--main-color);
@@ -12,6 +15,7 @@
 
 .carouselContainer{
     margin: 50px 0;
+    padding: 10px 0;
    
 }
 
@@ -28,3 +32,24 @@
     margin:30px 0;
   }
 
+
+  .carouselWrapper {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  
+  .item2 {
+    text-align: center;
+  }
+  
+  .item2 img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .item2 p {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #444;
+  }
