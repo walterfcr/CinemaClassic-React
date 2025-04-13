@@ -14,7 +14,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
     */
     const Proximamente = () => {
         const carouselOptions = {
-          items: 4,
+          items: 5,
           lazyLoad: true,
           autoplay: true,
           nav: true,

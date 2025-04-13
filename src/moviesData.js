@@ -188,6 +188,57 @@ export const movies = [
       ],
     },
     {
+      id: "movie16",
+      title: "13 Tzameti",
+      director: "Géla Babluani",
+      country: "Francia",
+      year: 2006,
+      synopsis:
+        " Sebastien es un inmigrante de Georgia en Francia que toma un puesto de albañil por un poco de dinero. Después de que su empleador muere antes de pagarle, éste roba un boleto de tren y una carta con la que cree obtendrá dinero. Pero en lugar de eso, Sebastien se vuelve el último participante de un juego mortal en el cual los jugadores apuestan a la ruleta rusa.",
+      banner: "/images/movie16/movie16.webp",
+      trailer: "https://www.youtube.com/embed/iHwtjI_MjF4",
+      cast: [
+        { name: "George <br />Babluani", img: "/images/movie16/movie16-reparto1.webp" },
+        { name: "Augustin <br />Legrand", img: "/images/movie16/movie16-reparto2.webp" },
+        { name: "Olga <br />Babluani", img: "/images/movie16/movie16-reparto3.webp" },
+        { name: "Fred<br /> Ulysse", img: "/images/movie16/movie16-reparto4.webp" },
+      ],
+    },
+    {
+      id: "movie17",
+      title: "Dogtooth",
+      director: "Yorgos Lanthimos",
+      country: "Grecia",
+      year: 2009,
+      synopsis:
+        "Dogtooth (Kynódontas) es una película griega de 2009, dirigida por Yorgos Lanthimos acerca de una familia disfuncional en la que un esposo y una esposa mantienen a sus hijos ignorantes del mundo exterior en su propiedad hasta la edad adulta.",
+      banner: "/images/movie17/movie17.webp",
+      trailer: "https://www.youtube.com/embed/0bYpMPXXsvI",
+      cast: [
+        { name: "Angeliki <br />Papoulia", img: "/images/movie17/movie17-reparto1.webp" },
+        { name: "Mary <br />Tsoni", img: "/images/movie17/movie17-reparto2.webp" },
+        { name: "Christos <br />Passalis", img: "/images/movie17/movie17-reparto3.webp" },
+        { name: "Christos<br /> Stergioglou", img: "/images/movie17/movie17-reparto4.webp" },
+      ],
+    },
+    {
+      id: "movie18",
+      title: "La Vita è Bella",
+      director: "Roberto Benigni",
+      country: "Italia",
+      year: 1997,
+      synopsis:
+        "Un hombre construye una elaborada fantasía para proteger a su hijo en un campo de concentración nazi.",
+      banner: "/images/movie18/movie18.webp",
+      trailer: "https://www.youtube.com/embed/8CTjcVr9Iao",
+      cast: [
+        { name: "Roberto <br />Benigni", img: "/images/movie18/movie18-reparto1.webp" },
+        { name: "Nicoletta <br />Braschi", img: "/images/movie18/movie18-reparto2.webp" },
+        { name: "Giorgio <br />Cantarini", img: "/images/movie18/movie18-reparto3.webp" },
+        { name: "Giustino<br /> Durano", img: "/images/movie18/movie18-reparto4.webp" },
+      ],
+    },
+    {
         id: "movie31",
         title: "Pulp Fiction",
         director: "Quentin Tarantino",

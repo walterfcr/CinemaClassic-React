@@ -21,17 +21,17 @@ function Martes() {
         <div data-aos="zoom-in" id="semanales">
             <h2>Martes de Cine Europeo</h2>
             <div className="contenedor">
-              <div className="columnaEstreno" data-aos="flip-left">
+              <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie16/movie16.webp" alt="Sunday Movie 1" />
                 <Link to={`/movie/movie16`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <a href="#">Comprar</a>
               </div>
-              <div className="columnaEstreno" data-aos="flip-left">
+              <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie17/movie17.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie17`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <a href="#">Comprar</a>
               </div>
-              <div className="columnaEstreno" data-aos="flip-left">
+              <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie18/movie18.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie18`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <a href="#">Comprar</a>
