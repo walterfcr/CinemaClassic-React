@@ -12,6 +12,7 @@ import Viernes from './components/Viernes';
 import Sabado from './components/sabado';
 import Dulceria from './components/Dulceria';
 import Slider from './components/Slider';
+import Contacto from './components/Contacto';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import MovieDetails from './components/MovieDetails';
@@ -44,6 +45,7 @@ function App() {
         <Route path="/jueves" element={<Jueves />} />
         <Route path="/viernes" element={<Viernes />} />
         <Route path="/sabado" element={<Sabado />} />
+        <Route path="/contacto" element={<Contacto />} />
       </Routes>
 
       {/* Conditional modal rendering for movie details */}

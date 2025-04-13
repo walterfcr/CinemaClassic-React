@@ -1,0 +1,108 @@
+.contactoWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+  }
+  
+  .containerForm {
+    width: 50%;
+    max-width: 600px;
+  }
+  
+  .tituloSeccion5 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .formRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem;
+  }
+  
+  .colForm {
+    flex: 1 1 45%;
+    margin: 1rem;
+  }
+  
+  .inputBox {
+    position: relative;
+  }
+  
+  .inputBox input,
+  .inputBox textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    font-size: 1rem;
+  }
+  
+  .inputBox .text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.3s;
+    pointer-events: none;
+    color: #999;
+  }
+  
+  .inputBox input:focus + .text,
+  .inputBox input:valid + .text,
+  .inputBox textarea:focus + .text,
+  .inputBox textarea:valid + .text {
+    transform: translateY(-20px);
+    font-size: 0.8rem;
+    color: #f39c12;
+  }
+  
+  .inputBox .line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: #f39c12;
+    transition: 0.4s;
+  }
+  
+  .inputBox input:focus ~ .line,
+  .inputBox textarea:focus ~ .line {
+    width: 100%;
+  }
+  
+  .inputBox.textarea textarea {
+    min-height: 100px;
+    resize: none;
+  }
+  
+  .btnWarning {
+    background-color: #f39c12 !important;
+    border: none;
+    color: white;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: background 0.3s;
+  }
+  
+  .btnWarning:hover {
+    background-color: #e67e22 !important;
+  }
+
+  .formRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .colForm {
+    flex: 1 1 100%;
+  }

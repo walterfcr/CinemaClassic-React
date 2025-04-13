@@ -51,7 +51,7 @@ function Navbar() {
                 </ul>
               </li>
               <li><Link to="/dulceria">DULCERIA</Link></li>
-              <li><a href="/contacto.html">CONTACTO</a></li>
+              <li><Link to="/contacto">CONTACTO</Link></li>
             </ul>
           </div>
         </div>
