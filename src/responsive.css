@@ -1,0 +1,372 @@
+
+
+/*  reparto  */
+@media (min-width:320px) and (max-width:599px){
+    .columnaMovie {
+        min-width: auto;        
+        max-width: 100%; 
+        flex: 100%;        
+      }
+
+
+      .columnaMovie img {
+        max-width: 200px;
+        margin: 0 auto !important;
+        display: block;
+      }
+
+      .columnaReparto {
+        flex: 1 1 100%; /* 22% de ancho, adaptativo */
+      }
+      
+      .columnaReparto img {
+        max-width: 200px;
+        display: block;
+        margin: 0 auto; /* Center the image */
+      }
+
+      .columnaReparto h4 {
+        font-size: 1.2rem;
+
+      }
+
+
+
+      .details h1 {
+        font-size: 1rem;
+       }
+
+       .info {
+        width: 100% !important;
+        margin:50px 0;
+      }
+
+    
+    br {
+        display: none;
+    }
+}
+
+
+/*  reparto  */
+@media (min-width:340px) and (max-width:599px){
+
+
+      .tab {
+        font-size: 0.6rem;
+    }
+
+    .tab a {
+        padding: 6px 8px;
+        width: 70px;
+        font-size: 0.6rem;;
+    }
+
+    .test a {
+        margin:0 5px;
+      }
+
+
+}
+
+/*  reparto  */
+@media (min-width:320px) and (max-width:339px){
+
+      .tab {
+        font-size: 0.5rem;
+    }
+
+    .tab a {
+        padding: 6px 6px;
+        width: 60px;
+        font-size: 0.6rem;;
+    }
+
+    .test a {
+        margin:0 3px;
+      }
+
+
+}
+
+
+
+/*  reparto  */
+@media (min-width:600px) and (max-width:767px){
+    .columnaMovie {
+        min-width: auto;        
+        max-width: 100%; 
+        flex: 100%;        
+      }
+
+      .columnaMovie img {
+        margin: 0 auto !important;
+        display: block;
+      }
+      
+      .columnaReparto img {
+        max-width: 75px;
+        display: block;
+        margin: 0 auto; /* Center the image */
+      }
+
+      .details h1 {
+        font-size: 1.2rem;
+       }
+
+       .info {
+        width: 100% !important;
+        margin:50px 0;
+      }
+
+    .tab {
+        font-size: 0.8rem;
+    }
+
+    .tab a {
+        padding: 4px 10px;
+        width: 70px;
+        font-size: 0.6rem;;
+    }
+
+}
+
+
+/*  reparto  */
+@media (min-width:768px) and (max-width:800px){
+    .columnaMovie {
+        min-width: auto;        
+        max-width: 100%;        
+      }
+
+
+}
+
+/*  reparto  */
+@media (min-width:801px) and (max-width:1023px){
+    .columnaMovie {
+        min-width: auto;        
+        max-width: 100%;        
+        flex: 1 1 33%;           /* Los elementos ocuparán un 30% del ancho disponible */
+        max-width: 100%;          /* El tamaño máximo de cada columna será de un 33% del contenedor */
+      }
+
+
+}
+
+/*  reparto  */
+@media (min-width:768px) and (max-width:1279px){
+      .details h1 {
+        font-size: 2rem;
+       }
+}
+
+
+/*  reparto  */
+@media (min-width:1024px) and (max-width:1279px){
+    .test a {
+        margin:0 1px;
+    }
+
+    .contenedorReparto {
+        gap: 3px;
+    }
+
+    .columnaReparto {
+        padding:0 10px 20px ;
+
+    }
+
+    .columnaReparto img {
+        max-width: 40px;
+    }
+
+    .columnaReparto h4 {
+        font-size: 0.6rem;
+    }
+
+    .tab {
+        font-size: 0.8rem;
+    }
+
+    .tab a {
+        padding: 4px 10px;
+        width: 70px;
+        font-size: 0.6rem;;
+    }
+
+    .details h1 {
+        margin:30px !important;
+    }
+
+    .info p {
+        margin:0 0 10px;
+        font-size: 0.8rem;
+    }
+
+    .bannerMovie img {
+        max-width: 180px;
+    }
+
+    footer {
+        margin:50px 0 0;
+    }
+}
+
+/*  reparto  */
+@media (min-width:1280px) and (max-width:1365px){
+    .test a {
+        margin:0 1px;
+    }
+
+    .columnaReparto img {
+        max-width: 50px;
+    }
+
+    .tab {
+        font-size: 0.8rem;
+    }
+
+    .tab a {
+        padding: 5px 10px;
+        width: 90px;
+    }
+
+    .details h1 {
+        margin:30px !important;
+    }
+
+
+    footer {
+        margin:50px 0 0;
+    }
+}
+
+/*  reparto  */
+@media (min-width:1366px) and (max-width:1679px){
+    .test a {
+        margin:0 1px;
+    }
+
+    .columnaReparto img {
+        max-width: 60px;
+    }
+}
+
+/*  reparto  */
+@media (min-width:1680px) and (max-width:1919px){
+    .test a {
+        margin:0 15px;
+      }
+}
+
+/*  semanales  */
+@media (min-width:421px) and (max-width:480px){
+    .semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
+        height:200px;  
+      }
+
+}
+
+
+
+/*  semanales  */
+@media (min-width:320px) and (max-width:420px){
+    .semanal img{
+        width:150px;
+      }
+
+      .semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
+        height:200px;  
+      }
+}
+
+
+/*  semanales  */
+@media (min-width:481px) and (max-width:600px){
+    .semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
+      height:250px;  
+    }
+
+    .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
+      font-size: 1.2rem;
+    }
+}
+
+
+/*  semanales  */
+@media (min-width:320px) and (max-width:600px){
+
+      .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
+        font-size: 1.2rem;
+      }
+}
+
+/*  semanales  */
+@media (min-width:600px) and (max-width:759px){
+    .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
+        font-size: 1.5rem;
+      }
+
+      .semanal img{
+        width:250px;
+      }
+
+      .semanal a{
+        width: 80px;
+        font-size: 0.9rem !important;
+        margin:40px 25px;
+      }
+
+      .contentWrap{
+        width: 90%;
+      }
+
+}
+
+
+
+/*  semanales  */
+@media (min-width:760px) and (max-width:899px){
+    .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
+        font-size: 2.5rem;
+      }
+
+      .semanal img{
+        width:180px;
+      }
+
+      .semanal a{
+        width: 80px;
+        font-size: 0.9rem !important;
+      }
+
+      .contentWrap{
+        width: 90%;
+      }
+}
+
+
+
+/*  semanales  */
+@media (min-width:900px) and (max-width:1024px){
+    .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
+        font-size: 2.5rem;
+      }
+
+      .semanal img{
+        width:200px;
+      }
+
+      .semanal a{
+        width: 80px;
+        font-size: 0.9rem !important;
+      }
+}
+
+/*  semanales  */
+@media (min-width:1280px) and (max-width:1400px){
+    .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
+        font-size: 3rem;
+      }
+}
