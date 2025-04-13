@@ -1,0 +1,29 @@
+.vipContainer{
+    display: flex;
+    width:70%;
+    margin:100px auto;
+}
+
+.vipContainer hr {
+    width: 100% !important;
+    border: none;
+    border-top: 1px solid #868585; /* Add a solid border at the top */
+    margin: 20px 0; /* Optional: Adds spacing above and below */
+}
+
+.vipColumn {
+    width:50%;
+}
+
+.vipColumn img {
+    margin:0 auto;
+    display: block;
+}
+
+.vipColumn h2{
+    color:var(--main-color);
+}
+
+.vipColumn p{
+   margin:20px 0 30px;
+}

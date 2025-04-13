@@ -5,6 +5,8 @@ import 'aos/dist/aos.css'; // Import AOS styles
 //import './Content.css'; 
 //import { useNavigate, useLocation } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import Vip from './Vip';
+import Proximamente from './Proximamente';
 
 
 
@@ -259,6 +261,8 @@ function Content() {
         <button type="button" onClick={(e) => {e.preventDefault();e.stopPropagation();setSelectedDay('domingo'); }}>Domingo</button>
         </div>
       </div>
+      <Vip />
+      <Proximamente />
     </main>
   );
 }

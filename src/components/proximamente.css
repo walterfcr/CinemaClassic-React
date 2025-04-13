@@ -1,0 +1,30 @@
+.proximamente {
+    text-align: center;
+}
+
+.proximamente h2{
+    color:var(--main-color);
+}
+
+.proximamente p{
+   margin:20px 0 30px;
+}
+
+.carouselContainer{
+    margin: 50px 0;
+    width: 95%;
+}
+
+.owl-theme img {
+    width: 50% !important;
+    margin:0 auto;
+    display: block;
+}
+
+.owl-theme .item2 p {
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    margin:30px 0;
+  }
+

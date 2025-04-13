@@ -1,4 +1,5 @@
 import React from 'react';
+import Combos from './Combos';
 //import './Footer.css';
 
 function Dulceria() {
@@ -39,7 +40,9 @@ function Dulceria() {
       </div>
     </div>
   </div>
+  <Combos />
 </main>
+
   );
 }
 
