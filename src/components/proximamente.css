@@ -12,10 +12,10 @@
 
 .carouselContainer{
     margin: 50px 0;
-    width: 95%;
+   
 }
 
-.owl-theme img {
+.carouselContainer img {
     width: 50% !important;
     margin:0 auto;
     display: block;
