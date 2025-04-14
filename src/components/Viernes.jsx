@@ -16,11 +16,11 @@ function Viernes() {
   return (
     <main>
         <section className="semanales5"> 
-            <h1>Viernes de Cine de Culto #1</h1>
+            <p>Los viernes y sábados están reservados para el cine de culto, una experiencia pensada para los verdaderos apasionados del séptimo arte. Aquí se proyectan aquellas películas que, a pesar del paso del tiempo, han mantenido un seguimiento fiel y han dejado huella en la historia del cine por su estilo único, sus temáticas transgresoras o su narrativa innovadora. Desde clásicos underground hasta joyas incomprendidas en su momento, este espacio invita a redescubrir obras que han marcado generaciones y siguen inspirando a cinéfilos de todo el mundo.</p>
         </section>
 
         <div data-aos="zoom-in" id="semanales">
-            <h2>Viernes de Cine de Culto #1</h2>
+            <h1>Viernes de Cine de Culto #1</h1>
             <div className="contenedor">
               <div className="columnaEstreno" data-aos="flip-left">
                 <img src="images/movie25/movie25.webp" alt="Sunday Movie 1" />

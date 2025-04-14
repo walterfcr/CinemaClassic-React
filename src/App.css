@@ -365,6 +365,13 @@ color:#fff;
 display: flex;
 align-items: center;
 justify-content: center;
+padding:0 25%;
+}
+
+.semanales1 p, .semanales2 p, .semanales3 p, .semanales4 p, .semanales5 p, .semanales6 p, .semanales7 p{
+  color:#fff;
+  font-size: 1.3rem;
+  line-height: 2.5rem;
 }
 
 .semanales1{

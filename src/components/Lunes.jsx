@@ -16,11 +16,11 @@ function Lunes() {
   return (
     <main>
         <section className="semanales1"> 
-            <h1>Lunes de Cine Latino</h1>
+            <p>El lunes está dedicado al cine latino, donde podrás disfrutar de una selección especial de películas que reflejan la rica diversidad cultural y artística de América Latina. Desde clásicos hasta estrenos modernos, el cine latino ofrece una mirada única a las historias y tradiciones de esta región, destacando su talento y creatividad.</p>
         </section>
 
         <div data-aos="zoom-in" id="semanales">
-            <h2>Lunes de Cine Latino</h2>
+            <h1>Lunes de Cine Latino</h1>
             <div className="contenedor">
               <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie13/movie13.webp" alt="Sunday Movie 1" />
