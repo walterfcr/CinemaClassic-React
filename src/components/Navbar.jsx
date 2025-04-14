@@ -1,63 +1,51 @@
+// src/components/Navbar.jsx
 import React, { useState } from 'react';
-import './Navbar.css';
 import { Link } from 'react-router-dom';
+import './Navbar.css';
 
-function Navbar() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isSubMenuOpen, setIsSubMenuOpen] = useState({});
+const Navbar = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggleSubMenu = (menu) => {
-    setIsSubMenuOpen((prev) => ({
-      ...prev,
-      [menu]: !prev[menu],
-    }));
-  };
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+    setDropdownOpen(false);
   };
 
   return (
-    <header>
-      <nav>
-        <div className="navbar">
-          <i
-            className={`bx bx-menu ${isSidebarOpen ? 'open' : ''}`}
-            onClick={toggleSidebar}
-          ></i>
-          <div className="logo">
-            <Link to="/">Cinema Classic</Link>
-          </div>
-          <div className={`nav-links ${isSidebarOpen ? 'open' : ''}`}>
-            <div className="sidebar-logo">
-              <span className="logo-name">Cinema Classic</span>
-              <i className="bx bx-x" onClick={toggleSidebar}></i>
-            </div>
-            <ul className="links">
-              <li><Link to="/">INICIO</Link></li>
-              <li><Link to="/nosotros">NOSOTROS</Link></li>
-              <li>
-                <button onClick={() => toggleSubMenu('htmlcss')} className="submenu-btn">
-                  PELICULAS <i className="bx bxs-chevron-down htmlcss-arrow arrow"></i>
-                </button>
-                <ul className={`htmlCss-sub-menu sub-menu ${isSubMenuOpen.htmlcss ? 'open' : ''}`}>
-                  <li><Link to="/domingo">Domingo</Link></li>
-                  <li><Link to="/lunes">Lunes</Link></li>
-                  <li><Link to="/martes">Martes</Link></li>
-                  <li><Link to="/miercoles">Miércoles</Link></li>
-                  <li><Link to="/jueves">Jueves</Link></li>
-                  <li><Link to="/viernes">Viernes</Link></li>
-                  <li><Link to="/sabado">Sábado</Link></li>
-                </ul>
-              </li>
-              <li><Link to="/dulceria">DULCERIA</Link></li>
-              <li><Link to="/contacto">CONTACTO</Link></li>
-            </ul>
-          </div>
+    <header className="navbar-container">
+      <div className="navbar">
+        <div className="logo">
+          <Link to="/" onClick={closeSidebar}>Cinema Classic</Link>
         </div>
-      </nav>
+        <div className="menu-icon" onClick={toggleSidebar}>
+          ☰
+        </div>
+        <ul className={`nav-links ${sidebarOpen ? 'active' : ''}`}>
+          <li><Link to="/" onClick={closeSidebar}>INICIO</Link></li>
+          <li><Link to="/nosotros" onClick={closeSidebar}>NOSOTROS</Link></li>
+          <li className="dropdown">
+            <button className="dropdown-toggle" onClick={toggleDropdown}>
+              PELICULAS ▼
+            </button>
+            <ul className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
+              <li><Link to="/domingo" onClick={closeSidebar}>Domingo</Link></li>
+              <li><Link to="/lunes" onClick={closeSidebar}>Lunes</Link></li>
+              <li><Link to="/martes" onClick={closeSidebar}>Martes</Link></li>
+              <li><Link to="/miercoles" onClick={closeSidebar}>Miércoles</Link></li>
+              <li><Link to="/jueves" onClick={closeSidebar}>Jueves</Link></li>
+              <li><Link to="/viernes" onClick={closeSidebar}>Viernes</Link></li>
+              <li><Link to="/sabado" onClick={closeSidebar}>Sábado</Link></li>
+            </ul>
+          </li>
+          <li><Link to="/dulceria" onClick={closeSidebar}>DULCERIA</Link></li>
+          <li><Link to="/contacto" onClick={closeSidebar}>CONTACTO</Link></li>
+        </ul>
+      </div>
     </header>
   );
-}
+};
 
 export default Navbar;
