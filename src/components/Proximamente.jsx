@@ -6,7 +6,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const Proximamente = () => {
   const carouselOptions = {
-    items: 4,
+    items: 5,
     lazyLoad: true,
     autoplay: true,
     nav: true,
@@ -21,7 +21,7 @@ const Proximamente = () => {
         items: 2
       },
       1000: {
-        items: 4
+        items: 5
       }
     }
   };
@@ -38,6 +38,11 @@ const Proximamente = () => {
     { src: "images/prox8.webp", title: "Memento" },
     { src: "images/prox9.webp", title: "Shoplifters" },
     { src: "images/prox10.webp", title: "Eraserhead" },
+    { src: "images/prox11.jpg", title: "Awaydays" },
+    { src: "images/prox12.jpg", title: "The Warriors" },
+    { src: "images/prox13.jpg", title: "Enter the Void" },
+    { src: "images/prox14.jpg", title: "Chicuarotes" },
+    { src: "images/prox15.jpg", title: "Tesis" },
   ];
 
   return (
