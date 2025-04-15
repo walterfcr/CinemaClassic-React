@@ -1,5 +1,4 @@
 :root {
-  --main-color: #1c1c1c;
   --secondary-menu-color: #361e1f;
   --hover-color: #d3d8aa;
 }
@@ -7,7 +6,7 @@
 .navbar-container {
   background: var(--main-color) !important;
   color: white;
-  position: sticky;
+  position: relative;
   top: 0;
   z-index: 100;
 }
@@ -22,12 +21,14 @@
 }
 
 .logo a {
+  font-family: "Poppins", sans-serif;
   color: white;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 300;
   text-decoration: none;
 }
 
+/*hamburguesa*/
 .menu-icon {
   font-size: 28px;
   cursor: pointer;
@@ -48,16 +49,18 @@
   position: relative;
 }
 
+/*enlaces menu principal*/
 .nav-links a,
 .dropdown-toggle {
+  font-family: "Poppins", sans-serif;
   color: white;
   text-decoration: none;
-  font-weight: 500;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 16px;
   transition: color 0.3s ease;
+  padding:0 15px;
 }
 
 .nav-links a:hover,
@@ -105,11 +108,22 @@
 }
 
 .arrow {
-  font-size: 0.75em;
+  font-size: 0.5em;
   margin-left: 5px;
 }
 
 /* Responsive */
+
+
+@media (min-width:767px) and (max-width: 900px){
+  .nav-links a,
+.dropdown-toggle {
+  font-size: 14px;
+  padding:0 5px;
+}
+}
+
+
 @media (max-width: 768px) {
   .menu-icon {
     display: block;

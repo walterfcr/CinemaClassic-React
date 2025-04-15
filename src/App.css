@@ -198,6 +198,42 @@ text-align: center;
 margin-left: 10px; /* Adds space between the two links */
 }
 
+@media (min-width:1280px) and (max-width: 1366px) {
+  .columnaEstreno img {
+    max-width: 200px ;
+    }
+}
+
+@media (min-width:1024px) and (max-width: 1279px) {
+  .columnaEstreno img {
+    max-width: 150px ;
+    }
+}
+
+@media (min-width:376px) and (max-width: 480px) {
+  .columnaEstreno img {
+    max-width: 180px ;
+  }
+
+  .contentWrap h1 {
+    font-size: 2rem !important;
+    text-align: center !important;
+  }
+}
+
+
+@media (min-width:320px) and (max-width: 375px) {
+  .columnaEstreno img {
+    max-width: 150px ;
+  }
+
+  .contentWrap h1 {
+    font-size: 1.8rem !important;
+    text-align: center !important;
+  }
+}
+
+
 .tab {
 display: block;
 }

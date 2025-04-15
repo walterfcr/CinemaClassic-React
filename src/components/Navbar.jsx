@@ -24,11 +24,11 @@ const Navbar = () => {
           ☰
         </div>
         <ul className={`nav-links ${sidebarOpen ? 'active' : ''}`}>
-          <li><Link to="/" onClick={closeSidebar}>INICIO</Link></li>
-          <li><Link to="/nosotros" onClick={closeSidebar}>NOSOTROS</Link></li>
+          <li><Link to="/" onClick={closeSidebar}>Inicio</Link></li>
+          <li><Link to="/nosotros" onClick={closeSidebar}>Nosotros</Link></li>
           <li className="dropdown">
             <button className="dropdown-toggle" onClick={toggleDropdown}>
-              PELICULAS ▼
+              Películas ▼
             </button>
             <ul className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
               <li><Link to="/domingo" onClick={closeSidebar}>Domingo</Link></li>
@@ -40,8 +40,8 @@ const Navbar = () => {
               <li><Link to="/sabado" onClick={closeSidebar}>Sábado</Link></li>
             </ul>
           </li>
-          <li><Link to="/dulceria" onClick={closeSidebar}>DULCERIA</Link></li>
-          <li><Link to="/contacto" onClick={closeSidebar}>CONTACTO</Link></li>
+          <li><Link to="/dulceria" onClick={closeSidebar}>Dulcería</Link></li>
+          <li><Link to="/contacto" onClick={closeSidebar}>Contacto</Link></li>
         </ul>
       </div>
     </header>

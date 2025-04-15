@@ -22,17 +22,17 @@ function Viernes() {
         <div data-aos="zoom-in" id="semanales">
             <h1>Viernes de Cine de Culto #1</h1>
             <div className="contenedor">
-              <div className="columnaEstreno" data-aos="flip-left">
+              <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie25/movie25.webp" alt="Sunday Movie 1" />
                 <Link to={`/movie/movie25`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <a href="#">Comprar</a>
               </div>
-              <div className="columnaEstreno" data-aos="flip-left">
+              <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie26/movie26.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie26`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <a href="#">Comprar</a>
               </div>
-              <div className="columnaEstreno" data-aos="flip-left">
+              <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie27/movie27.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie27`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <a href="#">Comprar</a>

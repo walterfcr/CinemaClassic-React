@@ -48,7 +48,7 @@ function Content() {
             <a href="#">Comprar</a>
           </div>
         </div>
-        <div className="contenedor">
+        <div className="contenedor"> 
           <div className="columnaEstreno tab" data-aos="flip-left">
             <img src="images/movie5/movie5.webp" alt="Movie 5" />
             <Link to={`/movie/movie05`} state={{ backgroundLocation: location }}> Detalles</Link>
