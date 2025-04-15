@@ -2,6 +2,7 @@
     display: flex;
     width:70%;
     margin:100px auto;
+    flex-wrap: wrap;
 }
 
 .vipContainer hr {
@@ -26,4 +27,27 @@
 
 .vipColumn p{
    margin:20px 0 30px;
+}
+
+@media (min-width:1024px) and (max-width:1280px){
+    .vipContainer{
+        width:90%;
+    }
+}
+
+@media (min-width:900px) and (max-width:1024px){
+    .vipColumn p{
+        margin:10px 0 20px;
+     }
+}
+
+@media (min-width:320px) and (max-width:1020px){
+    .vipColumn {
+        width:100% !important;
+     }
+
+     .vipColumn img {
+        margin:0 auto 50px;
+        max-width: 100%;
+    }
 }

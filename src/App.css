@@ -10,11 +10,12 @@
   background-color: transparent !important;
   box-shadow: none !important;
   opacity: 1 !important;
+  /*outline: 1px solid red; See container edges */
 }
 
 
 html{
-font-family: 16px;
+font-size: 16px;
 }
 
 body {
@@ -73,7 +74,7 @@ h1 {
 
 #semanales {
  width:80%;
-margin:0 auto 100px;
+margin:0 auto 50px;
 }
 #semanales h2{
   margin:75px;
@@ -97,6 +98,8 @@ margin:0 auto 100px;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tabs button {
@@ -108,6 +111,7 @@ margin:0 auto 100px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
   margin: 5px;
+  scroll-snap-align: start;
 }
 
 .tabs button:hover {
@@ -124,6 +128,51 @@ margin:0 auto 100px;
 
 .tabs button:focus {
   outline: none;
+}
+
+@media (min-width:1025px) and (max-width: 1280px){
+  .tabs button {
+    font-size: 14px;
+
+  }
+
+  .tab-section {
+    width:70%;
+
+  }
+}
+
+
+@media (min-width:900px) and (max-width: 1024px){
+  .tabs button {
+    font-size: 14px;
+    padding: 7px 14px;
+  }
+
+  .tab-section {
+    width:80%;
+    margin: 10px auto;
+  }
+
+}
+
+@media (min-width:900px) and (max-width: 1366px){
+  #semanales {
+   margin:0 auto ;
+   }
+}
+
+@media (max-width: 899px) {
+  .tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tabs button {
+    flex: 1 1 45%;
+    min-width: auto;
+    margin: 5px;
+  }
 }
 
 .clasicos {
@@ -375,6 +424,29 @@ text-align: center;
 color:#fff !important;
 font-size: 3rem;
 padding:0 0 30px;
+}
+
+@media (min-width:481px) and (max-width:900px){
+  .semanales h2 {
+    font-size: 2rem;     
+  }
+}
+
+@media (min-width:320px) and (max-width:480px){
+  .semanales h2 {
+    font-size: 1.5rem;     
+  }
+
+  .semanales p {
+    text-align: left;   
+  }
+}
+
+@media (min-width:320px) and (max-width:375px){
+
+  .semanales p {
+    font-size: 0.8rem; 
+  }
 }
 
 .semanales p {

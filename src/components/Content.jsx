@@ -73,7 +73,7 @@ function Content() {
       </div>
 
 
-      <section className="container-fluid semanales">
+      <section className="semanales">
   <script>
     AOS.init();
   </script>
