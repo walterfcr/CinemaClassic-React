@@ -16,11 +16,11 @@ function Miercoles() {
   return (
     <main>
         <section className="semanales3"> 
+            <h1>Miércoles de Cine Asiático</h1>
             <p>El miércoles está dedicado al cine asiático, un día para adentrarse en las fascinantes historias y estilos visuales que han hecho al cine de Asia reconocido mundialmente. Desde los vibrantes y coloridos filmes de Bollywood hasta los sofisticados dramas japoneses y las impactantes narrativas de Corea del Sur, el cine asiático ofrece una rica variedad de géneros y perspectivas.</p>
         </section>
 
         <div data-aos="zoom-in" id="semanales">
-            <h1>Miércoles de Cine Asiático</h1>
             <div className="contenedor">
               <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie19/movie19.webp" alt="Sunday Movie 1" />

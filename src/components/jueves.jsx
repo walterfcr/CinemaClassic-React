@@ -16,11 +16,11 @@ function Jueves() {
   return (
     <main>
         <section className="semanales4"> 
+            <h1>Jueves de Cine Animado</h1>
             <p>El jueves está dedicado al cine animado, un día para disfrutar de la magia y creatividad que solo la animación puede ofrecer. El cine animado no solo es para niños, sino que ofrece historias profundas y visualmente impresionantes para todas las edades. Es una celebración de la imaginación sin límites, donde los personajes cobran vida y las historias se desarrollan de formas únicas y cautivadoras.</p>
         </section>
 
         <div data-aos="zoom-in" id="semanales">
-            <h1>Jueves de Cine Animado</h1>
             <div className="contenedor">
               <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie22/movie22.webp" alt="Sunday Movie 1" />
