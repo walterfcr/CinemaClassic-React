@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Testimonials from './Testimonials';
+import './Nosotros.css';
+
 
 function Nosotros() {
   const titleRef = useRef(null);
@@ -59,7 +61,7 @@ function Nosotros() {
   }, []);
 
   return (
-    <main>
+    <main class="twoColumns">
       <h1>Acerca de Cinema Classic</h1>
       <div className="contentWrap">
         <div className="contenedorNosotros">
@@ -75,13 +77,13 @@ function Nosotros() {
           <div className="columnaNosotros">
             <p>
               Cinema Classic es una nueva iniciativa de disfrutar el cine, ya sea películas en estreno o películas clásicas o como a los cinéfilos nos gusta referirnos, películas de culto. Si alguna vez has visto una película pero nunca pudiste verla en el cine, esta es tu oportunidad. Contamos con una temática diferente por cada día de la semana para que haya más variedad.
-            </p>
+            </p><br /><br />
             <p>
               Brindamos también la posibilidad de que nuestros clientes elijan o nos recomienden alguna película, tenemos un amplio catálogo internacional.
-            </p>
+            </p><br /><br />
             <p>
               Todas nuestras salas de cine cuentan con tecnología 100% digital.
-            </p>
+            </p><br /><br />
             <p>
               Si eres amante del cine, comercial o independiente, clásicos, extranjeras o simplemente quieres pasar un buen rato, Cinema Classic es el mejor lugar.
             </p>
@@ -92,8 +94,8 @@ function Nosotros() {
           <div className="columnaNosotros">
             <h2>Conozca Nuestros Cines</h2>
             <p>
-              Nuestros 3 cines están ubicadas en los lugares más céntricos del Valle Central. Con buena ubicación y seguridad, amplio parqueo y fácil acceso. Contamos con lo más moderno en proyección con butacas cómodas y de buena calidad. Nuestra dulcería es famosa por su variedad en golosinas y palomitas así como el buen servicio que brindamos. Compruebe la calidad de nuestro cine y déjanos tu comentario en nuestras redes sociales.
-            </p>
+              Nuestros 3 cines están ubicadas en los lugares más céntricos del Valle Central. Con buena ubicación y seguridad, amplio parqueo y fácil acceso. <br /><br /> Contamos con lo más moderno en proyección con butacas cómodas y de buena calidad. Nuestra dulcería es famosa por su variedad en golosinas y palomitas así como el buen servicio que brindamos. Compruebe la calidad de nuestro cine y déjanos tu comentario en nuestras redes sociales.
+            </p><br />
             <p>Les mostramos nuestros cines y su ubicación</p>
             <div className="wrapCine">
               <div>
