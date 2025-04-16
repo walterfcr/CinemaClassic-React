@@ -1,4 +1,58 @@
-.modal-overlay {
+.containerMovie {
+  margin:100px 0 0 ;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;         /* Permite que los elementos se acomoden en varias filas si es necesario */
+  gap: 20px;              /* Espacio entre las columnas */
+  justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
+  
+  }
+  
+  
+  .columnaMovie {
+  flex: 1 1 30%;           /* Los elementos ocuparán un 30% del ancho disponible */
+  min-width: 250px;        /* El tamaño mínimo de cada columna será de 250px */
+  max-width: 33%;          /* El tamaño máximo de cada columna será de un 33% del contenedor */
+  display: block;
+  }
+  
+  
+  .columnaMovie img {
+  max-width: 250px;
+  margin: 0 auto;
+  }
+  
+  .contenedorReparto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px; /* Espacio entre columnas */
+  }
+  
+  .columnaReparto {
+  flex: 1 1 22%; /* 22% de ancho, adaptativo */
+  padding: 10px 10px 50px;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  }
+  
+  .columnaReparto img {
+  max-width: 75px;
+  display: block;
+  margin: 0 auto; /* Center the image */
+  }
+  
+  .columnaReparto h2 {
+  font-weight: lighter;
+  }
+  
+  .columnaReparto h4 {
+  font-size: 0.8rem;
+  text-align: center;
+  font-weight: lighter;
+  padding:25px 0 15px;
+  }
+  
+  .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -17,11 +71,82 @@
     padding: 50px !important;
     border-radius: 1rem;
     max-width: 70%;
-    max-height: 90%;
+    max-height: 80%;
     overflow-y: auto;
     position: relative;
     animation: slideUp 0.4s ease-out;
   }
+
+  .modal-content h1 {
+    margin-top: 0;
+    margin-bottom: 0.5rem; /* Or any value you prefer */
+  }
+
+  @media (min-width:1400px) and (max-width:1700px){
+    .modal-content {
+      max-width: 80%;
+    }
+  }
+
+  @media (min-width:1280px) and (max-width:1399px){
+    .modal-content {
+      max-width: 85%;
+    }
+  }
+
+  
+  @media (min-width:1024px) and (max-width:1279px){
+    .modal-content {
+      max-width: 90%;
+      padding: 30px !important;
+    }
+
+    .modal-content hr {
+      display: none;
+    }
+
+    .containerMovie {
+      margin:10px 0 0 ;
+
+      }
+    
+  }
+
+  @media (min-width:320px) and (max-width:991px){
+    .columnaMovie h2 {
+      text-align: center;
+    }
+  }
+
+
+  @media (min-width:320px) and (max-width:800px){
+    .containerMovie {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem; /* optional spacing between columns */
+    }
+  
+    .columnaMovie {
+      width: 100%; /* Make each column full width */
+    }
+
+    .bannerMovie img {
+      margin: 0 auto;
+      display: block;
+      padding:0 0 50px;
+    }
+
+    .modal-content hr {
+      display: none;
+    }
+
+    .modal-content h1 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 2rem;
+    }
+  }
+
   
   .close-button {
     position: absolute;

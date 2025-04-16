@@ -16,11 +16,11 @@ function Domingo() {
   return (
     <main>
         <section className="semanales7"> 
-            <p>Los domingos celebramos al Director del Mes, una oportunidad para adentrarse en la visión y estilo de grandes cineastas que han dejado su marca en la historia del cine. Cada mes se selecciona un director diferente, y se proyecta una cuidada selección de sus obras más representativas, permitiendo apreciar su evolución, su lenguaje cinematográfico y los temas que definen su filmografía. Es una cita imperdible para quienes desean entender el cine desde la mirada de sus creadores más influyentes.</p>
+            <h1>Director del mes - Quentin Tarantino</h1>
+            <p>Los domingos celebramos al Director del Mes, una oportunidad para adentrarse en la visión y estilo de grandes cineastas que han dejado su marca en la historia del cine.<br /><br /> Cada mes se selecciona un director diferente, y se proyecta una cuidada selección de sus obras más representativas, permitiendo apreciar su evolución, su lenguaje cinematográfico y los temas que definen su filmografía. Es una cita imperdible para quienes desean entender el cine desde la mirada de sus creadores más influyentes.</p>
         </section>
 
         <div data-aos="zoom-in" id="semanales">
-            <h1>Director del mes - Quentin Tarantino</h1>
             <div className="contenedor">
               <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie31/movie31.webp" alt="Sunday Movie 1" />

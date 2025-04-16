@@ -74,7 +74,7 @@ h1 {
 
 #semanales {
  width:80%;
-margin:0 auto 50px;
+margin:70px auto 50px;
 }
 #semanales h2{
   margin:75px;
@@ -349,65 +349,11 @@ text-align: center;
 padding-bottom: 50px;
 }
 
-.containerMovie {
-margin:100px 0 0 ;
-position: relative;
-display: flex;
-flex-wrap: wrap;         /* Permite que los elementos se acomoden en varias filas si es necesario */
-gap: 20px;              /* Espacio entre las columnas */
-justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
-
-}
-
-
-.columnaMovie {
-flex: 1 1 30%;           /* Los elementos ocuparán un 30% del ancho disponible */
-min-width: 250px;        /* El tamaño mínimo de cada columna será de 250px */
-max-width: 33%;          /* El tamaño máximo de cada columna será de un 33% del contenedor */
-display: block;
-}
-
-
-.columnaMovie img {
-max-width: 250px;
-margin: 0 auto;
-}
-
-.contenedorReparto {
-display: flex;
-flex-wrap: wrap;
-gap: 5px; /* Espacio entre columnas */
-}
-
-.columnaReparto {
-flex: 1 1 22%; /* 22% de ancho, adaptativo */
-padding: 10px 10px 50px;
-box-sizing: border-box;
-justify-content: flex-start;
-}
-
-.columnaReparto img {
-max-width: 75px;
-display: block;
-margin: 0 auto; /* Center the image */
-}
-
-.columnaReparto h2 {
-font-weight: lighter;
-}
-
-.columnaReparto h4 {
-font-size: 0.8rem;
-text-align: center;
-font-weight: lighter;
-padding:25px 0 15px;
-}
-
 .test a {
 margin:0 35px;
 }
 
-.semanales{
+.semanales{ 
 margin:50px 0 0;
 background-image:url('../images/banner-semanales.webp');
 background-size:cover;
@@ -420,11 +366,12 @@ justify-content: center;
 text-align: center;
 }
 
-.semanales h2{
-color:#fff !important;
-font-size: 3rem;
-padding:0 0 30px;
+.semanales h2 {
+  color:#fff !important;
+  padding:30px ;
+  font-size: 2rem;
 }
+
 
 @media (min-width:481px) and (max-width:900px){
   .semanales h2 {
@@ -467,20 +414,72 @@ margin:30px 0;
 .semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
 background-size:cover;
 background-position-y:center;
-box-shadow: inset 0 0 0 1000px #080808b3 !important;
+box-shadow: inset 0 0 0 500px #080808b3 !important;
 height:450px;  
 color:#fff;
 display: flex;
+flex-direction: column;
 align-items: center;
 justify-content: center;
 padding:0 25%;
+margin:0 !important;
 }
 
 .semanales1 p, .semanales2 p, .semanales3 p, .semanales4 p, .semanales5 p, .semanales6 p, .semanales7 p{
   color:#fff;
-  font-size: 1.3rem;
-  line-height: 2.5rem;
+  font-size: 1rem;
 }
+
+.semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
+  color:#fff;
+  font-size: 2rem !important;
+  margin:0 0 20px!important;
+}
+
+@media (min-width: 800px) and (max-width: 1024px){
+  .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
+    font-size: 1.5rem !important;
+ }
+ .semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
+  padding:0 15%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 779px){
+  .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
+    font-size: 1.3rem !important;
+ }
+ .semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
+  padding:0 10%;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 769px){
+  .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
+    font-size: 1.2rem !important;
+ }
+ .semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
+  padding:0 5%;
+  height:500px !important; 
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 599px){
+  .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
+    font-size: 1.2rem !important;
+ }
+
+ .semanales1 p, .semanales2 p, .semanales3 p, .semanales4 p, .semanales5 p, .semanales6 p, .semanales7 p{
+  font-size: 0.9rem;
+}
+
+ .semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
+  padding:0 5%;
+  height:500px !important; 
+  }
+}
+
 
 .semanales1{
 background-image:url('../images/banner-semanales1.webp');
@@ -508,12 +507,6 @@ background-image:url('../images/banner-semanales6.webp');
 
 .semanales7{
 background-image:url('../images/banner-semanales7.webp');
-}
-
-.semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
-color:#fff;
-margin:0;
-font-size: 5rem;
 }
 
 footer {
