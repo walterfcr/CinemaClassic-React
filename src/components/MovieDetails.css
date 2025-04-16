@@ -82,15 +82,10 @@
     margin-bottom: 0.5rem; /* Or any value you prefer */
   }
 
-  @media (min-width:1400px) and (max-width:1700px){
-    .modal-content {
-      max-width: 80%;
-    }
-  }
 
-  @media (min-width:1280px) and (max-width:1399px){
+  @media (min-width:1280px) and (max-width:1700px){
     .modal-content {
-      max-width: 85%;
+      max-width: 90%;
     }
   }
 
@@ -101,14 +96,20 @@
       padding: 30px !important;
     }
 
+    .modal-content h1 {
+      font-size: 2rem;
+      padding:0 0 20px;
+    }
+
     .modal-content hr {
       display: none;
     }
 
     .containerMovie {
-      margin:10px 0 0 ;
+      margin:10px 0 0 ; 
 
-      }
+    }
+    
     
   }
 

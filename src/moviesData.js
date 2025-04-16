@@ -454,7 +454,7 @@ export const movies = [
         trailer: "https://www.youtube.com/embed/s7EdQ4FqbhY",
         cast: [
           { name: "John <br />Travolta", img: "/images/movie31/movie31-reparto1.webp" },
-          { name: "Samuel<br /> L Jackson", img: "/images/movie31/movie31-reparto2.webp" },
+          { name: "Samuel<br />Jackson", img: "/images/movie31/movie31-reparto2.webp" },
           { name: "Uma<br /> Thurman", img: "/images/movie31/movie31-reparto3.webp" },
           { name: "Bruce <br />Willis", img: "/images/movie31/movie31-reparto4.webp" },
         ],
@@ -490,7 +490,7 @@ export const movies = [
         { name: "Jamie <br />Foxx", img: "/images/movie33/movie33-reparto1.webp" },
         { name: "Christoph<br /> Waltz", img: "/images/movie33/movie33-reparto2.webp" },
         { name: "Leonardo<br /> Dicaprio", img: "/images/movie33/movie33-reparto3.webp" },
-        { name: "Samuel <br />L. Jackson", img: "/images/movie33/movie33-reparto4.webp" },
+        { name: "Samuel <br />Jackson", img: "/images/movie33/movie33-reparto4.webp" },
       ],
     },
   ];
