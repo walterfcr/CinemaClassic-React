@@ -90,7 +90,7 @@ function Nosotros() {
           </div>
         </div>
 
-        <div className="contenedorNosotros">
+        <div className="contenedorNosotros"> 
           <div className="columnaNosotros">
             <h2>Conozca Nuestros Cines</h2>
             <p>
