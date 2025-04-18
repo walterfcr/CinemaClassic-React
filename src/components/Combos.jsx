@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import 'sweetalert2/dist/sweetalert2.min.css';
-import './Combos.css';
+import './Combos.css'; 
 
 const Combos = () => {
   const [selectedFlavor, setSelectedFlavor] = useState("");
@@ -38,14 +38,18 @@ const Combos = () => {
         icon: "info",
         title: "Atención",
         html: '<p class="formatos1">Seleccione el sabor...</p>',
-        background: '#fff',
+        customClass: {
+          popup: 'custom-swal'
+        },
       });
     } else if (!selectedPriceType) {
       Swal.fire({
         icon: "info",
         title: "Atención",
         html: '<p class="formatos1">Seleccione el combo...</p>',
-        background: '#fff',
+        customClass: {
+          popup: 'custom-swal'
+        },
       });
     } else {
       const price = prices[selectedFlavor][selectedPriceType];
@@ -55,14 +59,10 @@ const Combos = () => {
         imageWidth: 500,
         imageHeight: 373,
         imageAlt: selectedFlavor,
-        background: '#ffffff',
-        backdrop: 'rgba(0, 0, 0, 0.7)',
-        didOpen: () => {
-          const popup = document.querySelector('.swal2-popup');
-          if (popup) {
-            popup.style.backgroundColor = '#ffffff';
-          }
-        }
+        customClass: {
+          popup: 'custom-swal'
+        },
+        backdrop: 'rgba(0, 0, 0, 0.9)',
       });
     }
   };
@@ -79,13 +79,11 @@ const Combos = () => {
           ))}
         </select>
 
-        <h4 className="mt-4">Ver Precio</h4>
         <select value={selectedPriceType} onChange={handlePriceTypeChange}>
           <option value="" disabled>Cotización:</option>
           <option>Unidad</option>
           <option>Combo</option>
         </select>
-
         <div className="mt-3">
           <button className="btn btn-warning" onClick={calcular}>Calcular</button>
         </div>
@@ -102,6 +100,7 @@ const Combos = () => {
           <li>Gaseosa</li>
           <li>Té frío</li>
         </ul>
+        <br />
         <p>Snack a escoger:</p>
         <ul>
           <li>Barra de chocolate</li>

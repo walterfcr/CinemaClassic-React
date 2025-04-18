@@ -1,10 +1,10 @@
 import React from 'react';
 import Combos from './Combos';
-//import './Footer.css';
+import './Nosotros.css';
 
 function Dulceria() {
   return (
-<main>
+<main class="twoColumns">
   <h1>Dulcería Cinema Classic</h1>
   <div className="contentWrap">
     <div className="contenedorNosotros">
@@ -21,19 +21,12 @@ function Dulceria() {
         <p>
           Contamos con gran variedad de golosinas, chocolates, refrescos y las infaltables palomitas de maíz y muchos sabores a escoger para mayor disfrute de la película.
         </p>
-        <br />
         <p>
           Tenemos las tradicionales palomitas y también con caramelo, las favoritas de muchos además de muchas novedades como las palomitas Cheetos, con Doritos y para los más valientes las palomitas con Takis
         </p>
-        <br />
         <p>
-          Muestra tu entrada VIP y obtendrás gratis un combo a elegir.
+        Muestra tu entrada VIP y obtendrás gratis un combo a elegir.  Aprovecha las ofertas y combos a tu gusto y así disfrutar del cine de la mejor manera.
         </p>
-        <br />
-        <p>
-          Aprovecha las ofertas y combos a tu gusto y así disfrutar del cine de la mejor manera.
-        </p>
-        <br />
         <p>
           *No se admite el ingreso de alimentos comprados fuera del local.
         </p>
