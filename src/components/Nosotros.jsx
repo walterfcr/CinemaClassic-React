@@ -99,7 +99,7 @@ function Nosotros() {
             <p>Les mostramos nuestros cines y su ubicación</p>
             <div className="">
               <div>
-                <select className="form-select" id="cines" ref={selectRef}>
+                <select className="customSelect" id="cines" ref={selectRef}>
                   <option value="" disabled selected>
                     Seleccione un cine
                   </option>
@@ -109,7 +109,7 @@ function Nosotros() {
                 </select>
               </div>
               <div>
-                <button >Reiniciar</button>
+                <button className="btnWarning" id="btn-clean" >Reiniciar</button>
               </div>
             </div>
           </div>

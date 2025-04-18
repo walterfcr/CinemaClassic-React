@@ -81,13 +81,12 @@
   }
   
   .btnWarning {
-    background-color: #f39c12 !important;
-    border: none;
-    color: white;
-    padding: 0.75rem 2rem;
+    background-color: var(--main-color) !important;
+    border: none !important;
+    color: white !important;
+    padding: 0.75rem 2rem ;
     font-size: 1rem;
     cursor: pointer;
-    border-radius: 5px;
     display: inline-block;
     margin-top: 1rem;
     transition: background 0.3s;

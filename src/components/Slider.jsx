@@ -11,7 +11,7 @@ const images = [
 const texts = [
   {
     title: 'Cinema Classic',
-    subtitle: 'Cinema Classic es la nueva forma de disfrutar del cine, un lugar donde puedes disfrutar de lo más reciente hasta lo clásico!'
+    subtitle: 'Esta es la nueva forma de disfrutar del cine, un lugar donde puedes disfrutar de lo más reciente hasta lo clásico!'
   },
   {
     title: 'Estrenos',

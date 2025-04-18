@@ -47,9 +47,9 @@ export default function MovieDetails() {
                   </div>
                 ))}
               </div>
-              <div className="tab columnaEstreno test">
-                <a href="#" className="boton tab" onClick={(e) => {e.preventDefault(); setShowTrailer(true);}}>Ver Trailer</a>
-                <a href="#" className="tab">Comprar</a>
+              <div className="columnaEstreno test tab">
+                <a href="#"  onClick={(e) => {e.preventDefault(); setShowTrailer(true);}}>Ver Trailer</a>
+                <a href="#">Comprar</a>
               </div>
             </div>
           </div>

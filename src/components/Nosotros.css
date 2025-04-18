@@ -36,6 +36,13 @@
     display: block;
   }
 
+  .customSelect {
+    width: 50%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
   
   /* Make it 1 column on smaller screens */
   @media (max-width: 800px) {

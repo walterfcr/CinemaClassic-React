@@ -85,7 +85,7 @@ const Combos = () => {
           <option>Combo</option>
         </select>
         <div className="mt-3">
-          <button className="btn btn-warning" onClick={calcular}>Calcular</button>
+          <button className="btnWarning" onClick={calcular}>Calcular</button>
         </div>
       </div>
 
