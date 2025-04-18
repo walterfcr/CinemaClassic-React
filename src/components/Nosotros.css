@@ -4,7 +4,7 @@
   }
   
   /* This makes it a 2-column layout on larger screens */
-  .contenedorNosotros {
+  .contenedorNosotros { 
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -13,7 +13,8 @@
   
   /* Each column takes up 48% of the container */
   .columnaNosotros {
-    flex: 1 1 48%;
+    flex: 1 1 0;
+    max-width: calc(50% - 10px);
     box-sizing: border-box;
     padding:0 30px 50px;
   }
@@ -23,12 +24,24 @@
     text-align: center;
     padding:0 0 20px;
   }
+
+  .columnaNosotros p{
+    padding:0 0 50px;
+  }
+
+  .cineAnimacion {
+    max-width: 400px;
+    height: auto;
+    margin:0 auto;
+    display: block;
+  }
+
   
   /* Make it 1 column on smaller screens */
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     .columnaNosotros {
       flex: 1 1 100%;
-      padding:0 10px 50px;
+      max-width: calc(100% - 10px);
     }
 
     .cineAnimacion {
@@ -48,12 +61,49 @@
         font-size: 1.8rem;
         margin:50px 25px 20px !important;
     }
+
+    .contentWrap {
+      width:90%;
+    }
+  }
+
+  @media (min-width:900px) and (max-width: 1279px){
+    .columnaNosotros p{
+      padding:0 0 10px;
+    }
+
+    .columnaNosotros {
+      padding:0 5px 50px;
+    }
+
+    .columnaNosotros img {
+      max-width: 92%;
+   }
+
+   .contentWrap {
+    width:90%;
+  }
+  }
+
+  @media (min-width:1280px) and (max-width: 1365px){
+    .columnaNosotros p{
+      padding:0 0 20px;
+    }
+
+    .columnaNosotros {
+      padding:0 10px 50px;
+    }
+
+    .columnaNosotros img {
+      max-width: 95%;
+   }
+  }
+
+  @media (min-width:1366px) and (max-width: 1500px){
+    .columnaNosotros p{
+      padding:0 0 30px;
+    }
   }
 
 
-  .cineAnimacion {
-    max-width: 400px;
-    height: auto;
-    margin:0 auto;
-    display: block;
-  }
+ 

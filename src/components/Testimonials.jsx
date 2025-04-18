@@ -61,7 +61,7 @@ const Testimonials = () => {
             <div className="item">
               <img src="images/usuario5.webp" alt="" />
               <h3>Kendra Michaels</h3>
-              <p>Me gustó el lugar muy tranquilo, cómodo y cerca.</p>
+              <p>Me gustó el lugar bastante tranquilo, cómodo y cerca.</p>
               {[...Array(4)].map((_, i) => (
                 <i key={i} className="fa-solid fa-star" style={{ color: '#c17f27' }}></i>
               ))}
