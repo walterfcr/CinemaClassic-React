@@ -158,7 +158,7 @@ function Content() {
 
         {selectedDay === 'miercoles' && (
           <div data-aos="zoom-in">
-            <h2>Martes de Cine Asiático</h2>
+            <h2>Miércoles de Cine Asiático</h2>
             <div className="contenedor">
               <div className="columnaEstreno tab" data-aos="flip-left">
               <img src="images/movie19/movie19.webp" alt="Monday Movie 1" />
