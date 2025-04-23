@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './Slider.css';
 
 const images = [
-  '/images/banner0.jpg',
+  '/images/banner1.webp',
   '/images/banner1.jpg',
   '/images/banner3.webp',
-  '/images/banner2.jpg'
+  '/images/banner2.webp'
 ];
 
 const texts = [
