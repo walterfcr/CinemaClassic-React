@@ -21,11 +21,23 @@
 }
 
 .logo a {
-  font-family: "Poppins", sans-serif;
-  color: white;
-  font-size: 24px;
-  font-weight: 300;
   text-decoration: none;
+}
+
+.logo-dec1 {
+  color: #c0bfbf;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.logo-dec2 {
+  color: #e67e22;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 /*hamburguesa*/

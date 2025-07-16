@@ -18,7 +18,7 @@ const Navbar = () => {
     <header className="navbar-container">
       <div className="navbar">
         <div className="logo">
-          <Link to="/" onClick={closeSidebar}>Cinema Classic</Link>
+          <Link to="/" onClick={closeSidebar}><span className='logo-dec1'>Cinema</span> <span className='logo-dec2'>Classic</span></Link>
         </div>
         <div className="menu-icon" onClick={toggleSidebar}>
           ☰

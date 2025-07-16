@@ -20,20 +20,14 @@ function Nosotros() {
 
       const imagen = `<img src='images/combo/${n}.webp' class='img-fluid' alt='cines' />`;
 
-      const titulo = [
-        "<h2>Cinema Classic - San José</h2>",
-        "<h2>Cinema Classic - Heredia</h2>",
-        "<h2>Cinema Classic - Cartago</h2>",
-      ];
-
       const text = [
-        "<p>Barrio la California</p>",
-        "<p>En el Mall Oxígeno, San Francisco de Heredia</p>",
-        "<p>Mall Paseo Metrópoli, Provincia de Cartago</p>",
+        "<br><p>Barrio la California</p>",
+        "<br><p>En el Mall Oxígeno, San Francisco de Heredia</p>",
+        "<br><p>Mall Paseo Metrópoli, Provincia de Cartago</p>",
       ];
 
       if (titleRef.current && imageRef.current && textRef.current) {
-        titleRef.current.innerHTML = titulo[n - 1];
+
         imageRef.current.innerHTML = imagen;
         textRef.current.innerHTML = text[n - 1];
       }
@@ -41,7 +35,6 @@ function Nosotros() {
 
     const handleReset = () => {
       if (titleRef.current && imageRef.current && textRef.current && selectRef.current) {
-        titleRef.current.innerHTML = '';
         imageRef.current.innerHTML = "<img src='images/logo-cines.webp' class='img-fluid' alt='logo' />";
         textRef.current.innerHTML = '';
         selectRef.current.value = '';
@@ -103,9 +96,9 @@ function Nosotros() {
                   <option value="" disabled selected>
                     Seleccione un cine
                   </option>
-                  <option value="1">San José</option>
                   <option value="2">Heredia</option>
                   <option value="3">Cartago</option>
+                  <option value="1">San José</option>
                 </select>
               </div>
               <div>

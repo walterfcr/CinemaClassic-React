@@ -6,7 +6,7 @@ function Vip() {
     <main>
         <div className='vipContainer'>
             <div className='vipColumn'>
-                 <img src="images/banner-vip.webp" alt="Monday Movie 1" />
+                 <img src="images/logo.png" alt="Monday Movie 1" />
             </div>
             <div className='vipColumn'>
                 <h2>Zona VIP</h2>
