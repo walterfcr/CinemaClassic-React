@@ -6,20 +6,20 @@ import './Combos.css';
 const Combos = () => {
   const [selectedFlavor, setSelectedFlavor] = useState("");
   const [selectedPriceType, setSelectedPriceType] = useState("");
-  const [imageSrc, setImageSrc] = useState("images/palomita1.webp");
+  const [imageSrc, setImageSrc] = useState("images/palomitas1.jpg");
 
   const flavorImages = {
-    "Palomitas con Caramelo": "images/palomita1.webp",
-    "Palomitas Cheetos": "images/palomita2.webp",
-    "Palomitas Doritos": "images/palomita3.webp",
-    "Palomitas Takis": "images/palomita4.webp",
+    "Palomitas Classic": "images/palomitas1.jpg",
+    "Palomitas con Mantequilla": "images/palomitas2.jpg",
+    "Palomitas Queso Cheddar": "images/palomitas3.jpg",
+    "Palomitas con Caramelo": "images/palomitas4.jpg",
   };
 
   const prices = {
-    "Palomitas con Caramelo": { Unidad: 3000, Combo: 4200 },
-    "Palomitas Cheetos": { Unidad: 3500, Combo: 4600 },
-    "Palomitas Doritos": { Unidad: 3500, Combo: 4600 },
-    "Palomitas Takis": { Unidad: 3600, Combo: 4700 },
+    "Palomitas Classic": { Unidad: 2000, Combo: 4200 },
+    "Palomitas con Mantequilla": { Unidad: 2500, Combo: 4600 },
+    "Palomitas Queso Cheddar": { Unidad: 2500, Combo: 4600 },
+    "Palomitas con Caramelo": { Unidad: 3600, Combo: 4700 },
   };
 
   const handleFlavorChange = (e) => {
