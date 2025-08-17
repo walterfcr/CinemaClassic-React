@@ -17,8 +17,17 @@ function Content() {
 
 
   useEffect(() => {
-    AOS.init(); // Initialize AOS
-  }, []);
+      AOS.init({
+        once: true,      // animations happen only once
+        duration: 400,   // faster animation
+        easing: "ease-out",
+      });
+    }, []);
+
+    // 👇 Refresh AOS on route change (like Vue afterEach)
+    useEffect(() => {
+      AOS.refreshHard();
+    }, [location.pathname]);
 
   return (
     
