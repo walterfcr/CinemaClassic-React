@@ -476,7 +476,7 @@ export const movies = [
         { name: "Michael <br />Fassbender", img: "/images/movie32/movie32-reparto4.webp" },
       ],
       },
-      {
+    {
       id: "movie33",
       title: "Django Unchained",
       director: "Quentin Tarantino",
@@ -491,6 +491,74 @@ export const movies = [
         { name: "Christoph<br /> Waltz", img: "/images/movie33/movie33-reparto2.webp" },
         { name: "Leonardo<br /> Dicaprio", img: "/images/movie33/movie33-reparto3.webp" },
         { name: "Samuel <br />Jackson", img: "/images/movie33/movie33-reparto4.webp" },
+      ],
+    },
+    {
+      id: "movie34",
+      title: "Wicked: For Good",
+      director: "Jon M. Chu",
+      country: "Estados Unidos",
+      year: 2025,
+      synopsis:
+        ": El panorama político de Oz está completamente establecido. Elphaba es conocida como la Bruja Mala del Oeste debido a su rebeldía contra el régimen del Mago y sus intentos por liberar a los animales que este ha encarcelado.",
+      banner: "/images/movie34/movie34.webp",
+      trailer: "https://www.youtube.com/embed/le9vaRUf1y1Q7W",
+      cast: [
+        { name: "Ariana <br />Grande", img: "/images/movie34/movie34-reparto1.webp" },
+        { name: "Cynthia<br /> Erivo", img: "/images/movie34/movie34-reparto2.webp" },
+        { name: "Jonathan<br /> Bailey", img: "/images/movie34/movie34-reparto3.webp" },
+        { name: "Peter  <br />Dinklage", img: "/images/movie34/movie34-reparto4.webp" },
+      ],
+    },
+    {
+      id: "movie35",
+      title: "Weapons",
+      director: "Zach Cregger",
+      country: "Estados Unidos",
+      year: 2025,
+      synopsis:
+        ": Cuando todos los niños de la misma clase, menos uno, desaparecen misteriosamente la misma noche y exactamente a la misma hora, una comunidad se pregunta quién o qué está detrás de su desaparición.",
+      banner: "/images/movie35/movie35.webp",
+      trailer: "https://www.youtube.com/embed/le9vaRUf1y1Q7W",
+      cast: [
+        { name: "Julia <br />Garner", img: "/images/movie35/movie35-reparto1.webp" },
+        { name: "Amy<br /> Madigan", img: "/images/movie35/movie35-reparto2.webp" },
+        { name: "Josh <br /> Brolin", img: "/images/movie35/movie35-reparto3.webp" },
+        { name: "Austin  <br />Abrams", img: "/images/movie35/movie35-reparto4.webp" },
+      ],
+    },
+        {
+      id: "movie36",
+      title: "Superman",
+      director: "James Gunn",
+      country: "Estados Unidos",
+      year: 2025,
+      synopsis:
+        ":  La trama se centra en cómo Superman equilibra su identidad secreta con sus deberes, enfrentando el cinismo global y la manipulación de Luthor para demostrar que la esperanza y la verdad aún existen",
+      banner: "/images/movie36/movie36.webp",
+      trailer: "https://www.youtube.com/embed/le9vaRUf1y1Q7W",
+      cast: [
+        { name: "David <br />Corenswet", img: "/images/movie36/movie36-reparto1.webp" },
+        { name: "Rachel<br /> Brosnahan", img: "/images/movie36/movie36-reparto2.webp" },
+        { name: "Nicholas  <br /> Hoult", img: "/images/movie36/movie36-reparto3.webp" },
+        { name: "Milly  <br />Alcock", img: "/images/movie36/movie36-reparto4.webp" },
+      ],
+    },
+        {
+      id: "movie37",
+      title: "One Battle After Another",
+      director: "Paul Thomas Anderson",
+      country: "Estados Unidos",
+      year: 2025,
+      synopsis:
+        ": Un ex-revolucionario arrastrado de nuevo al conflicto cuando su hija es secuestrada por un viejo enemigo, forzándolo a reunir a sus antiguos camaradas para luchar contra un oscuro complot supremacista",
+      banner: "/images/movie37/movie37.webp",
+      trailer: "https://www.youtube.com/embed/le9vaRUf1y1Q7W",
+      cast: [
+        { name: "Leonardo <br />DiCaprio", img: "/images/movie37/movie37-reparto1.webp" },
+        { name: "Sean<br /> Penn", img: "/images/movie37/movie37-reparto2.webp" },
+        { name: "Chase <br /> Infiniti", img: "/images/movie37/movie37-reparto3.webp" },
+        { name: "Benicio  <br />Del Toro", img: "/images/movie37/movie37-reparto4.webp" },
       ],
     },
   ];
