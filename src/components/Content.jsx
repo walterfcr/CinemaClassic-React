@@ -57,6 +57,29 @@ function Content() {
             <a href="#">Comprar</a>
           </div>
           <div className="columnaEstreno tab" data-aos="flip-left">
+            <img src="images/movie38/movie38.webp" alt="Movie 38" />
+            <Link to={`/movie/movie38`} state={{ backgroundLocation: location }}> Detalles</Link>
+            <a href="#">Comprar</a>
+          </div>
+          <div className="columnaEstreno tab" data-aos="flip-left">
+            <img src="images/movie39/movie39.webp" alt="Movie 39" />
+            <Link to={`/movie/movie39`} state={{ backgroundLocation: location }}> Detalles</Link>
+            <a href="#">Comprar</a>
+          </div>
+          <div className="columnaEstreno tab" data-aos="flip-left">
+            <img src="images/movie40/movie40.webp" alt="Movie 40" />
+            <Link to={`/movie/movie40`} state={{ backgroundLocation: location }}> Detalles</Link>
+            <a href="#">Comprar</a>
+          </div>
+          <div className="columnaEstreno tab" data-aos="flip-left">
+            <img src="images/movie41/movie41.webp" alt="Movie 41" />
+            <Link to={`/movie/movie41`} state={{ backgroundLocation: location }}> Detalles</Link>
+            <a href="#">Comprar</a>
+          </div>
+          </div>
+          <h1>Películas de 2023</h1>
+          <div className="contenedor">
+          <div className="columnaEstreno tab" data-aos="flip-left">
             <img src="images/movie1/movie1.webp" alt="Movie 1" />
             <Link to={`/movie/movie01`} state={{ backgroundLocation: location }}> Detalles</Link>
             <a href="#">Comprar</a>

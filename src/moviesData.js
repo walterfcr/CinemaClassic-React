@@ -502,7 +502,7 @@ export const movies = [
       synopsis:
         ": El panorama político de Oz está completamente establecido. Elphaba es conocida como la Bruja Mala del Oeste debido a su rebeldía contra el régimen del Mago y sus intentos por liberar a los animales que este ha encarcelado.",
       banner: "/images/movie34/movie34.webp",
-      trailer: "https://www.youtube.com/embed/le9vaRUf1y1Q7W",
+      trailer: "https://www.youtube.com/embed/I5FMRnh8-qs",
       cast: [
         { name: "Ariana <br />Grande", img: "/images/movie34/movie34-reparto1.webp" },
         { name: "Cynthia<br /> Erivo", img: "/images/movie34/movie34-reparto2.webp" },
@@ -519,7 +519,7 @@ export const movies = [
       synopsis:
         ": Cuando todos los niños de la misma clase, menos uno, desaparecen misteriosamente la misma noche y exactamente a la misma hora, una comunidad se pregunta quién o qué está detrás de su desaparición.",
       banner: "/images/movie35/movie35.webp",
-      trailer: "https://www.youtube.com/embed/le9vaRUf1y1Q7W",
+      trailer: "https://www.youtube.com/embed/kRQp10hiShs",
       cast: [
         { name: "Julia <br />Garner", img: "/images/movie35/movie35-reparto1.webp" },
         { name: "Amy<br /> Madigan", img: "/images/movie35/movie35-reparto2.webp" },
@@ -536,7 +536,7 @@ export const movies = [
       synopsis:
         ":  La trama se centra en cómo Superman equilibra su identidad secreta con sus deberes, enfrentando el cinismo global y la manipulación de Luthor para demostrar que la esperanza y la verdad aún existen",
       banner: "/images/movie36/movie36.webp",
-      trailer: "https://www.youtube.com/embed/le9vaRUf1y1Q7W",
+      trailer: "https://www.youtube.com/embed/0X_kBulSMjQ",
       cast: [
         { name: "David <br />Corenswet", img: "/images/movie36/movie36-reparto1.webp" },
         { name: "Rachel<br /> Brosnahan", img: "/images/movie36/movie36-reparto2.webp" },
@@ -544,7 +544,7 @@ export const movies = [
         { name: "Milly  <br />Alcock", img: "/images/movie36/movie36-reparto4.webp" },
       ],
     },
-        {
+    {
       id: "movie37",
       title: "One Battle After Another",
       director: "Paul Thomas Anderson",
@@ -553,12 +553,80 @@ export const movies = [
       synopsis:
         ": Un ex-revolucionario arrastrado de nuevo al conflicto cuando su hija es secuestrada por un viejo enemigo, forzándolo a reunir a sus antiguos camaradas para luchar contra un oscuro complot supremacista",
       banner: "/images/movie37/movie37.webp",
-      trailer: "https://www.youtube.com/embed/le9vaRUf1y1Q7W",
+      trailer: "https://www.youtube.com/embed/feOQFKv2Lw4",
       cast: [
         { name: "Leonardo <br />DiCaprio", img: "/images/movie37/movie37-reparto1.webp" },
         { name: "Sean<br /> Penn", img: "/images/movie37/movie37-reparto2.webp" },
         { name: "Chase <br /> Infiniti", img: "/images/movie37/movie37-reparto3.webp" },
         { name: "Benicio  <br />Del Toro", img: "/images/movie37/movie37-reparto4.webp" },
+      ],
+    },
+    {
+      id: "movie38",
+      title: "Plankton: The Movie",
+      director: "Dave Needham",
+      country: "Estados Unidos",
+      year: 2025,
+      synopsis:
+        ": El astuto copépodo Sheldon J. Plankton lleva años fracasando en su intento de robar la fórmula de la Cangreburger. Ha llegado el momento de volver a intentarlo",
+      banner: "/images/movie38/movie38.webp",
+      trailer: "https://www.youtube.com/embed/QjWQ58XHwg8",
+      cast: [
+        { name: "Mr <br />Lawrence", img: "/images/movie38/movie38-reparto1.webp" },
+        { name: "Jill<br /> Talley", img: "/images/movie38/movie38-reparto2.webp" },
+        { name: "Tom <br /> Kenny", img: "/images/movie38/movie38-reparto3.webp" },
+        { name: "Clansy<br />Brown", img: "/images/movie38/movie38-reparto4.webp" },
+      ],
+    },
+    {
+      id: "movie39",
+      title: "Bugonia",
+      director: "Yorgos Lanthimos",
+      country: "Estados Unidos",
+      year: 2025,
+      synopsis:
+        ": Dos primos conspiranoicos secuestran a una directora ejecutiva creyendo que es una alienígena que busca destruir la Tierra, torturándola para que los contacte con su raza.",
+      banner: "/images/movie39/movie39.webp",
+      trailer: "https://www.youtube.com/embed/ZHkNHsE7AH8",
+      cast: [
+        { name: "Jesse <br />Plemons", img: "/images/movie39/movie39-reparto1.webp" },
+        { name: "Emma<br /> Stone", img: "/images/movie39/movie39-reparto2.webp" },
+        { name: "Alicia <br /> Silverstone", img: "/images/movie39/movie39-reparto3.webp" },
+        { name: "Aidan<br />Delbis", img: "/images/movie39/movie39-reparto4.webp" },
+      ],
+    },
+    {
+      id: "movie40",
+      title: "Caught Stealing",
+      director: "Darren Aronofsky",
+      country: "Estados Unidos",
+      year: 2025,
+      synopsis:
+        ":  Un exjugador de béisbol agotado, que, sin saberlo, se ve envuelto en una salvaje lucha por la supervivencia en el inframundo criminal del centro de la ciudad de Nueva York",
+      banner: "/images/movie40/movie40.webp",
+      trailer: "https://www.youtube.com/embed/3Xr2HSVl3po",
+      cast: [
+        { name: "Austin <br />Butler", img: "/images/movie40/movie40-reparto1.webp" },
+        { name: "Zoë <br /> Kravitz", img: "/images/movie40/movie40-reparto2.webp" },
+        { name: "Matt <br /> Smith", img: "/images/movie40/movie40-reparto3.webp" },
+        { name: "Regina<br />King", img: "/images/movie40/movie40-reparto4.webp" },
+      ],
+    },
+    {
+      id: "movie41",
+      title: "Osiris",
+      director: "William Kaufman",
+      country: "Estados Unidos",
+      year: 2025,
+      synopsis:
+        ":  Comandos de las Fuerzas Especiales son abducidos en plena operación por una misteriosa nave espacial y, al despertar, se encuentran presa de una implacable raza alienígena en una lucha por la supervivencia.",
+      banner: "/images/movie41/movie41.webp",
+      trailer: "https://www.youtube.com/embed/TwWPXJZzfq4",
+      cast: [
+        { name: "Linda <br />Hamilton", img: "/images/movie41/movie41-reparto1.webp" },
+        { name: "Brianna <br /> Hildebrand", img: "/images/movie41/movie41-reparto2.webp" },
+        { name: "Max <br /> Martini", img: "/images/movie41/movie41-reparto3.webp" },
+        { name: "LaMonica <br />Garrett", img: "/images/movie41/movie41-reparto4.webp" },
       ],
     },
   ];
