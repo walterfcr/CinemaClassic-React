@@ -25,17 +25,17 @@ function Lunes() {
               <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie13/movie13.webp" alt="Sunday Movie 1" />
                 <Link to={`/movie/movie13`} state={{ backgroundLocation: location }}> Detalles</Link>
-                <a href="#">Comprar</a>
+                <Link to={`/buy/movie13`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
               <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie14/movie14.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie14`} state={{ backgroundLocation: location }}> Detalles</Link>
-                <a href="#">Comprar</a>
+                <Link to={`/buy/movie14`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
               <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie15/movie15.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie15`} state={{ backgroundLocation: location }}> Detalles</Link>
-                <a href="#">Comprar</a>
+                <Link to={`/buy/movie15`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
             </div>
           </div>

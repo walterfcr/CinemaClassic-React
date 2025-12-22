@@ -15,7 +15,8 @@ import Slider from './components/Slider';
 import Contacto from './components/Contacto';
 import Content from './components/Content';
 import Footer from './components/Footer';
-import MovieDetails from './components/MovieDetails';
+import MovieDetails from './pages/MovieDetails';
+import BuyTicket from "./pages/BuyTicket";
 import './App.css';
 import './responsive.css';
 
@@ -46,6 +47,7 @@ function App() {
         <Route path="/viernes" element={<Viernes />} />
         <Route path="/sabado" element={<Sabado />} />
         <Route path="/contacto" element={<Contacto />} />
+        
       </Routes>
 
       {/* Conditional modal rendering for movie details */}
@@ -53,6 +55,7 @@ function App() {
         {backgroundLocation && (
           <Routes>
             <Route path="/movie/:id" element={<MovieDetails />} />
+            <Route path="/buy/:id" element={<BuyTicket />} />
           </Routes>
         )}
       </AnimatePresence>

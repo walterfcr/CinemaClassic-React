@@ -1,0 +1,106 @@
+/* Overlay oscuro */
+.buyticket-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* MODAL BLANCO */
+.buyticket-modal {
+  background: #ffffff !important;
+  color: #111;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+}
+
+/* Cerrar */
+.buyticket-close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Título */
+.buyticket-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Contenido */
+.buyticket-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Imagen */
+.buyticket-body img {
+
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Formulario */
+.buyticket-body form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.buyticket-body input,
+.buyticket-body select {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Precio */
+.buyticket-price {
+  font-size: 1.1rem;
+  margin: 0.3rem 0;
+}
+
+/* Botón */
+.buyticket-body button,
+.buyticket-btn {
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: none;
+  background: #000 !important;
+  color: #fff;
+  cursor: pointer;
+}
+
+.buyticket-body button:disabled {
+  opacity: 0.6;
+}
+
+/* Éxito */
+.buyticket-success {
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .buyticket-body {
+    grid-template-columns: 1fr;
+  }
+
+  .buyticket-body img {
+    max-height: 280px;
+  }
+}

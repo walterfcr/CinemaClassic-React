@@ -25,17 +25,17 @@ function Viernes() {
               <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie25/movie25.webp" alt="Sunday Movie 1" />
                 <Link to={`/movie/movie25`} state={{ backgroundLocation: location }}> Detalles</Link>
-                <a href="#">Comprar</a>
+                <Link to={`/buy/movie25`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
               <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie26/movie26.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie26`} state={{ backgroundLocation: location }}> Detalles</Link>
-                <a href="#">Comprar</a>
+                <Link to={`/buy/movie26`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
               <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie27/movie27.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie27`} state={{ backgroundLocation: location }}> Detalles</Link>
-                <a href="#">Comprar</a>
+                <Link to={`/buy/movie27`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
             </div>
           </div>

@@ -25,17 +25,17 @@ function Domingo() {
               <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie31/movie31.webp" alt="Sunday Movie 1" />
                 <Link to={`/movie/movie31`} state={{ backgroundLocation: location }}> Detalles</Link>
-                <a href="#">Comprar</a>
+                <Link to={`/buy/movie31`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
               <div className="columnaEstreno tab" data-aos="flip-left">
                 <img src="images/movie32/movie32.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie32`} state={{ backgroundLocation: location }}> Detalles</Link>
-                <a href="#">Comprar</a>
+                <Link to={`/buy/movie32`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
               <div className="columnaEstreno tab" data-aos="flip-left">
               <img src="images/movie33/movie33.webp" alt="Sunday Movie 2" />
               <Link to={`/movie/movie33`} state={{ backgroundLocation: location }}> Detalles</Link>
-                <a href="#">Comprar</a>
+                <Link to={`/buy/movie33`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
             </div>
           </div>
