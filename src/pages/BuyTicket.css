@@ -80,7 +80,7 @@
   padding: 0.7rem;
   border-radius: 8px;
   border: none;
-  background: #000 !important;
+  background: var(--main-color) !important;
   color: #fff;
   cursor: pointer;
 }
@@ -104,3 +104,6 @@
     max-height: 280px;
   }
 }
+
+
+

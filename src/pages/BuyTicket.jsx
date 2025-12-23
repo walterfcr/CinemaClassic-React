@@ -3,6 +3,7 @@ import { useState } from "react";
 import { movies } from "../moviesData";
 import { db } from "../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import SeatSelectorModal from "./SeatSelectorModal";
 import "./BuyTicket.css";
 
 const BuyTicket = () => {
@@ -10,27 +11,36 @@ const BuyTicket = () => {
   const navigate = useNavigate();
   const movie = movies.find((m) => m.id === id);
 
-  const prices = {
-    regular: 3000,
-    vip: 5000
-  };
-
   const [form, setForm] = useState({
     name: "",
     email: "",
     cinema: "",
     date: "",
     tanda: "",
-    type: "regular"
   });
 
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [showSeats, setShowSeats] = useState(false);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   if (!movie) return null;
 
+  const regularPrice = 3000;
+  const vipPrice = 5000;
+
+  const totalPrice = selectedSeats.reduce((acc, seat) => {
+    return acc + (seat.type === "vip" ? vipPrice : regularPrice);
+  }, 0);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (selectedSeats.length === 0) {
+      alert("Selecciona al menos una butaca");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -38,28 +48,23 @@ const BuyTicket = () => {
         movieId: movie.id,
         movieTitle: movie.title,
         ...form,
-        price: prices[form.type],
-        createdAt: serverTimestamp()
+        seats: selectedSeats,
+        total: totalPrice,
+        createdAt: serverTimestamp(),
       });
 
       setSubmitted(true);
-    } catch (error) {
-      alert("Error al reservar entrada");
+    } catch (err) {
+      alert("Error al guardar la compra");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="buyticket-overlay" onClick={() => navigate(-1)}>
-      <div
-        className="buyticket-modal"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          className="buyticket-close"
-          onClick={() => navigate(-1)}
-        >
+    <div className="buyticket-overlay">
+      <div className="buyticket-modal">
+        <button className="buyticket-close" onClick={() => navigate(-1)}>
           ✕
         </button>
 
@@ -67,14 +72,10 @@ const BuyTicket = () => {
           <div className="buyticket-success">
             <h2>🎬 Entrada reservada</h2>
             <p><strong>Película:</strong> {movie.title}</p>
-            <p><strong>Nombre:</strong> {form.name}</p>
-            <p><strong>Tipo:</strong> {form.type}</p>
-            <p><strong>Total:</strong> ₡{prices[form.type]}</p>
+            <p><strong>Butacas:</strong> {selectedSeats.map(s => s.id).join(", ")}</p>
+            <p><strong>Total:</strong> ¢{totalPrice}</p>
 
-            <button
-              className="buyticket-btn"
-              onClick={() => navigate("/")}
-            >
+            <button className="buyticket-btn" onClick={() => navigate("/")}>
               Volver al inicio
             </button>
           </div>
@@ -83,31 +84,13 @@ const BuyTicket = () => {
             <h2 className="buyticket-title">{movie.title}</h2>
 
             <div className="buyticket-body">
-              <img
-                src={movie.banner}
-                alt={movie.title}
-                className="buyticket-image"
-              />
+              <img src={movie.banner} alt={movie.title} />
 
-              <form onSubmit={handleSubmit} className="buyticket-form">
-                <select
-                  value={form.type}
-                  onChange={(e) =>
-                    setForm({ ...form, type: e.target.value })
-                  }
-                  required
-                >
-                  <option value="regular">Regular ₡3000</option>
-                  <option value="vip">VIP ₡5000</option>
-                </select>
-
+              <form onSubmit={handleSubmit}>
                 <input
-                  type="text"
                   placeholder="Nombre"
                   value={form.name}
-                  onChange={(e) =>
-                    setForm({ ...form, name: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
                   required
                 />
 
@@ -115,17 +98,13 @@ const BuyTicket = () => {
                   type="email"
                   placeholder="Email"
                   value={form.email}
-                  onChange={(e) =>
-                    setForm({ ...form, email: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
                   required
                 />
 
                 <select
                   value={form.cinema}
-                  onChange={(e) =>
-                    setForm({ ...form, cinema: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, cinema: e.target.value })}
                   required
                 >
                   <option value="">Seleccione cine</option>
@@ -137,17 +116,13 @@ const BuyTicket = () => {
                 <input
                   type="date"
                   value={form.date}
-                  onChange={(e) =>
-                    setForm({ ...form, date: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, date: e.target.value })}
                   required
                 />
 
                 <select
                   value={form.tanda}
-                  onChange={(e) =>
-                    setForm({ ...form, tanda: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, tanda: e.target.value })}
                   required
                 >
                   <option value="">Seleccione tanda</option>
@@ -156,22 +131,34 @@ const BuyTicket = () => {
                   <option>7 pm</option>
                 </select>
 
+                <button
+                  type="button"
+                  className="buyticket-btn"
+                  onClick={() => setShowSeats(true)}
+                >
+                  Elegir butacas ({selectedSeats.length})
+                </button>
+
                 <div className="buyticket-price">
-                  Total: ₡{prices[form.type]}
+                  Total: ¢{totalPrice}
                 </div>
 
-                <button
-                  type="submit"
-                  className="buyticket-btn"
-                  disabled={loading}
-                >
-                  {loading ? "Reservando..." : "Reservar entrada"}
+                <button className="buyticket-btn" disabled={loading}>
+                  {loading ? "Comprando..." : "Comprar entradas"}
                 </button>
               </form>
             </div>
           </>
         )}
       </div>
+
+      {showSeats && (
+        <SeatSelectorModal
+          selectedSeats={selectedSeats}
+          setSelectedSeats={setSelectedSeats}
+          onClose={() => setShowSeats(false)}
+        />
+      )}
     </div>
   );
 };

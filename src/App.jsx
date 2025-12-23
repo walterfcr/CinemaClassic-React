@@ -23,20 +23,17 @@ import './responsive.css';
 function App() {
   const location = useLocation();
   const state = location.state;
+
+  // backgroundLocation para modal padre
   const backgroundLocation = state?.backgroundLocation;
 
   return (
     <>
       <Navbar />
 
-      {/* Main Routes (backgroundLocation is used if navigating from a modal-triggering link) */}
+      {/* Main Routes */}
       <Routes location={backgroundLocation || location}>
-        <Route path="/" element={
-          <>
-            <Slider />
-            <Content />
-          </>
-        } />
+        <Route path="/" element={<><Slider /><Content /></>} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/dulceria" element={<Dulceria />} />
         <Route path="/domingo" element={<Domingo />} />
@@ -47,21 +44,29 @@ function App() {
         <Route path="/viernes" element={<Viernes />} />
         <Route path="/sabado" element={<Sabado />} />
         <Route path="/contacto" element={<Contacto />} />
-        
       </Routes>
 
-      {/* Conditional modal rendering for movie details */}
+      {/* Modales */}
       <AnimatePresence>
-        {backgroundLocation && (
+        {/* MovieDetails modal */}
+        {location.pathname.startsWith("/movie/") && (
           <Routes>
             <Route path="/movie/:id" element={<MovieDetails />} />
+          </Routes>
+        )}
+
+        {/* BuyTicket modal */}
+        {location.pathname.startsWith("/buy/") && (
+          <Routes>
             <Route path="/buy/:id" element={<BuyTicket />} />
           </Routes>
         )}
       </AnimatePresence>
+
       <Footer />
     </>
   );
 }
+
 
 export default App;

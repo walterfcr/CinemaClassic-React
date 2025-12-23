@@ -30,22 +30,22 @@ const Proximamente = () => {
   };
 
   const movies = [
-    { src: "images/prox0.webp", title: "Rounders" },
-    { src: "images/prox1.webp", title: "Fight Club" },
-    { src: "images/prox2.webp", title: "Rock N Rolla." },
-    { src: "images/prox3.webp", title: "Close" },
-    { src: "images/prox4.webp", title: "Spirited Away" },
-    { src: "images/prox5.webp", title: "SLC Punk" },
-    { src: "images/prox6.webp", title: "Clerks" },
-    { src: "images/prox7.webp", title: "Yojimbo" },
-    { src: "images/prox8.webp", title: "Memento" },
-    { src: "images/prox9.webp", title: "Shoplifters" },
-    { src: "images/prox10.webp", title: "Eraserhead" },
-    { src: "images/prox11.jpg", title: "Awaydays" },
-    { src: "images/prox12.jpg", title: "The Warriors" },
-    { src: "images/prox13.jpg", title: "Enter the Void" },
-    { src: "images/prox14.jpg", title: "Chicuarotes" },
-    { src: "images/prox15.jpg", title: "Tesis" },
+    { src: "/images/prox0.webp", title: "Rounders" },
+    { src: "/images/prox1.webp", title: "Fight Club" },
+    { src: "/images/prox2.webp", title: "Rock N Rolla." },
+    { src: "/images/prox3.webp", title: "Close" },
+    { src: "/images/prox4.webp", title: "Spirited Away" },
+    { src: "/images/prox5.webp", title: "SLC Punk" },
+    { src: "/images/prox6.webp", title: "Clerks" },
+    { src: "/images/prox7.webp", title: "Yojimbo" },
+    { src: "/images/prox8.webp", title: "Memento" },
+    { src: "/images/prox9.webp", title: "Shoplifters" },
+    { src: "/images/prox10.webp", title: "Eraserhead" },
+    { src: "/images/prox11.jpg", title: "Awaydays" },
+    { src: "/images/prox12.jpg", title: "The Warriors" },
+    { src: "/images/prox13.jpg", title: "Enter the Void" },
+    { src: "/images/prox14.jpg", title: "Chicuarotes" },
+    { src: "/images/prox15.jpg", title: "Tesis" },
   ];
 
   return (

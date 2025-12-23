@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { movies } from "../moviesData";
 import { useEffect, useState } from "react";
 import "./MovieDetails.css";
@@ -8,6 +8,7 @@ export default function MovieDetails() {
   const navigate = useNavigate();
   const [showTrailer, setShowTrailer] = useState(false);
   const movie = movies.find((m) => m.id === id);
+  const location = useLocation();
 
   useEffect(() => {
     document.body.style.overflow = "hidden"; // Disable scroll
@@ -49,7 +50,7 @@ export default function MovieDetails() {
               </div>
               <div className="columnaEstreno test tab">
                 <a href="#"  onClick={(e) => {e.preventDefault(); setShowTrailer(true);}}>Ver Trailer</a>
-                <a href="#">Comprar</a>
+                <a href="#" onClick={(e) => {e.preventDefault(); navigate(`/buy/${movie.id}`, {state: { backgroundLocation: location }});}}>Comprar</a>
               </div>
             </div>
           </div>

@@ -23,17 +23,17 @@ function Martes() {
         <div data-aos="zoom-in" id="semanales">
             <div className="contenedor">
               <div className="columnaEstreno tab" data-aos="flip-left">
-                <img src="images/movie16/movie16.webp" alt="Sunday Movie 1" />
+                <img src="/images/movie16/movie16.webp" alt="Sunday Movie 1" />
                 <Link to={`/movie/movie16`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <Link to={`/buy/movie16`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
               <div className="columnaEstreno tab" data-aos="flip-left">
-                <img src="images/movie17/movie17.webp" alt="Sunday Movie 2" />
+                <img src="/images/movie17/movie17.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie17`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <Link to={`/buy/movie17`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
               <div className="columnaEstreno tab" data-aos="flip-left">
-                <img src="images/movie18/movie18.webp" alt="Sunday Movie 2" />
+                <img src="/images/movie18/movie18.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie18`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <Link to={`/buy/movie18`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>

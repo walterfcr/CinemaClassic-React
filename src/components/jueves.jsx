@@ -23,17 +23,17 @@ function Jueves() {
         <div data-aos="zoom-in" id="semanales">
             <div className="contenedor">
               <div className="columnaEstreno tab" data-aos="flip-left">
-                <img src="images/movie22/movie22.webp" alt="Sunday Movie 1" />
+                <img src="/images/movie22/movie22.webp" alt="Sunday Movie 1" />
                 <Link to={`/movie/movie22`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <Link to={`/buy/movie22`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
               <div className="columnaEstreno tab" data-aos="flip-left">
-                <img src="images/movie23/movie23.webp" alt="Sunday Movie 2" />
+                <img src="/images/movie23/movie23.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie23`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <Link to={`/buy/movie23`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
               <div className="columnaEstreno tab" data-aos="flip-left">
-                <img src="images/movie24/movie24.webp" alt="Sunday Movie 2" />
+                <img src="/images/movie24/movie24.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie24`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <Link to={`/buy/movie24`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
