@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
+import ProtectedRoute from './components/ProtectedRoute';
 import Nosotros from './components/Nosotros';
 import Domingo from './components/Domingo';
 import Lunes from './components/Lunes';
@@ -17,6 +18,9 @@ import Content from './components/Content';
 import Footer from './components/Footer';
 import MovieDetails from './pages/MovieDetails';
 import BuyTicket from "./pages/BuyTicket";
+import Login from './pages/Login';
+import Register from './pages/Register';
+import MyTickets from './pages/MyTickets';
 import './App.css';
 import './responsive.css';
 
@@ -44,6 +48,13 @@ function App() {
         <Route path="/viernes" element={<Viernes />} />
         <Route path="/sabado" element={<Sabado />} />
         <Route path="/contacto" element={<Contacto />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registro" element={<Register />} />
+        <Route path="/mis-boletos" element={
+          <ProtectedRoute>
+            <MyTickets />
+          </ProtectedRoute>
+        } />
       </Routes>
 
       {/* Modales */}
@@ -55,10 +66,14 @@ function App() {
           </Routes>
         )}
 
-        {/* BuyTicket modal */}
+        {/* BuyTicket modal - Protected */}
         {location.pathname.startsWith("/buy/") && (
           <Routes>
-            <Route path="/buy/:id" element={<BuyTicket />} />
+            <Route path="/buy/:id" element={
+              <ProtectedRoute>
+                <BuyTicket />
+              </ProtectedRoute>
+            } />
           </Routes>
         )}
       </AnimatePresence>
