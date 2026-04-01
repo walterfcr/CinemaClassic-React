@@ -12,35 +12,40 @@ export default function MyTickets() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchTickets = async () => {
-      if (!user) return;
+  const fetchTickets = async () => {
+    if (!user) {
+      setLoading(false); // 🔥 important fix
+      return;
+    }
 
-      try {
-        const ticketsRef = collection(db, 'tickets');
-        const q = query(
-          ticketsRef,
-          where('userId', '==', user.uid),
-          orderBy('createdAt', 'desc')
-        );
-        
-        const querySnapshot = await getDocs(q);
-        const ticketsList = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-          createdAt: doc.data().createdAt?.toDate()
-        }));
-        
-        setTickets(ticketsList);
-      } catch (err) {
-        console.error('Error fetching tickets:', err);
-        setError('Error al cargar tus boletos');
-      } finally {
-        setLoading(false);
-      }
-    };
+    try {
+      const ticketsRef = collection(db, 'tickets');
+      const q = query(
+        ticketsRef,
+        where('userId', '==', user.uid),
+        orderBy('createdAt', 'desc')
+      );
 
-    fetchTickets();
-  }, [user]);
+      const querySnapshot = await getDocs(q);
+
+      const ticketsList = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+        createdAt: doc.data().createdAt?.toDate()
+      }));
+
+      setTickets(ticketsList);
+
+    } catch (err) {
+      console.error('REAL ERROR:', err); // 🔥 show real issue
+      setError('Error al cargar tus boletos');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchTickets();
+}, [user]);
 
   const formatDate = (date) => {
     if (!date) return 'N/A';
