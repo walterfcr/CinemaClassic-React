@@ -1,8 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { movies } from "../moviesData";
 import { db } from "../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useAuth } from "../context/AuthContext";
 import SeatSelectorModal from "./SeatSelectorModal";
 import "./BuyTicket.css";
 
@@ -10,6 +11,7 @@ const BuyTicket = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const movie = movies.find((m) => m.id === id);
+  const { user, userData } = useAuth();
 
   const [form, setForm] = useState({
     name: "",
@@ -18,6 +20,17 @@ const BuyTicket = () => {
     date: "",
     tanda: "",
   });
+
+  // Pre-fill form with user data
+  useEffect(() => {
+    if (user && userData) {
+      setForm(prev => ({
+        ...prev,
+        name: userData.name || user.displayName || "",
+        email: user.email || ""
+      }));
+    }
+  }, [user, userData]);
 
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [showSeats, setShowSeats] = useState(false);
@@ -45,8 +58,11 @@ const BuyTicket = () => {
 
     try {
       await addDoc(collection(db, "tickets"), {
+        userId: user.uid,
+        userEmail: user.email,
         movieId: movie.id,
         movieTitle: movie.title,
+        movieBanner: movie.banner,
         ...form,
         seats: selectedSeats,
         total: totalPrice,
