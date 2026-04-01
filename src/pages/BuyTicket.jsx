@@ -57,6 +57,17 @@ const BuyTicket = () => {
     setLoading(true);
 
     try {
+      console.log("[v0] User:", user);
+      console.log("[v0] Attempting to save ticket with data:", {
+        userId: user?.uid,
+        userEmail: user?.email,
+        movieId: movie.id,
+        movieTitle: movie.title,
+        form,
+        seats: selectedSeats,
+        total: totalPrice,
+      });
+
       await addDoc(collection(db, "tickets"), {
         userId: user.uid,
         userEmail: user.email,
@@ -69,9 +80,13 @@ const BuyTicket = () => {
         createdAt: serverTimestamp(),
       });
 
+      console.log("[v0] Ticket saved successfully!");
       setSubmitted(true);
     } catch (err) {
-      alert("Error al guardar la compra");
+      console.error("[v0] Error saving ticket:", err);
+      console.error("[v0] Error code:", err.code);
+      console.error("[v0] Error message:", err.message);
+      alert("Error al guardar la compra: " + err.message);
     } finally {
       setLoading(false);
     }
