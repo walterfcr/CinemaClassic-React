@@ -93,9 +93,7 @@ export default function Register() {
     <div className="auth-page">
       <div className="auth-container">
         <div className="auth-header">
-          <div className="auth-logo">
-            <img src="/logof.png" alt="Cine Classic" />
-          </div>
+
           <h1>Crear Cuenta</h1>
           <p>Únete a la experiencia Cine Classic</p>
         </div>

@@ -51,7 +51,7 @@ export default function Login() {
       <div className="auth-container">
         <div className="auth-header">
           <div className="auth-logo">
-            <img src="/logof.png" alt="Cine Classic" />
+            <img src="public/images/logo.png" alt="Cine Classic" />
           </div>
           <h1>Iniciar Sesión</h1>
           <p>Bienvenido de vuelta a Cine Classic</p>

@@ -103,7 +103,6 @@ export default function MyTickets() {
             {upcomingTickets.length > 0 && (
               <section className="tickets-section">
                 <h2 className="section-title">
-                  <span className="section-icon">🎟️</span>
                   Próximas Funciones
                 </h2>
                 <div className="tickets-grid">

@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 50%, #1a0a0a 100%);
   padding: 2rem;
 }
 
@@ -138,7 +137,7 @@
 }
 
 .auth-logo img {
-  height: 60px;
+  height: 120px;
   width: auto;
 }
 
