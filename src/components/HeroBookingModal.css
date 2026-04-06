@@ -6,6 +6,7 @@
   align-items: flex-start;   /* 👈 move to top */
   padding-left: 5%;
   padding-top: 10%;           /* 👈 control how high it sits */
+  backdrop-filter: blur(6px);
   z-index: 9999;
  
 }
