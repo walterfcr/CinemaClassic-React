@@ -40,7 +40,7 @@ const Slider = () => {
       setPrevIndex(currentIndex);
       setCurrentIndex((prev) => (prev + 1) % images.length);
       setIsFirstLoad(false); // 🔑 disable first animation after first change
-    }, 4000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [currentIndex]);
@@ -66,9 +66,10 @@ const Slider = () => {
         <div className="slider-overlay" />
 
         {/* Text */}
-        <div className={`slider-text ${isFirstLoad ? '' : 'text-animate'}`}>
-          <h2>{texts[currentIndex].title}</h2>
-          <p>{texts[currentIndex].subtitle}</p>
+        <div key={currentIndex} className={`slider-text ${isFirstLoad ? '' : 'text-animate'}`}>
+          
+          <h2 className="title">{texts[currentIndex].title}</h2>
+          <p className="subtitle">{texts[currentIndex].subtitle}</p>
         </div>
       </div>
 

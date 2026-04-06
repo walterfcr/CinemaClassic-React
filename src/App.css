@@ -72,6 +72,7 @@ h1 {
 #semanales {
  width:80%;
 margin:70px auto 50px;
+min-height: 600px;
 }
 #semanales h2{
   margin:75px;
@@ -474,6 +475,21 @@ background-image:url('../images/banner-semanales6.webp');
 
 .semanales7{
 background-image:url('../images/banner-semanales7.webp');
+}
+
+.tab-content {
+  animation: fadeTab 0.4s ease;
+}
+
+@keyframes fadeTab {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 footer {
