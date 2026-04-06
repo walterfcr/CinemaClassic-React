@@ -49,8 +49,8 @@ export default function MovieDetails() {
                 ))}
               </div>
               <div className="columnaEstreno test tab">
-                <a href="#"  onClick={(e) => {e.preventDefault(); setShowTrailer(true);}}>Ver Trailer</a>
-                <a href="#" onClick={(e) => {e.preventDefault(); navigate(`/buy/${movie.id}`, {state: { backgroundLocation: location }});}}>Comprar</a>
+                <a href="#"  onClick={(e) => {e.preventDefault(); setShowTrailer(true);}}className=" btnWarning">Ver Trailer</a>
+                <a href="#" onClick={(e) => {e.preventDefault(); navigate(`/buy/${movie.id}`, {state: { backgroundLocation: location }});}}className=" btnWarning">Comprar</a>
               </div>
             </div>
           </div>

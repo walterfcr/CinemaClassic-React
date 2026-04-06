@@ -24,18 +24,18 @@ function Viernes() {
             <div className="contenedor">
               <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">
                 <img src="/images/movie25/movie25.webp" alt="Sunday Movie 1" />
-                <Link to={`/movie/movie25`} state={{ backgroundLocation: location }}> Detalles</Link>
-                <Link to={`/buy/movie25`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
+                <Link to={`/movie/movie25`} state={{ backgroundLocation: location }}className=" btnWarning"> Detalles</Link>
+                <Link to={`/buy/movie25`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>
               </div>
               <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">
                 <img src="/images/movie26/movie26.webp" alt="Sunday Movie 2" />
-                <Link to={`/movie/movie26`} state={{ backgroundLocation: location }}> Detalles</Link>
-                <Link to={`/buy/movie26`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
+                <Link to={`/movie/movie26`} state={{ backgroundLocation: location }}className=" btnWarning"> Detalles</Link>
+                <Link to={`/buy/movie26`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>
               </div>
               <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">
                 <img src="/images/movie27/movie27.webp" alt="Sunday Movie 2" />
-                <Link to={`/movie/movie27`} state={{ backgroundLocation: location }}> Detalles</Link>
-                <Link to={`/buy/movie27`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
+                <Link to={`/movie/movie27`} state={{ backgroundLocation: location }}className=" btnWarning"> Detalles</Link>
+                <Link to={`/buy/movie27`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>
               </div>
             </div>
           </div>

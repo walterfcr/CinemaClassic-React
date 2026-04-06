@@ -32,6 +32,7 @@ flex: 1; /* This makes the main content take up the remaining space */
   --main-color: #500f0f;
   --secondary-color: #212121;
   --complementary-color:#e67e22;
+  --complementary-color-hover: #b86116;
   --dark-title:#777676;
   --text-color:#615d5d;
 }
@@ -55,6 +56,22 @@ h1 {
   font-size: 3rem;
   text-align: center;
   color: var(--main-color);
+}
+
+.btnWarning {
+  background-color: var(--complementary-color) !important;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnWarning:hover {
+  background-color: var(--complementary-color-hover) !important;
+  transform: translateY(-1px);
 }
 
 .modal {
@@ -251,42 +268,7 @@ margin-left: 10px; /* Adds space between the two links */
 }
 
 
-.tab {
-display: block;
-}
 
-.tab a {
-text-decoration: none;
-color: #351435;
-font-family: sans-serif;
-border: 1px solid #351435;
-padding: 5px 10px;
-position: relative;
-transition: all 1s;
-overflow: hidden;
-width: 100px;
-}
-
-.tab a:before {
-content: '';
-position: absolute;
-left: 0;
-top: 0;
-height: 100%;
-width: 100%;
-background-color: var(--main-color);
-z-index: -1;
-transform: translateY(-100%);
-transition: all 0.4s;
-}
-
-.tab a:hover:before {
-transform: translateY(0);
-}
-
-.tab a:hover {
-color: white;
-}
 
 .wrap2 {
 width:60%;
