@@ -46,7 +46,7 @@ const Navbar = () => {
 
   // Get user display name
   const displayName = userData?.name || user?.displayName || user?.email?.split('@')[0] || 'Usuario';
-  const initials = displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+  
 
   return (
     <header className="navbar-container">
@@ -81,11 +81,11 @@ const Navbar = () => {
           {isAuthenticated ? (
             <li className="user-menu-container" ref={userMenuRef}>
               <button className="user-menu-toggle" onClick={toggleUserMenu}>
-                <span className="user-avatar">{initials}</span>
+                <span className="user-icon">👤</span>
                 <span className="user-name">{displayName}</span>
                 <span className="user-arrow">▼</span>
               </button>
-              <ul className={`user-dropdown ${userMenuOpen ? 'show' : ''}`}>
+              <ul className={`dropdown-menu ${userMenuOpen ? 'show' : ''}`}>
                 <li><Link to="/mis-boletos" onClick={closeSidebar}>Mis Boletos</Link></li>
                 <li><button onClick={handleLogout}>Cerrar Sesión</button></li>
               </ul>

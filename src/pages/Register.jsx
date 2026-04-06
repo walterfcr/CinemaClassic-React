@@ -181,7 +181,7 @@ export default function Register() {
             )}
           </div>
 
-          <button type="submit" className="auth-btn" disabled={loading}>
+          <button type="submit" className="auth-btn btnWarning" disabled={loading}>
             {loading ? (
               <>
                 <span className="spinner"></span>
