@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Slider.css';
+import HeroBookingModal from './HeroBookingModal'; // 👈 import modal
 
 const images = [
   '/images/banner1.webp',
@@ -12,34 +13,36 @@ const texts = [
   {
     title: 'Cinema Classic',
     subtitle:
-      'Esta es la nueva forma de disfrutar del cine, un lugar donde puedes disfrutar de lo más reciente hasta lo clásico!'
+      'Más que ver películas, vive el cine. Compra tus boletos, reserva tu asiento y sumérgete en una experiencia única en pantalla grande.'
   },
   {
     title: 'Estrenos',
     subtitle:
-      'Sumérgete en los estrenos más impactantes, desde superproducciones hasta joyas del cine independiente. ¡Cada película, una experiencia inolvidable!'
+      'Los mejores estrenos, en el momento perfecto. Reserva tu entrada y asegura tu lugar para las películas que todos están esperando.'
   },
   {
     title: 'Clásicos',
     subtitle:
-      'Cada semana proyectamos una temática diferente para que puedas disfrutar de clásicos que no hayas visto como debe de ser, en la pantalla grande!!'
+      'Revive grandes historias en la pantalla grande. Funciones especiales cada semana para los verdaderos amantes del cine.'
   },
   {
     title: 'Visítanos',
-    subtitle: 'Estamos ubicados en San José, Cartago y Heredia.'
+    subtitle:
+      'Encuentra tu cine más cercano en San José, Cartago y Heredia. Tu próxima función comienza aquí.'
   }
 ];
 
 const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(null);
-  const [isFirstLoad, setIsFirstLoad] = useState(true); // 🔑 fix
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [showModal, setShowModal] = useState(false); // 👈 NEW
 
   useEffect(() => {
     const interval = setInterval(() => {
       setPrevIndex(currentIndex);
       setCurrentIndex((prev) => (prev + 1) % images.length);
-      setIsFirstLoad(false); // 🔑 disable first animation after first change
+      setIsFirstLoad(false);
     }, 6000);
 
     return () => clearInterval(interval);
@@ -47,8 +50,8 @@ const Slider = () => {
 
   return (
     <div className="slider-container">
-      
-      {/* Previous image fades out */}
+
+      {/* Previous image */}
       {prevIndex !== null && !isFirstLoad && (
         <div
           className="slider fade-out"
@@ -66,10 +69,20 @@ const Slider = () => {
         <div className="slider-overlay" />
 
         {/* Text */}
-        <div key={currentIndex} className={`slider-text ${isFirstLoad ? '' : 'text-animate'}`}>
-          
+        <div
+          key={currentIndex}
+          className={`slider-text ${isFirstLoad ? '' : 'text-animate'}`}
+        >
           <h2 className="title">{texts[currentIndex].title}</h2>
           <p className="subtitle">{texts[currentIndex].subtitle}</p>
+
+          {/* 🎯 HERO CTA BUTTON */}
+          <button
+            className="hero-cta btnWarning"
+            onClick={() => setShowModal(true)}
+          >
+            Encuentra tu función
+          </button>
         </div>
       </div>
 
@@ -82,11 +95,16 @@ const Slider = () => {
             onClick={() => {
               setPrevIndex(currentIndex);
               setCurrentIndex(index);
-              setIsFirstLoad(false); // 🔑 ensure animation works after click
+              setIsFirstLoad(false);
             }}
           ></span>
         ))}
       </div>
+
+      {/* 🎬 MODAL */}
+      {showModal && (
+        <HeroBookingModal onClose={() => setShowModal(false)} />
+      )}
     </div>
   );
 };

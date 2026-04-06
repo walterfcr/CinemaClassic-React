@@ -64,7 +64,7 @@ export default function MovieDetails() {
             <button className="close-button" onClick={() => setShowTrailer(false)}>✖</button>
             <div className="video-wrapper">
               <iframe
-                src={movie.trailer}
+                src={movie.trailer} 
                 title="Trailer"
                 frameBorder="0"
                 allow="autoplay; encrypted-media"

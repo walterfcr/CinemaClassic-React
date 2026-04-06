@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { movies } from "../moviesData";
 import { db } from "../firebase";
@@ -10,32 +10,37 @@ import "./BuyTicket.css";
 const BuyTicket = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation(); // 👈 NEW
+
   const movie = movies.find((m) => m.id === id);
   const { user, userData } = useAuth();
+
+  // 👇 PRESELECTED DATA FROM HERO
+  const preselected = location.state?.preselected;
 
   const [form, setForm] = useState({
     name: "",
     email: "",
-    cinema: "",
-    date: "",
+    cinema: preselected?.cinema || "",
+    date: preselected?.date || "",
     tanda: "",
   });
-
-  // Pre-fill form with user data
-  useEffect(() => {
-    if (user && userData) {
-      setForm(prev => ({
-        ...prev,
-        name: userData.name || user.displayName || "",
-        email: user.email || ""
-      }));
-    }
-  }, [user, userData]);
 
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [showSeats, setShowSeats] = useState(false);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  // 👇 Auto-fill user data
+  useEffect(() => {
+    if (user && userData) {
+      setForm((prev) => ({
+        ...prev,
+        name: userData.name || user.displayName || "",
+        email: user.email || "",
+      }));
+    }
+  }, [user, userData]);
 
   if (!movie) return null;
 
@@ -48,6 +53,11 @@ const BuyTicket = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!user) {
+      alert("Debes iniciar sesión para comprar");
+      return;
+    }
 
     if (selectedSeats.length === 0) {
       alert("Selecciona al menos una butaca");
@@ -71,6 +81,7 @@ const BuyTicket = () => {
 
       setSubmitted(true);
     } catch (err) {
+      console.error(err);
       alert("Error al guardar la compra");
     } finally {
       setLoading(false);
@@ -80,6 +91,8 @@ const BuyTicket = () => {
   return (
     <div className="buyticket-overlay">
       <div className="buyticket-modal">
+
+        {/* CLOSE */}
         <button className="buyticket-close" onClick={() => navigate(-1)}>
           ✕
         </button>
@@ -103,6 +116,7 @@ const BuyTicket = () => {
               <img src={movie.banner} alt={movie.title} />
 
               <form onSubmit={handleSubmit}>
+
                 <input
                   placeholder="Nombre"
                   value={form.name}
@@ -147,6 +161,7 @@ const BuyTicket = () => {
                   <option>7 pm</option>
                 </select>
 
+                {/* SEATS */}
                 <button
                   type="button"
                   className="buyticket-btn"
@@ -162,12 +177,14 @@ const BuyTicket = () => {
                 <button className="buyticket-btn" disabled={loading}>
                   {loading ? "Comprando..." : "Comprar entradas"}
                 </button>
+
               </form>
             </div>
           </>
         )}
       </div>
 
+      {/* SEAT MODAL */}
       {showSeats && (
         <SeatSelectorModal
           selectedSeats={selectedSeats}

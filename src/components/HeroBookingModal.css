@@ -1,0 +1,61 @@
+.hero-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: flex-start;   /* 👈 move to top */
+  padding-left: 5%;
+  padding-top: 10%;           /* 👈 control how high it sits */
+  z-index: 9999;
+ 
+}
+
+.hero-modal {
+   background: rgba(70, 16, 16, 0.3) !important; /* Fondo oscuro sutil */
+   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  border-left: 7px solid var(--complementary-color);
+  padding: 2rem;
+  border-radius: 10px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  
+}
+
+.hero-modal h2 {
+  color: white;
+  text-align: center;
+}
+
+.hero-modal select,
+.hero-modal input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  color: white;
+}
+
+.hero-modal option {
+  color: black;           
+  background: white;
+}
+
+.hero-modal input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* 👈 turns it white */
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}

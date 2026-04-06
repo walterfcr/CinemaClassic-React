@@ -162,7 +162,13 @@
     background: transparent;
     border: none;
     cursor: pointer;
+    color: var(--complementary-color) !important;
   }
+
+  .close-button:hover {
+  color: #cf6e1a;
+  transform: scale(1.1);
+}
   
   @keyframes fadeIn {
     from { opacity: 0 }
