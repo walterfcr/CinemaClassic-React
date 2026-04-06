@@ -6,75 +6,84 @@ import { useAuth } from '../context/AuthContext';
 import './MyTickets.css';
 
 export default function MyTickets() {
-  const { user, userData } = useAuth();
+  const { user, userData, loading: authLoading } = useAuth(); // 🔥 FIX
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-  const fetchTickets = async () => {
-    if (!user) {
-      setLoading(false); // 🔥 important fix
+    if (authLoading) {
+      setLoading(true); // keep loading visible
       return;
-    }
+    } 
 
-    try {
-      const ticketsRef = collection(db, 'tickets');
-      const q = query(
-        ticketsRef,
-        where('userId', '==', user.uid),
-        orderBy('createdAt', 'desc')
-      );
+    const fetchTickets = async () => {
+      if (!user) {
+        setTickets([]);
+        setLoading(false);
+        return;
+      }
 
-      const querySnapshot = await getDocs(q);
+      try {
+        const ticketsRef = collection(db, 'tickets');
+        const q = query(
+          ticketsRef,
+          where('userId', '==', user.uid),
+          orderBy('createdAt', 'desc')
+        );
 
-      const ticketsList = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-        createdAt: doc.data().createdAt?.toDate()
-      }));
+        const querySnapshot = await getDocs(q);
 
-      setTickets(ticketsList);
+        const ticketsList = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+          createdAt: doc.data().createdAt?.toDate()
+        }));
 
-    } catch (err) {
-      console.error('REAL ERROR:', err); // 🔥 show real issue
-      setError('Error al cargar tus boletos');
-    } finally {
-      setLoading(false);
-    }
-  };
+        setTickets(ticketsList);
+      } catch (err) {
+        console.error('REAL ERROR:', err);
+        setError('Error al cargar tus boletos');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchTickets();
-}, [user]);
-
-  const formatDate = (date) => {
-    if (!date) return 'N/A';
-    return new Intl.DateTimeFormat('es-CR', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    }).format(date);
-  };
+    fetchTickets();
+  }, [user, authLoading]);
 
   const isUpcoming = (ticketDate) => {
     if (!ticketDate) return false;
     const today = new Date();
     today.setHours(0, 0, 0, 0);
+
     const ticket = new Date(ticketDate);
     ticket.setHours(0, 0, 0, 0);
+
     return ticket >= today;
   };
 
-  if (loading) {
-    return (
-      <div className="mytickets-page">
-        <div className="mytickets-loading">
-          <div className="mytickets-spinner"></div>
-          <p>Cargando tus boletos...</p>
+  if (authLoading) {
+      return (
+        <div className="mytickets-page">
+          <div className="mytickets-loading">
+            <div className="mytickets-spinner"></div>
+            <p>Verificando sesión...</p>
+          </div>
         </div>
-      </div>
-    );
-  }
+      );
+    }
+
+    if (loading) {
+      return (
+        <div className="mytickets-page">
+          <div className="mytickets-loading">
+            <div className="mytickets-spinner"></div>
+            <p>Cargando tus boletos...</p>
+          </div>
+        </div>
+      );
+    }
 
   const upcomingTickets = tickets.filter(t => isUpcoming(t.date));
   const pastTickets = tickets.filter(t => !isUpcoming(t.date));
@@ -102,12 +111,10 @@ export default function MyTickets() {
           <>
             {upcomingTickets.length > 0 && (
               <section className="tickets-section">
-                <h2 className="section-title">
-                  Próximas Funciones
-                </h2>
+                <h2 className="section-title">Próximas Funciones</h2>
                 <div className="tickets-grid">
                   {upcomingTickets.map(ticket => (
-                    <TicketCard key={ticket.id} ticket={ticket} isUpcoming={true} />
+                    <TicketCard key={ticket.id} ticket={ticket} isUpcoming />
                   ))}
                 </div>
               </section>
@@ -115,13 +122,10 @@ export default function MyTickets() {
 
             {pastTickets.length > 0 && (
               <section className="tickets-section">
-                <h2 className="section-title">
-                  <span className="section-icon">📜</span>
-                  Historial
-                </h2>
+                <h2 className="section-title">📜 Historial</h2>
                 <div className="tickets-grid">
                   {pastTickets.map(ticket => (
-                    <TicketCard key={ticket.id} ticket={ticket} isUpcoming={false} />
+                    <TicketCard key={ticket.id} ticket={ticket} />
                   ))}
                 </div>
               </section>
@@ -137,6 +141,7 @@ function TicketCard({ ticket, isUpcoming }) {
   const formatTicketDate = (dateStr) => {
     if (!dateStr) return 'N/A';
     const date = new Date(dateStr + 'T00:00:00');
+
     return new Intl.DateTimeFormat('es-CR', {
       weekday: 'long',
       year: 'numeric',
@@ -155,31 +160,28 @@ function TicketCard({ ticket, isUpcoming }) {
         )}
         {isUpcoming && <span className="ticket-badge">Próxima</span>}
       </div>
+
       <div className="ticket-details">
         <h3 className="ticket-title">{ticket.movieTitle}</h3>
+
         <div className="ticket-info">
+          <div className="info-row">📅 {formatTicketDate(ticket.date)}</div>
+          <div className="info-row">🕐 {ticket.tanda}</div>
+          <div className="info-row">📍 {ticket.cinema}</div>
           <div className="info-row">
-            <span className="info-icon">📅</span>
-            <span>{formatTicketDate(ticket.date)}</span>
-          </div>
-          <div className="info-row">
-            <span className="info-icon">🕐</span>
-            <span>{ticket.tanda}</span>
-          </div>
-          <div className="info-row">
-            <span className="info-icon">📍</span>
-            <span>{ticket.cinema}</span>
-          </div>
-          <div className="info-row">
-            <span className="info-icon">💺</span>
-            <span>{ticket.seats?.map(s => s.id).join(', ') || 'N/A'}</span>
+            💺 {ticket.seats?.map(s => s.id).join(', ') || 'N/A'}
           </div>
         </div>
+
         <div className="ticket-footer">
-          <span className="ticket-total">Total: ¢{ticket.total?.toLocaleString()}</span>
+          <span className="ticket-total">
+            Total: ¢{ticket.total?.toLocaleString()}
+          </span>
+
           {ticket.createdAt && (
             <span className="ticket-purchased">
-              Comprado: {new Intl.DateTimeFormat('es-CR', {
+              Comprado:{' '}
+              {new Intl.DateTimeFormat('es-CR', {
                 month: 'short',
                 day: 'numeric'
               }).format(ticket.createdAt)}

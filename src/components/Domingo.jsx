@@ -22,17 +22,17 @@ function Domingo() {
 
         <div data-aos="zoom-in" id="semanales">
             <div className="contenedor">
-              <div className="columnaEstreno tab" data-aos="flip-left">
+              <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">
                 <img src="/images/movie31/movie31.webp" alt="Sunday Movie 1" />
                 <Link to={`/movie/movie31`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <Link to={`/buy/movie31`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
-              <div className="columnaEstreno tab" data-aos="flip-left">
+              <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">
                 <img src="/images/movie32/movie32.webp" alt="Sunday Movie 2" />
                 <Link to={`/movie/movie32`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <Link to={`/buy/movie32`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>
               </div>
-              <div className="columnaEstreno tab" data-aos="flip-left">
+              <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">
               <img src="/images/movie33/movie33.webp" alt="Sunday Movie 2" />
               <Link to={`/movie/movie33`} state={{ backgroundLocation: location }}> Detalles</Link>
                 <Link to={`/buy/movie33`} state={{ backgroundLocation: location }}className="btnComprar">Comprar</Link>

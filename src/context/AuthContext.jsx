@@ -25,23 +25,39 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+  const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+    try {
       if (firebaseUser) {
         setUser(firebaseUser);
-        // Fetch additional user data from Firestore
-        const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
-        if (userDoc.exists()) {
-          setUserData(userDoc.data());
+
+        try {
+          const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
+
+          if (userDoc.exists()) {
+            setUserData(userDoc.data());
+          } else {
+            setUserData(null);
+          }
+
+        } catch (err) {
+          console.error('Error fetching userData:', err);
+          setUserData(null); // 🔥 prevent crash
         }
+
       } else {
         setUser(null);
         setUserData(null);
       }
-      setLoading(false);
-    });
 
-    return () => unsubscribe();
-  }, []);
+    } catch (err) {
+      console.error('Auth error:', err);
+    } finally {
+      setLoading(false); // 🔥 ALWAYS runs
+    }
+  });
+
+  return () => unsubscribe();
+}, []);
 
   const signup = async (email, password, name) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
