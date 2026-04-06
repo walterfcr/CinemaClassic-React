@@ -48,7 +48,6 @@
   z-index: 3;
   padding: 20px;
   max-width: 40%;
-  animation: textFadeIn 0.8s ease-in-out;
   background: rgba(70, 16, 16, 0.3) !important; /* Fondo oscuro sutil */
   border-right: 7px solid var(--complementary-color);
 }
@@ -56,11 +55,11 @@
 @keyframes textFadeIn {
   0% {
     opacity: 0;
-    transform: translate(-50%, -40%);
+    transform: translateY(-30%);
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
   }
 }
 

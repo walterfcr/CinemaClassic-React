@@ -11,15 +11,18 @@ const images = [
 const texts = [
   {
     title: 'Cinema Classic',
-    subtitle: 'Esta es la nueva forma de disfrutar del cine, un lugar donde puedes disfrutar de lo más reciente hasta lo clásico!'
+    subtitle:
+      'Esta es la nueva forma de disfrutar del cine, un lugar donde puedes disfrutar de lo más reciente hasta lo clásico!'
   },
   {
     title: 'Estrenos',
-    subtitle: 'Sumérgete en los estrenos más impactantes, desde superproducciones hasta joyas del cine independiente. ¡Cada película, una experiencia inolvidable!'
+    subtitle:
+      'Sumérgete en los estrenos más impactantes, desde superproducciones hasta joyas del cine independiente. ¡Cada película, una experiencia inolvidable!'
   },
   {
     title: 'Clásicos',
-    subtitle: 'Cada semana proyectamos una temática diferente para que puedas disfrutar de clásicos que no hayas visto como debe de ser, en la pantalla grande!!'
+    subtitle:
+      'Cada semana proyectamos una temática diferente para que puedas disfrutar de clásicos que no hayas visto como debe de ser, en la pantalla grande!!'
   },
   {
     title: 'Visítanos',
@@ -30,11 +33,13 @@ const texts = [
 const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(null);
+  const [isFirstLoad, setIsFirstLoad] = useState(true); // 🔑 fix
 
   useEffect(() => {
     const interval = setInterval(() => {
       setPrevIndex(currentIndex);
       setCurrentIndex((prev) => (prev + 1) % images.length);
+      setIsFirstLoad(false); // 🔑 disable first animation after first change
     }, 4000);
 
     return () => clearInterval(interval);
@@ -42,8 +47,9 @@ const Slider = () => {
 
   return (
     <div className="slider-container">
+      
       {/* Previous image fades out */}
-      {prevIndex !== null && (
+      {prevIndex !== null && !isFirstLoad && (
         <div
           className="slider fade-out"
           style={{ backgroundImage: `url(${images[prevIndex]})` }}
@@ -52,18 +58,21 @@ const Slider = () => {
         </div>
       )}
 
-      {/* Current image fades in */}
+      {/* Current image */}
       <div
-        className="slider fade-in"
+        className={`slider ${isFirstLoad ? '' : 'fade-in'}`}
         style={{ backgroundImage: `url(${images[currentIndex]})` }}
       >
         <div className="slider-overlay" />
-        <div className="slider-text">
+
+        {/* Text */}
+        <div className={`slider-text ${isFirstLoad ? '' : 'text-animate'}`}>
           <h2>{texts[currentIndex].title}</h2>
           <p>{texts[currentIndex].subtitle}</p>
         </div>
       </div>
 
+      {/* Dots */}
       <div className="slider-dots">
         {images.map((_, index) => (
           <span
@@ -72,6 +81,7 @@ const Slider = () => {
             onClick={() => {
               setPrevIndex(currentIndex);
               setCurrentIndex(index);
+              setIsFirstLoad(false); // 🔑 ensure animation works after click
             }}
           ></span>
         ))}
