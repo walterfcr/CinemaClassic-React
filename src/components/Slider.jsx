@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Slider.css';
-import HeroBookingModal from './HeroBookingModal'; // 👈 import modal
+import HeroBookingModal from './HeroBookingModal';
 
 const images = [
   '/images/banner1.webp',
@@ -34,49 +34,53 @@ const texts = [
 
 const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [prevIndex, setPrevIndex] = useState(null);
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [showModal, setShowModal] = useState(false); // 👈 NEW
+  const [prevIndex, setPrevIndex] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
+  // ✅ Auto slide (clean, no delay issues)
   useEffect(() => {
     const interval = setInterval(() => {
-      setPrevIndex(currentIndex);
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-      setIsFirstLoad(false);
-    }, 6000);
+      setCurrentIndex((prev) => {
+        setPrevIndex(prev);
+        return (prev + 1) % images.length;
+      });
+    }, 5000);
 
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, []);
+
+  // ✅ Preload images (prevents initial lag)
+  useEffect(() => {
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   return (
     <div className="slider-container">
 
       {/* Previous image */}
-      {prevIndex !== null && !isFirstLoad && (
-        <div
-          className="slider fade-out"
-          style={{ backgroundImage: `url(${images[prevIndex]})` }}
-        >
-          <div className="slider-overlay" />
-        </div>
-      )}
+      <div
+        className="slider fade-out"
+        style={{ backgroundImage: `url(${images[prevIndex]})` }}
+      >
+        <div className="slider-overlay" />
+      </div>
 
       {/* Current image */}
       <div
-        className={`slider ${isFirstLoad ? '' : 'fade-in'}`}
+        key={currentIndex}
+        className="slider fade-in"
         style={{ backgroundImage: `url(${images[currentIndex]})` }}
       >
         <div className="slider-overlay" />
 
         {/* Text */}
-        <div
-          key={currentIndex}
-          className={`slider-text ${isFirstLoad ? '' : 'text-animate'}`}
-        >
+        <div key={currentIndex} className="slider-text text-animate">
           <h2 className="title">{texts[currentIndex].title}</h2>
           <p className="subtitle">{texts[currentIndex].subtitle}</p>
 
-          {/* 🎯 HERO CTA BUTTON */}
           <button
             className="hero-cta btnWarning"
             onClick={() => setShowModal(true)}
@@ -86,22 +90,9 @@ const Slider = () => {
         </div>
       </div>
 
-      {/* Dots */}
-      <div className="slider-dots">
-        {images.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${index === currentIndex ? 'active' : ''}`}
-            onClick={() => {
-              setPrevIndex(currentIndex);
-              setCurrentIndex(index);
-              setIsFirstLoad(false);
-            }}
-          ></span>
-        ))}
-      </div>
 
-      {/* 🎬 MODAL */}
+
+      {/* Modal */}
       {showModal && (
         <HeroBookingModal onClose={() => setShowModal(false)} />
       )}
