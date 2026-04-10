@@ -80,21 +80,7 @@
     resize: none;
   }
   
-  .btnWarning {
-    background-color: var(--main-color) !important;
-    border: none !important;
-    color: white !important;
-    padding: 0.75rem 2rem ;
-    font-size: 1rem;
-    cursor: pointer;
-    display: inline-block;
-    margin-top: 1rem;
-    transition: background 0.3s;
-  }
-  
-  .btnWarning:hover {
-    background-color: #e67e22 !important;
-  }
+
 
   .formRow {
     display: flex;

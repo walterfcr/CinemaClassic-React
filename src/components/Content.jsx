@@ -33,7 +33,7 @@ function Content() {
     
     <main>
       {/* Películas en Estreno Section */}
-      <div className="contentWrap" >
+      <div className="contentWrap section" >
         <h1>Películas en Estreno</h1>
         <div className="contenedor">
           <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">

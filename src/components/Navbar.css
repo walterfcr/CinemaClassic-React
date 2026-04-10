@@ -1,10 +1,10 @@
 :root {
   --secondary-menu-color: #361e1f;
-  --hover-color: #eea566;
+  --hover-color: var(--primary);
 }
 
 .navbar-container {
-  background: var(--main-color) !important;
+  background: var(--bg-card);
   color: white;
   position: relative;
   top: 0;
@@ -71,7 +71,9 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
   transition: color 0.3s ease;
   padding: 0 15px;
   position: relative;
@@ -111,7 +113,8 @@
   position: absolute;
   top: 38px;
   left: 0;
-  background-color: var(--secondary-menu-color) !important;
+  background-color: var(--bg-card);
+  border: 1px solid #222;
   list-style: none;
   padding: 0.5rem 0;
   border-radius: 6px;
@@ -145,7 +148,7 @@
 .dropdown-menu li a:hover,
 .dropdown-menu li button:hover{
   background-color: var(--hover-color) !important;
-  color: #361e1f;
+  color: white;
 }
 
 .dropdown-menu.show {
@@ -176,10 +179,13 @@
 
   .nav-links {
     position: absolute;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
     top: 70px;
     left: 0;
     width: 100%;
-    background-color: var(--main-color) !important;
+    background-color: var(--bg-card) !important;
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
@@ -188,6 +194,8 @@
 
   .nav-links.active {
     display: flex;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .dropdown-menu {
@@ -218,7 +226,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--complementary-color);
+  background: var(--bg-card);
   color: white;
   display: flex;
   align-items: center;
@@ -293,7 +301,7 @@
 }
 
 .login-btn {
-  background: var(--complementary-color) !important;
+  background: var(--primary) !important;
   color: white !important;
   padding: 0.5rem 1.2rem !important;
   border-radius: 6px;
@@ -302,7 +310,7 @@
 }
 
 .login-btn:hover {
-  background: #cf6e1a !important;
+  background: var(--primary-hover) !important;
   transform: translateY(-1px);
 }
 
