@@ -1,0 +1,56 @@
+*{
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+
+}
+
+html{ 
+font-size: 16px;
+}
+
+body {
+font-family: 'Roboto', sans-serif !important;  
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+margin: 0;
+background-color: #0f0f0f;
+  color: #ffffff;
+}
+
+
+main {
+flex: 1; /* This makes the main content take up the remaining space */
+}
+
+:root {
+  --bg-main: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --primary: #e50914; /* strong cinema red */
+  --primary-hover: #b20710;
+  --accent: #f5c518;
+  --text-main: #ffffff;
+  --text-secondary: #cccccc;
+}
+
+header {
+  background: var(--bg-card);
+  border-bottom: 2px solid var(--primary);
+}
+
+p {
+color: var(--text-secondary);
+}
+
+h1, h2, h3, h4 {
+font-family: 'Poppins', sans-serif;
+letter-spacing: 1px;
+}
+
+h1 {
+   margin: 32px 0;
+  font-size: 3rem;
+  text-align: center;
+  color: var(--text-main);
+}

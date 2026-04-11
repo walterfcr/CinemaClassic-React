@@ -1,62 +1,4 @@
-*{
-  padding:0;
-  margin:0;
-  box-sizing: border-box;
-  /*box-shadow: none !important;
-  opacity: 1 !important;
-  outline: 1px solid red; See container edges */
-}
 
-
-html{ 
-font-size: 16px;
-}
-
-body {
-font-family: 'Roboto', sans-serif;  
-display: flex;
-flex-direction: column;
-min-height: 100vh;
-margin: 0;
-background-color: #0f0f0f;
-  color: #ffffff;
-}
-
-
-main {
-flex: 1; /* This makes the main content take up the remaining space */
-}
-
-:root {
-  --bg-main: #0f0f0f;
-  --bg-card: #1a1a1a;
-  --primary: #e50914; /* strong cinema red */
-  --primary-hover: #b20710;
-  --accent: #f5c518;
-  --text-main: #ffffff;
-  --text-secondary: #cccccc;
-}
-
-header {
-  background: var(--bg-card);
-  border-bottom: 2px solid var(--primary);
-}
-
-p {
-color: var(--text-secondary);
-}
-
-h1, h2, h3, h4 {
-font-family: 'Oswald', sans-serif;
-letter-spacing: 1px;
-}
-
-h1 {
-   margin: 32px 0;
-  font-size: 3rem;
-  text-align: center;
-  color: var(--text-main);
-}
 
 .app-layout {
   min-height: 100vh;
@@ -78,7 +20,7 @@ h1 {
   color: white !important;
   padding: 10px 20px;
   border-radius: 8px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -121,7 +63,7 @@ h1 {
 
 #semanales {
 margin:70px auto 20px;
-min-height: 500px;
+min-height: 600px;
 }
 #semanales h2{
   margin:75px;
@@ -147,6 +89,7 @@ min-height: 500px;
   flex-wrap: wrap;
 }
 
+
 .tabs button {
   background: transparent;
   border: none;
@@ -155,7 +98,7 @@ min-height: 500px;
   padding: 8px 14px;
   border-radius: 20px;
 
-  font-family: "Oswald", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   cursor: pointer;
 
@@ -203,7 +146,7 @@ min-height: 500px;
   padding: 8px 14px;
   border-radius: 20px;
 
-  font-family: "Oswald", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   cursor: pointer;
 
