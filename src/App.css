@@ -62,7 +62,6 @@ h1 {
   padding: 32px 24px; /* 👈 THIS fixes your issue */
 }
 
-
 .btnWarning {
   background-color: var(--primary);
   color: white !important;
@@ -91,10 +90,27 @@ h1 {
   box-shadow: 0 5px 25px rgba(0,0,0,0.2);
 }
 
+.contenedor {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1100px;   
+  margin: 0 auto;  
+}
+
+.contenedorSemnanal {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 900px;   
+  margin: 0 auto;  
+  justify-items: center;
+}
+
+
 #semanales {
- width:80%;
-margin:70px auto 50px;
-min-height: 600px;
+margin:70px auto 20px;
+min-height: 500px;
 }
 #semanales h2{
   margin:75px;
@@ -104,96 +120,86 @@ min-height: 600px;
 }
 
 .tab-section {
-  width: 60%;
-  margin: 20px auto;
-  transition: all 0.3s ease;
-  background-color: var(--bg-card);
-  border-radius: 12px;
-  padding: var(--space-md);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  width: 100%;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 40px;
+  padding: 10px;
+  max-width: 900px;
 }
 
 .tabs {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
+  gap: 10px;
   flex-wrap: wrap;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
 }
 
 .tabs button {
-  background-color: #fff;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 16px;
+  background: transparent;
+  border: none;
+  color: #aaa;
+
+  padding: 8px 14px;
+  border-radius: 20px;
+
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  margin: 5px;
-  scroll-snap-align: start;
+
+  transition: all 0.25s ease;
 }
 
+
 .tabs button:hover {
-  background-color: var(--main-color) !important;
-  color: #fff;
+  color: #fff !important;
 }
 
 .tabs button.active {
-  background-color: var(--main-color) !important;
   color: #fff;
-  font-weight: bold;
-  border-color: #0056b3;
-}
-
-.tabs button:focus {
-  outline: none;
-}
-
-@media (min-width:1025px) and (max-width: 1280px){
-  .tabs button {
-    font-size: 14px;
-
-  }
-
-  .tab-section {
-    width:70%;
-
-  }
+  background: var(--primary) !important;
+  box-shadow: 0 0 12px rgba(229, 9, 20, 0.6);
 }
 
 
-@media (min-width:900px) and (max-width: 1024px){
-  .tabs button {
-    font-size: 14px;
-    padding: 7px 14px;
-  }
+@media (max-width: 600px) {
 
-  .tab-section {
-    width:80%;
-    margin: 10px auto;
-  }
-
-}
-
-@media (min-width:900px) and (max-width: 1366px){
   #semanales {
-   margin:0 auto ;
-   }
-}
+  margin:70px auto 20px;
+  min-height: auto;
+  }
 
-@media (max-width: 899px) {
   .tabs {
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  padding: 5px 10px;
   }
 
   .tabs button {
-    flex: 1 1 45%;
-    min-width: auto;
-    margin: 5px;
-  }
+  flex: 0 0 auto; /* 🔑 prevents shrinking */
+  scroll-snap-align: start;
+
+  background: transparent;
+  border: none;
+  color: #aaa;
+
+  padding: 8px 14px;
+  border-radius: 20px;
+
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
 }
+}
+
 
 .clasicos {
 color: #fff;
@@ -203,59 +209,10 @@ color: #fff;
   margin-bottom: 48px;
 }
 
-.contenedor {
-display: flex;
-flex-wrap: wrap;
-gap: 24px; /* 👈 BIG improvement */
-justify-content: center;
 
-}
 
-.columnaEstreno {
-flex: 1 1 22%; /* 22% de ancho, adaptativo */
-padding: 16px;
-text-align: center;
-}
-
-.columnaEstreno img {
-max-width: 250px;
-display: block;
-margin: 0 auto; /* Center the image */
-}
-
-.columnaEstreno a {
-display: inline-block; /* Make a tags inline-block to allow horizontal layout */
-margin-top: 10px; /* Adds space between the image and the links */
-padding: 5px 10px;
-text-decoration: none;
-color: #351435;
-font-family: sans-serif;
-border: 1px solid #351435;
-transition: all 1s;
-width: 100px; 
-text-align: center;
-}
-
-.columnaEstreno a + a {
-margin-left: 10px; /* Adds space between the two links */
-}
 
 @media (min-width:1280px) and (max-width: 1366px) {
-  .columnaEstreno img {
-    max-width: 200px ;
-    }
-}
-
-@media (min-width:1024px) and (max-width: 1279px) {
-  .columnaEstreno img {
-    max-width: 150px ;
-    }
-}
-
-@media (min-width:376px) and (max-width: 480px) {
-  .columnaEstreno img {
-    max-width: 180px ;
-  }
 
   .contentWrap h1 {
     font-size: 2rem !important;
@@ -265,9 +222,6 @@ margin-left: 10px; /* Adds space between the two links */
 
 
 @media (min-width:320px) and (max-width: 375px) {
-  .columnaEstreno img {
-    max-width: 150px ;
-  }
 
   .contentWrap h1 {
     font-size: 1.8rem !important;
@@ -366,102 +320,83 @@ margin:30px 0;
 }
 
 
-.semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
-background-size:cover;
-background-position-y:center;
-box-shadow: inset 0 0 0 500px #080808b3 !important;
-height:450px;  
-color:#fff;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-padding:0 25%;
-margin:0 0 50px!important ;
+
+.semanal-banner {
+  position: relative;
+
+  height: 450px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  color: #fff;
+
+  background-size: cover;
+  background-position: center;
+
+  padding: 20px;
+  margin-bottom: 60px;
 }
 
-.semanales1 p, .semanales2 p, .semanales3 p, .semanales4 p, .semanales5 p, .semanales6 p, .semanales7 p{
-  color:#fff;
-  font-size: 1rem;
+.semanal-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.5),
+    rgba(0,0,0,0.9)
+  );
+
+  z-index: 0;
 }
 
-.semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
-  color:#fff;
-  font-size: 2rem !important;
+.semanal-banner > * {
+  position: relative;
+  z-index: 1;
 }
 
-@media (min-width: 800px) and (max-width: 1024px){
-  .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
-    font-size: 1.5rem !important;
- }
- .semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
-  padding:0 15%;
+.semanal-banner h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.semanal-banner p {
+  max-width: 700px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.semanal-banner h1::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--primary);
+  margin: 15px auto 0;
+}
+
+@media (max-width: 768px) {
+  .semanal-banner {
+    height: auto;
+    padding: 60px 20px;
+  }
+
+  .semanal-banner h1 {
+    font-size: 1.8rem;
+  }
+
+  .semanal-banner p {
+    font-size: 0.9rem;
   }
 }
 
-@media (min-width: 768px) and (max-width: 779px){
-  .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
-    font-size: 1.3rem !important;
- }
- .semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
-  padding:0 10%;
-  }
-}
 
-@media (min-width: 600px) and (max-width: 769px){
-  .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
-    font-size: 1.2rem !important;
- }
- .semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
-  padding:0 5%;
-  height:500px !important; 
-  }
-}
-
-
-@media (min-width: 320px) and (max-width: 599px){
-  .semanales1 h1, .semanales2 h1, .semanales3 h1, .semanales4 h1, .semanales5 h1, .semanales6 h1, .semanales7 h1{
-    font-size: 1.2rem !important;
- }
-
- .semanales1 p, .semanales2 p, .semanales3 p, .semanales4 p, .semanales5 p, .semanales6 p, .semanales7 p{
-  font-size: 0.9rem;
-}
-
- .semanales1, .semanales2, .semanales3, .semanales4, .semanales5, .semanales6, .semanales7{
-  padding:0 5%;
-  height:500px !important; 
-  }
-}
-
-
-.semanales1{
-background-image:url('../images/banner-semanales1.webp');
-}
-
-.semanales2{
-background-image:url('../images/banner-semanales2.webp');
-}
-
-.semanales3{
-background-image:url('../images/banner-semanales3.webp');
-}
-
-.semanales4{
-background-image:url('../images/banner-semanales4.webp');
-}
-
-.semanales5{
-background-image:url('../images/banner-semanales5.webp');
-}
-
-.semanales6{
-background-image:url('../images/banner-semanales6.webp');
-}
-
-.semanales7{
-background-image:url('../images/banner-semanales7.webp');
-}
 
 .tab-content {
   animation: fadeTab 0.4s ease;
@@ -475,6 +410,111 @@ background-image:url('../images/banner-semanales7.webp');
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.movie-card {
+  position: relative;
+  width: 220px;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.movie-card img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-overlay {
+  position: absolute;
+  inset: 0;
+  
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.9),
+    rgba(0,0,0,0.2),
+    transparent
+  );
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 16px;
+}
+
+.movie-card:hover .movie-overlay {
+  opacity: 1;
+}
+
+.movie-overlay h3 {
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.movie-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.movie-actions .btnWarning {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .contenedor {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .contenedor {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contenedorSemnanal {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .contenedor {
+    grid-template-columns: 1fr;
+  }
+
+  .contenedorSemnanal {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .movie-overlay {
+    opacity: 1;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.9),
+      rgba(0,0,0,0.4),
+      transparent
+    );
   }
 }
 

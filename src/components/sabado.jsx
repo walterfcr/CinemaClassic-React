@@ -15,29 +15,50 @@ function Sabado() {
       }, []);
   return (
     <main>
-        <section className="semanales6"> 
+        <section className="semanal-banner" style={{ backgroundImage: "url('/images/banner-semanales6.webp')" }}>
             <h1>Sábado de Cine de Culto #2</h1>
             <p>Los viernes y sábados están reservados para el cine de culto, una experiencia pensada para los verdaderos apasionados del séptimo arte. Aquí se proyectan aquellas películas que, a pesar del paso del tiempo, han mantenido un seguimiento fiel y han dejado huella en la historia del cine por su estilo único, sus temáticas transgresoras o su narrativa innovadora. Desde clásicos underground hasta joyas incomprendidas en su momento, este espacio invita a redescubrir obras que han marcado generaciones y siguen inspirando a cinéfilos de todo el mundo.</p>
         </section>
 
         <div data-aos="zoom-in" id="semanales">
-            <div className="contenedor">
-              <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">
-                <img src="/images/movie28/movie28.webp" alt="Sunday Movie 1" />
-                <Link to={`/movie/movie28`} state={{ backgroundLocation: location }}className=" btnWarning"> Detalles</Link>
-                <Link to={`/buy/movie28`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>
-              </div>
-              <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">
-                <img src="/images/movie29/movie29.webp" alt="Sunday Movie 2" />
-                <Link to={`/movie/movie29`} state={{ backgroundLocation: location }}className=" btnWarning"> Detalles</Link>
-                <Link to={`/buy/movie29`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>
-              </div>
-              <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">
-                <img src="/images/movie30/movie30.webp" alt="Sunday Movie 2" />
-                <Link to={`/movie/movie30`} state={{ backgroundLocation: location }}className=" btnWarning"> Detalles</Link>
-                <Link to={`/buy/movie30`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>
-              </div>
-            </div>
+            <div className="contenedorSemnanal">
+                       <div className="movie-card">
+                         <img src="/images/movie28/movie28.webp" alt="Movie 34" />
+           
+                         <div className="movie-overlay">
+                           <h3>Snatch</h3>
+           
+                           <div className="movie-actions">
+                             <Link to={`/movie/movie28`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                             <Link to={`/buy/movie28`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
+                           </div>
+                         </div>
+                       </div>
+                                   <div className="movie-card">
+                         <img src="/images/movie29/movie29.webp" alt="Movie 34" />
+           
+                         <div className="movie-overlay">
+                           <h3>A Clockwork Orange</h3>
+           
+                           <div className="movie-actions">
+                             <Link to={`/movie/movie29`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                             <Link to={`/buy/movie29`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
+                           </div>
+                         </div>
+                       </div>
+                                   <div className="movie-card">
+                         <img src="/images/movie30/movie30.webp" alt="Movie 34" />
+           
+                         <div className="movie-overlay">
+                           <h3>Braveheart</h3>
+           
+                           <div className="movie-actions">
+                             <Link to={`/movie/movie30`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                             <Link to={`/buy/movie30`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
+                           </div>
+                         </div>
+                       </div>
+                     </div>
           </div>
       <Proximamente />
     </main>

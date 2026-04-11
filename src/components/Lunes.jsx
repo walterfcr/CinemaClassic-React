@@ -15,29 +15,50 @@ function Lunes() {
       }, []);
   return (
     <main>
-        <section className="semanales1"> 
+        <section className="semanal-banner" style={{ backgroundImage: "url('/images/banner-semanales1.webp')" }}>
             <h1>Lunes de Cine Latino</h1>
             <p>El lunes está dedicado al cine latino, donde podrás disfrutar de una selección especial de películas que reflejan la rica diversidad cultural y artística de América Latina. Desde clásicos hasta estrenos modernos, el cine latino ofrece una mirada única a las historias y tradiciones de esta región, destacando su talento y creatividad.</p>
         </section>
 
         <div data-aos="zoom-in" id="semanales">
-            <div className="contenedor">
-              <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">
-                <img src="/images/movie13/movie13.webp" alt="Sunday Movie 1" />
-                <Link to={`/movie/movie13`} state={{ backgroundLocation: location }}className=" btnWarning"> Detalles</Link>
-                <Link to={`/buy/movie13`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>
-              </div>
-              <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">
-                <img src="/images/movie14/movie14.webp" alt="Sunday Movie 2" />
-                <Link to={`/movie/movie14`} state={{ backgroundLocation: location }}className=" btnWarning"> Detalles</Link>
-                <Link to={`/buy/movie14`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>
-              </div>
-              <div className="columnaEstreno tab" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-out-cubic">
-                <img src="/images/movie15/movie15.webp" alt="Sunday Movie 2" />
-                <Link to={`/movie/movie15`} state={{ backgroundLocation: location }}className=" btnWarning"> Detalles</Link>
-                <Link to={`/buy/movie15`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>
-              </div>
-            </div>
+           <div className="contenedorSemnanal">
+                       <div className="movie-card">
+                         <img src="/images/movie13/movie13.webp" alt="Movie 34" />
+           
+                         <div className="movie-overlay">
+                           <h3>Machuca</h3>
+           
+                           <div className="movie-actions">
+                             <Link to={`/movie/movie13`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                             <Link to={`/buy/movie13`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
+                           </div>
+                         </div>
+                       </div>
+                                   <div className="movie-card">
+                         <img src="/images/movie14/movie14.webp" alt="Movie 34" />
+           
+                         <div className="movie-overlay">
+                           <h3>Nueve Reinas</h3>
+           
+                           <div className="movie-actions">
+                             <Link to={`/movie/movie14`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                             <Link to={`/buy/movie14`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
+                           </div>
+                         </div>
+                       </div>
+                                   <div className="movie-card">
+                         <img src="/images/movie15/movie15.webp" alt="Movie 34" />
+           
+                         <div className="movie-overlay">
+                           <h3>Rudi & Cursi</h3>
+           
+                           <div className="movie-actions">
+                             <Link to={`/movie/movie15`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                             <Link to={`/buy/movie15`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
+                           </div>
+                         </div>
+                       </div>
+                     </div>
           </div>
           <Proximamente />
     </main>
