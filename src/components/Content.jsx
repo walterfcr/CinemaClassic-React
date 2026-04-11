@@ -242,12 +242,21 @@ function Content() {
 
 
       <section className="semanales">
+        <div className="semanales-overlay">
+          <div className="wrap2">
 
-<div className="wrap2">   
-<h2>Clásicos Semanales</h2>
-<p>Es una novedad para los más cinéfilos y quienes gustan de ver clásicos y les gustaría verlos de la mejor manera, en la pantalla grande. Cada semana habrá una temática diferente con 3 clásicos y estarán disponibles el mes completo, todos en la sala #4 exclusiva para clásicos</p>
-</div> 
-</section>
+            <span className="semanales-tag">Programación especial</span>
+
+            <h2>Clásicos Semanales</h2>
+
+            <p>
+              Cada semana una nueva temática con 3 clásicos cuidadosamente seleccionados.
+              Disfrútalos durante todo el mes en nuestra sala exclusiva para cine de culto.
+            </p>
+
+          </div>
+        </div>
+      </section>
 
       {/* Tabs Section */}
       <div id="semanales">

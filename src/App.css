@@ -273,54 +273,128 @@ padding-bottom: 50px;
 margin:0 35px;
 }
 
-.semanales{ 
-margin:50px 0 0;
-background-image:url('../images/banner-semanales.webp');
-background-size:cover;
-background-position-y:center;
-box-shadow: inset 0 0 0 1000px #080808b3 !important;
-height:450px;  
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
+.semanales {
+  margin: 60px 0;
+  background-image: url('../images/banner-semanales.webp');
+  background-size: cover;
+  background-position: center;
+  height: 450px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* 🔥 Better overlay (gradient instead of flat dark) */
+.semanales-overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.85)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+
+/* Small tag */
+.semanales {
+  margin: 60px 0;
+  background-image: url('../images/banner-semanales.webp');
+  background-size: cover;
+  background-position: center;
+  height: 420px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 🎬 cinematic overlay */
+.semanales-overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.9),
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.9)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* content container */
+.wrap2 {
+  max-width: 650px;
+  color: white;
+  animation: fadeInUp 0.8s ease;
+}
+
+/* small label */
+.semanales-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* title */
 .semanales h2 {
-  color:#fff !important;
-  padding:30px ;
-  font-size: 2rem;
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
 }
 
-
-@media (min-width:481px) and (max-width:900px){
-  .semanales h2 {
-    font-size: 2rem;     
-  }
-}
-
-@media (min-width:320px) and (max-width:480px){
-  .semanales h2 {
-    font-size: 1.5rem;     
-  }
-
-  .semanales p {
-    text-align: left;   
-  }
-}
-
-@media (min-width:320px) and (max-width:375px){
-
-  .semanales p {
-    font-size: 0.8rem; 
-  }
-}
-
+/* text */
 .semanales p {
-color:#fff !important;
-padding:0 0 30px;
-
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #ddd;
 }
+
+/* subtle animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .semanales {
+    height: auto;
+    padding: 3rem 0;
+  }
+
+  .semanales h2 {
+    font-size: 2rem;
+  }
+
+  .semanales p {
+    font-size: 0.95rem;
+  }
+}
+
 
 .semanal {
 margin:50px auto;
