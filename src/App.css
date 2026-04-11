@@ -58,11 +58,22 @@ h1 {
   color: var(--text-main);
 }
 
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
 .contentWrap {
   padding: 32px 24px; /* 👈 THIS fixes your issue */
 }
 
 .btnWarning {
+  text-decoration: none !important;
   background-color: var(--primary);
   color: white !important;
   padding: 10px 20px;
@@ -415,32 +426,39 @@ margin:30px 0;
 
 .movie-card {
   position: relative;
-  width: 220px;
+  /*width: 220px;*/
   overflow: hidden;
   border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .movie-card img {
   width: 100%;
   display: block;
-  border-radius: 12px;
+  transition: transform 0.4s ease;
+
+}
+
+.movie-card:hover img {
+  transform: scale(1.08);
 }
 
 .movie-card:hover {
   transform: scale(1.05);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
 }
 
 .movie-overlay {
   position: absolute;
   inset: 0;
-  
+
   background: linear-gradient(
     to top,
     rgba(0,0,0,0.9),
-    rgba(0,0,0,0.2),
-    transparent
+    rgba(0,0,0,0.5),
+    rgba(0,0,0,0.2)
   );
 
   display: flex;
@@ -448,9 +466,10 @@ margin:30px 0;
   justify-content: flex-end;
   align-items: center;
 
+  padding: 20px;
+
   opacity: 0;
   transition: opacity 0.3s ease;
-  padding: 16px;
 }
 
 .movie-card:hover .movie-overlay {
@@ -462,11 +481,24 @@ margin:30px 0;
   margin-bottom: 10px;
   font-size: 1.1rem;
   text-align: center;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 
 .movie-actions {
   display: flex;
   gap: 10px;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+}
+
+.movie-card:hover .movie-overlay h3,
+.movie-card:hover .movie-actions {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .movie-actions .btnWarning {
@@ -474,6 +506,18 @@ margin:30px 0;
   font-size: 0.85rem;
 }
 
+@media (max-width: 768px) {
+  .movie-overlay {
+    opacity: 1;
+    background: rgba(0,0,0,0.7);
+  }
+
+  .movie-overlay h3,
+  .movie-actions {
+    transform: none;
+    opacity: 1;
+  }
+}
 
 
 /* Tablet */

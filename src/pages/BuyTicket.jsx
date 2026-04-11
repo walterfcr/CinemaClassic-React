@@ -82,7 +82,7 @@ const BuyTicket = () => {
       setSubmitted(true);
     } catch (err) {
       console.error(err);
-      alert("Error al guardar la compra");
+      alert("Error al guardar la compra"); 
     } finally {
       setLoading(false);
     }

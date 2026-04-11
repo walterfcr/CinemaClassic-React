@@ -59,7 +59,7 @@ const Contacto = () => {
     <section className="contactoWrap sectionForm py-4">
       <div className="containerForm">
         <h1 className="text-center tituloSeccion5">Contáctenos</h1>
-        <form id="form2" onSubmit={(e) => e.preventDefault()}>
+        <form id="form2" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
           <div className="formRow">
             <div className="colForm">
               <div className="inputBox">
@@ -117,7 +117,7 @@ const Contacto = () => {
                 <span className="text">Teléfono</span>
                 <span className="line"></span>
               </div>
-            </div>
+            </div> 
           </div>
 
           <div className="formRow">
@@ -137,15 +137,12 @@ const Contacto = () => {
 
           <div className="formRow">
             <div className="colForm">
-              <p id="mensajeAlert" style={{ color: mensajeAlert.includes('éxito') ? 'green' : 'red' }}>
+              <p className={`form-alert ${mensajeAlert.includes('éxito') ? 'success' : 'error'}`}>
                 {mensajeAlert}
               </p>
-              <input
-                type="button"
-                className="btnWarning"
-                value="Enviar"
-                onClick={handleSubmit}
-              />
+             <button type="submit" className="btnWarning">
+                Enviar mensaje
+              </button>
             </div>
           </div>
         </form>

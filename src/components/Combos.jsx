@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import 'sweetalert2/dist/sweetalert2.min.css';
-import './Combos.css'; 
+import "sweetalert2/dist/sweetalert2.min.css";
+import "./Combos.css";
 
 const Combos = () => {
   const [selectedFlavor, setSelectedFlavor] = useState("");
@@ -37,74 +37,102 @@ const Combos = () => {
       Swal.fire({
         icon: "info",
         title: "Atención",
-        html: '<p class="formatos1">Seleccione el sabor...</p>',
+        text: "Seleccione el sabor...",
         customClass: {
-          popup: 'custom-swal'
+          popup: "custom-swal",
         },
       });
-    } else if (!selectedPriceType) {
+      return;
+    }
+
+    if (!selectedPriceType) {
       Swal.fire({
         icon: "info",
         title: "Atención",
-        html: '<p class="formatos1">Seleccione el combo...</p>',
+        text: "Seleccione el combo...",
         customClass: {
-          popup: 'custom-swal'
+          popup: "custom-swal",
         },
       });
-    } else {
-      const price = prices[selectedFlavor][selectedPriceType];
-      Swal.fire({
-        imageUrl: flavorImages[selectedFlavor],
-        html: `<p style="color: #000;">${selectedFlavor}<br><br><strong>Precio ${selectedPriceType.toLowerCase()}:</strong></p> ¢${price}`,
-        imageWidth: 500,
-        imageHeight: 373,
-        imageAlt: selectedFlavor,
-        customClass: {
-          popup: 'custom-swal'
-        },
-        backdrop: 'rgba(0, 0, 0, 0.9)',
-      });
+      return;
     }
+
+    const price = prices[selectedFlavor][selectedPriceType];
+
+    Swal.fire({
+      imageUrl: flavorImages[selectedFlavor],
+      imageWidth: 400,
+      imageAlt: selectedFlavor,
+
+      html: `
+        <p class="swal-text">${selectedFlavor}</p>
+        <p class="swal-text">
+          <strong>Precio ${selectedPriceType.toLowerCase()}:</strong>
+        </p>
+        <h2 class="swal-price">¢${price}</h2>
+      `,
+
+      customClass: {
+        popup: "custom-swal",
+        htmlContainer: "custom-swal-text",
+        title: "custom-swal-title",
+      },
+
+      backdrop: "rgba(0, 0, 0, 0.9)",
+      confirmButtonText: "Cerrar",
+    });
   };
 
   return (
     <div className="comboColumns">
+      {/* LEFT */}
       <div className="columna">
         <h3>Arma tu combo</h3>
+
         <h4>Palomitas</h4>
         <select value={selectedFlavor} onChange={handleFlavorChange}>
-          <option value="" disabled>Seleccione el sabor:</option>
+          <option value="" disabled>
+            Seleccione el sabor:
+          </option>
           {Object.keys(flavorImages).map((flavor) => (
-            <option key={flavor} value={flavor}>{flavor}</option>
+            <option key={flavor} value={flavor}>
+              {flavor}
+            </option>
           ))}
         </select>
 
         <select value={selectedPriceType} onChange={handlePriceTypeChange}>
-          <option value="" disabled>Cotización:</option>
+          <option value="" disabled>
+            Cotización:
+          </option>
           <option>Unidad</option>
           <option>Combo</option>
         </select>
-        <div className="mt-3">
-          <button className="btnWarning" onClick={calcular}>Calcular</button>
-        </div>
+
+        <button className="btnWarning" onClick={calcular}>
+          Calcular
+        </button>
       </div>
 
+      {/* CENTER IMAGE */}
       <div className="columna">
-        <img src={imageSrc} alt="palomitas" className="img-fluid" />
+        <img src={imageSrc} alt="palomitas" />
       </div>
 
+      {/* RIGHT */}
       <div className="columna">
         <h3>Combos incluyen:</h3>
+
         <p>Bebida a escoger:</p>
         <ul>
           <li>Gaseosa</li>
           <li>Té frío</li>
         </ul>
-        <br />
+
         <p>Snack a escoger:</p>
         <ul>
           <li>Barra de chocolate</li>
-          <li>m&m's</li>
+          <li>M&M's</li>
         </ul>
       </div>
     </div>

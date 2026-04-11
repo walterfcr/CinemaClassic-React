@@ -28,44 +28,44 @@ const Testimonials = () => {
               <img src="images/usuario1.webp" alt="" />
               <h3>Jordi Chavez</h3>
               <p>Me gustó mucho el lugar, altamente recomendado.</p>
-              {Array(5).fill(0).map((_, i) => (
-                <i key={i} className="fa-solid fa-star" style={{ color: '#c17f27' }}></i>
-              ))}
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <i key={index} className="fa-solid fa-star"></i>
+                ))}
             </div>
             <div className="item">
               <img src="images/usuario2.webp" alt="" />
               <h3>Patricia Quiros</h3>
               <p>Butacas cómodas y bastante variedad en películas.</p>
-              {[...Array(4)].map((_, i) => (
-                <i key={i} className="fa-solid fa-star" style={{ color: '#c17f27' }}></i>
-              ))}
-              <i className="fa-solid fa-star-half-stroke" style={{ color: '#c17f27' }}></i>
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <i key={index} className="fa-solid fa-star"></i>
+                ))}
+              <i className="fa-solid fa-star-half-stroke"></i>
             </div>
             <div className="item">
               <img src="images/usuario3.webp" alt="" />
               <h3>Silvia Perez</h3>
               <p>Una nueva manera de disfrutar el cine, encantada.</p>
-              {Array(5).fill(0).map((_, i) => (
-                <i key={i} className="fa-solid fa-star" style={{ color: '#c17f27' }}></i>
-              ))}
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <i key={index} className="fa-solid fa-star"></i>
+                ))}
             </div>
             <div className="item">
               <img src="images/usuario4.webp" alt="" />
               <h3>Luis Torrente</h3>
               <p>Me gustó las palomitas y amplia variedad de dulces.</p>
-              {[...Array(4)].map((_, i) => (
-                <i key={i} className="fa-solid fa-star" style={{ color: '#c17f27' }}></i>
-              ))}
-              <i className="fa-regular fa-star" style={{ color: '#c17f27' }}></i>
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <i key={index} className="fa-solid fa-star"></i>
+                ))}
+              <i className="fa-regular fa-star"></i>
             </div>
             <div className="item">
               <img src="images/usuario5.webp" alt="" />
               <h3>Kendra Michaels</h3>
               <p>Me gustó el lugar bastante tranquilo, cómodo y cerca.</p>
-              {[...Array(4)].map((_, i) => (
-                <i key={i} className="fa-solid fa-star" style={{ color: '#c17f27' }}></i>
-              ))}
-              <i className="fa-solid fa-star-half-stroke" style={{ color: '#c17f27' }}></i>
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <i key={index} className="fa-solid fa-star"></i>
+                ))}
+              <i className="fa-solid fa-star-half-stroke"></i>
             </div>
           </OwlCarousel>
         </div>

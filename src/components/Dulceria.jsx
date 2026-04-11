@@ -1,41 +1,54 @@
 import React from 'react';
 import Combos from './Combos';
-import './Nosotros.css';
+import './Dulceria.css';
 
 function Dulceria() {
   return (
-<main class="twoColumns">
-  <h1>Dulcería Cinema Classic</h1>
-  <div className="contentWrap">
-    <div className="contenedorNosotros">
-      <div className="columnaNosotros">
-        <div className="cineAnimacion">
-          <lottie-player
-            src="https://lottie.host/f96ca105-c06a-4c7a-8cf8-9f22ac07c292/IMbdcRgQyJ.json"
-            hover
-            loop
-          ></lottie-player>
-        </div>
-      </div>
-      <div className="columnaNosotros">
-        <p>
-          Contamos con gran variedad de golosinas, chocolates, refrescos y las infaltables palomitas de maíz y muchos sabores a escoger para mayor disfrute de la película.
-        </p>
-        <p>
-          Tenemos las tradicionales palomitas y también con caramelo, las favoritas de muchos además de muchas novedades como las palomitas Cheetos, con Doritos y para los más valientes las palomitas con Takis
-        </p>
-        <p>
-        Muestra tu entrada VIP y obtendrás gratis un combo a elegir.  Aprovecha las ofertas y combos a tu gusto y así disfrutar del cine de la mejor manera.
-        </p>
-        <p>
-          *No se admite el ingreso de alimentos comprados fuera del local.
-        </p>
-      </div>
-    </div>
-  </div>
-  <Combos />
-</main>
+    <main className="dulceria-page">
+      <h1>Dulcería Cinema Classic</h1>
 
+      <div className="dulceria-layout">
+
+        {/* LEFT - TEXT */}
+        <div className="dulceria-left">
+          <section className="dulceria-block">
+            <h2>🍿 Una experiencia completa</h2>
+            <p>
+              Disfruta de una amplia variedad de golosinas, chocolates,
+              refrescos y nuestras infaltables palomitas de maíz.
+            </p>
+          </section>
+
+          <section className="dulceria-block">
+            <h2>🔥 Sabores únicos</h2>
+            <p>
+              Desde las clásicas hasta opciones como caramelo, Cheetos,
+              Doritos y Takis para los más atrevidos.
+            </p>
+          </section>
+
+          <section className="dulceria-block">
+            <h2>🎟️ Beneficios VIP</h2>
+            <p>
+              Muestra tu entrada VIP y obtén un combo gratis.
+              Aprovecha nuestras promociones exclusivas.
+            </p>
+          </section>
+
+          <p className="dulceria-note">
+            *No se admite el ingreso de alimentos externos.
+          </p>
+        </div>
+
+        {/* RIGHT - IMAGE */}
+        <div className="dulceria-right">
+          <img src="/images/dulceria.webp" alt="Dulcería Cinema Classic" />
+        </div>
+
+      </div>
+
+      <Combos />
+    </main>
   );
 }
 

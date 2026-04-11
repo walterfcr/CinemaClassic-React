@@ -1,93 +1,149 @@
+/* ========================= */
+/* WRAPPER */
+/* ========================= */
+
 .contactoWrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 0;
-  }
-  
-  .containerForm {
-    width: 50%;
-    max-width: 600px;
-  }
-  
-  .tituloSeccion5 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* 👈 instead of center */
+  padding: 4rem 0;
+}
+
+.containerForm {
+  width: 100%;
+  max-width: 700px;
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* ========================= */
+/* TITLE */
+/* ========================= */
+
+.tituloSeccion5 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--primary);
+}
+
+/* ========================= */
+/* FORM LAYOUT */
+/* ========================= */
+
+.formRow {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.colForm {
+  flex: 1;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
   .formRow {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin: 1rem;
+    flex-direction: column;
   }
-  
-  .colForm {
-    flex: 1 1 45%;
-    margin: 1rem;
-  }
-  
-  .inputBox {
-    position: relative;
-  }
-  
-  .inputBox input,
-  .inputBox textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: none;
-    border-bottom: 2px solid #ccc;
-    background: transparent;
-    font-size: 1rem;
-  }
-  
-  .inputBox .text {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: 0.3s;
-    pointer-events: none;
-    color: #999;
-  }
-  
-  .inputBox input:focus + .text,
-  .inputBox input:valid + .text,
-  .inputBox textarea:focus + .text,
-  .inputBox textarea:valid + .text {
-    transform: translateY(-20px);
-    font-size: 0.8rem;
-    color: #f39c12;
-  }
-  
-  .inputBox .line {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    width: 0%;
-    background: #f39c12;
-    transition: 0.4s;
-  }
-  
-  .inputBox input:focus ~ .line,
-  .inputBox textarea:focus ~ .line {
-    width: 100%;
-  }
-  
-  .inputBox.textarea textarea {
-    min-height: 100px;
-    resize: none;
-  }
-  
+}
+
+/* ========================= */
+/* INPUTS */
+/* ========================= */
+
+.inputBox {
+  position: relative;
+}
+
+.inputBox input,
+.inputBox textarea {
+  width: 100%;
+  padding: 10px 5px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #444;
+  color: var(--text-main);
+  font-size: 1rem;
+  outline: none;
+}
+
+/* Floating label */
+.inputBox .text {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  color: #777;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+/* Active state */
+.inputBox input:focus + .text,
+.inputBox input:not(:placeholder-shown) + .text,
+.inputBox textarea:focus + .text,
+.inputBox textarea:not(:placeholder-shown) + .text {
+  top: -14px;
+  font-size: 0.75rem;
+  color: var(--primary);
+}
+
+/* Line animation */
+.inputBox .line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--primary);
+  transition: 0.3s;
+}
+
+.inputBox input:focus ~ .line,
+.inputBox textarea:focus ~ .line {
+  width: 100%;
+}
+
+/* Textarea */
+.inputBox.textarea textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+/* ========================= */
+/* ALERT MESSAGE */
+/* ========================= */
+
+.form-alert {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.form-alert.success {
+  color: #4caf50;
+}
+
+.form-alert.error {
+  color: #ff4d4d;
+}
+
+/* ========================= */
+/* BUTTON */
+/* ========================= */
+.containerForm .btnWarning {
+  width: 100%;
+  margin-top: 10px;
+}
 
 
-  .formRow {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .colForm {
-    flex: 1 1 100%;
-  }
+/* ========================= */
+/* HOVER EFFECT (OPTIONAL 🔥) */
+/* ========================= */
+
+.containerForm:hover {
+  box-shadow: 0 15px 50px rgba(229, 9, 20, 0.2);
+}
