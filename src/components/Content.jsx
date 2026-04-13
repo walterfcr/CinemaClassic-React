@@ -11,23 +11,39 @@ import Proximamente from './Proximamente';
 
 
 function Content() {
-  const [selectedDay, setSelectedDay] = useState('domingo'); // Default tab is 'domingo'
-  //const navigate = useNavigate();
+
   const location = useLocation();
 
+  // 🔥 STEP 1: function to get today's day
+  const getToday = () => {
+    const days = [
+      'domingo',
+      'lunes',
+      'martes',
+      'miercoles',
+      'jueves',
+      'viernes',
+      'sabado'
+    ];
+    return days[new Date().getDay()];
+  };
 
+  // 🔥 STEP 2: use it as default
+  const [selectedDay, setSelectedDay] = useState(getToday());
+
+  // AOS init
   useEffect(() => {
-      AOS.init({
-        once: true,      // animations happen only once
-        duration: 400,   // faster animation
-        easing: "ease-out",
-      });
-    }, []);
+    AOS.init({
+      once: true,
+      duration: 400,
+      easing: "ease-out",
+    });
+  }, []);
 
-    // 👇 Refresh AOS on route change (like Vue afterEach)
-    useEffect(() => {
-      AOS.refreshHard();
-    }, [location.pathname]);
+  // refresh animations
+  useEffect(() => {
+    AOS.refreshHard();
+  }, [location.pathname]);
 
   return (
     
