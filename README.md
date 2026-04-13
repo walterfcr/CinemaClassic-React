@@ -110,7 +110,7 @@ npm install
 npm run dev
 ```
 
-<<<<<<< HEAD
+
 =======
 🔑 Environment Variables
 
@@ -123,7 +123,7 @@ VITE_FIREBASE_STORAGE_BUCKET=...
 VITE_FIREBASE_MESSAGING_SENDER_ID=...
 VITE_FIREBASE_APP_ID=...
 
->>>>>>> 099e6f2 (.env)
+
 ---
 
 ## 🔑 Environment Setup
@@ -154,8 +154,8 @@ Walter Fallas Barrantes
 
 ## 📄 License
 
-<<<<<<< HEAD
+
 This project is for educational and portfolio purposes.
 =======
 This project is for educational and portfolio purposes.
->>>>>>> 099e6f2 (.env)
+
