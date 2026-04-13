@@ -1,13 +1,64 @@
+import { useState, useEffect } from "react";
+import { db } from "../firebase";
+import { doc, onSnapshot } from "firebase/firestore";
 import "./SeatSelector.css";
 
 const rows = ["A","B","C","D","E","F","G","H"];
 const cols = Array.from({ length: 15 }, (_, i) => i + 1);
 
-const SeatSelectorModal = ({ selectedSeats, setSelectedSeats, onClose }) => {
+const SeatSelectorModal = ({ 
+  selectedSeats, 
+  setSelectedSeats, 
+  onClose, 
+  movie, 
+  form 
+}) => {
+
+  const [occupiedSeats, setOccupiedSeats] = useState([]);
+
+  useEffect(() => {
+
+    // 🛡️ SAFETY CHECK
+    if (!form || !form.date || !form.tanda || !form.cinema || !movie) {
+      setOccupiedSeats([]);
+      return;
+    }
+
+    const today = new Date();
+    const selectedDate = new Date(form.date);
+
+    today.setHours(0,0,0,0);
+    selectedDate.setHours(0,0,0,0);
+
+    // ❌ Ignore past dates
+    if (selectedDate < today) {
+      setOccupiedSeats([]);
+      return;
+    }
+
+    const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
+    const ref = doc(db, "showtimes", showtimeId);
+
+    // 🔥 REAL-TIME LISTENER
+    const unsubscribe = onSnapshot(ref, (snap) => {
+      if (snap.exists()) {
+        setOccupiedSeats(snap.data().occupiedSeats || []);
+      } else {
+        setOccupiedSeats([]);
+      }
+    });
+
+    // 🧹 CLEANUP
+    return () => unsubscribe();
+
+  }, [movie?.id, form?.date, form?.tanda, form?.cinema]);
 
   const toggleSeat = (row, col) => {
     const id = `${row}${col}`;
     const isVip = row === "G" || row === "H";
+
+    // 🚫 Block occupied seats
+    if (occupiedSeats.includes(id)) return;
 
     const exists = selectedSeats.find(s => s.id === id);
 
@@ -56,11 +107,17 @@ const SeatSelectorModal = ({ selectedSeats, setSelectedSeats, onClose }) => {
               const id = `${row}${col}`;
               const isSelected = selectedSeats.some(s => s.id === id);
               const isVip = row === "G" || row === "H";
+              const isOccupied = occupiedSeats.includes(id);
 
               return (
                 <button
                   key={id}
-                  className={`seat ${isVip ? "vip" : ""} ${isSelected ? "selected" : ""}`}
+                  disabled={isOccupied}
+                  className={`seat 
+                    ${isVip ? "vip" : ""} 
+                    ${isSelected ? "selected" : ""} 
+                    ${isOccupied ? "occupied" : ""}
+                  `}
                   onClick={() => toggleSeat(row, col)}
                 >
                   {id}
@@ -70,7 +127,7 @@ const SeatSelectorModal = ({ selectedSeats, setSelectedSeats, onClose }) => {
           )}
         </div>
 
-        {/* FOOTER */}
+        {/* SELECTED SEATS */}
         <div style={{ marginBottom: "10px", textAlign: "center" }}>
           <strong>Butacas seleccionadas:</strong>{" "}
           {selectedSeats.length > 0
@@ -78,6 +135,7 @@ const SeatSelectorModal = ({ selectedSeats, setSelectedSeats, onClose }) => {
             : "Ninguna"}
         </div>
 
+        {/* TOTAL */}
         <div style={{ marginBottom: "15px", textAlign: "center" }}>
           <strong>Total:</strong> ¢{getTotal()}
         </div>

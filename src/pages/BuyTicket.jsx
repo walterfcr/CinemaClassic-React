@@ -2,7 +2,14 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { movies } from "../moviesData";
 import { db } from "../firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { 
+  collection, 
+  addDoc, 
+  serverTimestamp,
+  doc,
+  getDoc,
+  setDoc
+} from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
 import SeatSelectorModal from "./SeatSelectorModal";
 import "./BuyTicket.css";
@@ -10,12 +17,11 @@ import "./BuyTicket.css";
 const BuyTicket = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const location = useLocation(); // 👈 NEW
+  const location = useLocation();
 
   const movie = movies.find((m) => m.id === id);
   const { user, userData } = useAuth();
 
-  // 👇 PRESELECTED DATA FROM HERO
   const preselected = location.state?.preselected;
 
   const [form, setForm] = useState({
@@ -31,7 +37,6 @@ const BuyTicket = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // 👇 Auto-fill user data
   useEffect(() => {
     if (user && userData) {
       setForm((prev) => ({
@@ -67,6 +72,39 @@ const BuyTicket = () => {
     setLoading(true);
 
     try {
+      // 🔥 STEP 1: Create showtime ID
+      const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
+      const showtimeRef = doc(db, "showtimes", showtimeId);
+
+      // 🔥 STEP 2: Get existing occupied seats
+      const snap = await getDoc(showtimeRef);
+      const existingSeats = snap.exists() ? snap.data().occupiedSeats || [] : [];
+
+      // 🔥 STEP 3: Check for conflicts
+      const selectedIds = selectedSeats.map(s => s.id);
+
+      const conflict = selectedIds.some(id => existingSeats.includes(id));
+
+      if (conflict) {
+        alert("⚠️ Algunas butacas ya fueron reservadas");
+        setLoading(false);
+        return;
+      }
+
+      // 🔥 STEP 4: Merge seats
+      const updatedSeats = [...new Set([...existingSeats, ...selectedIds])];
+
+      // 🔥 STEP 5: Save showtime seats
+      await setDoc(showtimeRef, {
+        movieId: movie.id,
+        date: form.date,
+        tanda: form.tanda,
+        cinema: form.cinema,
+        occupiedSeats: updatedSeats,
+        updatedAt: serverTimestamp()
+      });
+
+      // 🎟️ STEP 6: Save ticket (your original logic)
       await addDoc(collection(db, "tickets"), {
         userId: user.uid,
         userEmail: user.email,
@@ -80,6 +118,7 @@ const BuyTicket = () => {
       });
 
       setSubmitted(true);
+
     } catch (err) {
       console.error(err);
       alert("Error al guardar la compra"); 
@@ -190,6 +229,8 @@ const BuyTicket = () => {
           selectedSeats={selectedSeats}
           setSelectedSeats={setSelectedSeats}
           onClose={() => setShowSeats(false)}
+          movie={movie}
+          form={form}
         />
       )}
     </div>
