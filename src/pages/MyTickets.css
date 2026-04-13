@@ -279,3 +279,16 @@
     height: 160px;
   }
 }
+
+.ticket-qr {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.ticket-qr img {
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  padding: 6px;
+  border-radius: 10px;
+}

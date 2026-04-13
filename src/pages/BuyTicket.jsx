@@ -10,6 +10,7 @@ import {
   getDoc,
   setDoc
 } from "firebase/firestore";
+import QRCode from "qrcode"; // 🔥 NEW
 import { useAuth } from "../context/AuthContext";
 import SeatSelectorModal from "./SeatSelectorModal";
 import "./BuyTicket.css";
@@ -35,6 +36,8 @@ const BuyTicket = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [showSeats, setShowSeats] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const [reserved, setReserved] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -56,31 +59,22 @@ const BuyTicket = () => {
     return acc + (seat.type === "vip" ? vipPrice : regularPrice);
   }, 0);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  // 🎟 FINAL PURCHASE + QR
+  const handleSubmit = async () => {
     if (!user) {
       alert("Debes iniciar sesión para comprar");
-      return;
-    }
-
-    if (selectedSeats.length === 0) {
-      alert("Selecciona al menos una butaca");
       return;
     }
 
     setLoading(true);
 
     try {
-      // 🔥 STEP 1: Create showtime ID
       const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
       const showtimeRef = doc(db, "showtimes", showtimeId);
 
-      // 🔥 STEP 2: Get existing occupied seats
       const snap = await getDoc(showtimeRef);
       const existingSeats = snap.exists() ? snap.data().occupiedSeats || [] : [];
 
-      // 🔥 STEP 3: Check for conflicts
       const selectedIds = selectedSeats.map(s => s.id);
 
       const conflict = selectedIds.some(id => existingSeats.includes(id));
@@ -91,10 +85,8 @@ const BuyTicket = () => {
         return;
       }
 
-      // 🔥 STEP 4: Merge seats
       const updatedSeats = [...new Set([...existingSeats, ...selectedIds])];
 
-      // 🔥 STEP 5: Save showtime seats
       await setDoc(showtimeRef, {
         movieId: movie.id,
         date: form.date,
@@ -104,8 +96,8 @@ const BuyTicket = () => {
         updatedAt: serverTimestamp()
       });
 
-      // 🎟️ STEP 6: Save ticket (your original logic)
-      await addDoc(collection(db, "tickets"), {
+      // 🎟 CREATE TICKET
+      const ticketRef = await addDoc(collection(db, "tickets"), {
         userId: user.uid,
         userEmail: user.email,
         movieId: movie.id,
@@ -117,11 +109,29 @@ const BuyTicket = () => {
         createdAt: serverTimestamp(),
       });
 
+      // 🔳 QR DATA
+      const qrValue = JSON.stringify({
+        ticketId: ticketRef.id,
+        movie: movie.title,
+        seats: selectedIds,
+        date: form.date,
+        time: form.tanda,
+      });
+
+      // 🔥 GENERATE QR IMAGE
+      const qrImage = await QRCode.toDataURL(qrValue);
+
+      // 💾 SAVE QR INTO FIRESTORE
+      await setDoc(ticketRef, {
+        qrValue,
+        qrImage
+      }, { merge: true });
+
       setSubmitted(true);
 
     } catch (err) {
       console.error(err);
-      alert("Error al guardar la compra"); 
+      alert("Error al guardar la compra");
     } finally {
       setLoading(false);
     }
@@ -136,9 +146,10 @@ const BuyTicket = () => {
           ✕
         </button>
 
+        {/* 🎉 SUCCESS */}
         {submitted ? (
           <div className="buyticket-success">
-            <h2>🎬 Entrada reservada</h2>
+            <h2>🎬 Entrada comprada</h2>
             <p><strong>Película:</strong> {movie.title}</p>
             <p><strong>Butacas:</strong> {selectedSeats.map(s => s.id).join(", ")}</p>
             <p><strong>Total:</strong> ¢{totalPrice}</p>
@@ -147,6 +158,36 @@ const BuyTicket = () => {
               Volver al inicio
             </button>
           </div>
+
+        ) : reserved ? (
+
+          // 🧾 RESUMEN
+          <div className="buyticket-summary">
+            <h2>Resumen de compra</h2>
+
+            <p><strong>Película:</strong> {movie.title}</p>
+            <p><strong>Cine:</strong> {form.cinema}</p>
+            <p><strong>Fecha:</strong> {form.date}</p>
+            <p><strong>Hora:</strong> {form.tanda}</p>
+            <p><strong>Butacas:</strong> {selectedSeats.map(s => s.id).join(", ")}</p>
+            <p><strong>Total:</strong> ¢{totalPrice}</p>
+
+            <button 
+              className="buyticket-btn"
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? "Procesando..." : "Confirmar compra"}
+            </button>
+
+            <button 
+              className="buyticket-close"
+              onClick={() => setReserved(false)}
+            >
+              Editar selección
+            </button>
+          </div>
+
         ) : (
           <>
             <h2 className="buyticket-title">{movie.title}</h2>
@@ -154,7 +195,7 @@ const BuyTicket = () => {
             <div className="buyticket-body">
               <img src={movie.banner} alt={movie.title} />
 
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={(e) => e.preventDefault()}>
 
                 <input
                   placeholder="Nombre"
@@ -184,6 +225,7 @@ const BuyTicket = () => {
 
                 <input
                   type="date"
+                  min={new Date().toISOString().split("T")[0]}
                   value={form.date}
                   onChange={(e) => setForm({ ...form, date: e.target.value })}
                   required
@@ -205,6 +247,7 @@ const BuyTicket = () => {
                   type="button"
                   className="buyticket-btn"
                   onClick={() => setShowSeats(true)}
+                  disabled={!form.cinema || !form.date || !form.tanda}
                 >
                   Elegir butacas ({selectedSeats.length})
                 </button>
@@ -213,8 +256,14 @@ const BuyTicket = () => {
                   Total: ¢{totalPrice}
                 </div>
 
-                <button className="buyticket-btn" disabled={loading}>
-                  {loading ? "Comprando..." : "Comprar entradas"}
+                {/* RESERVE */}
+                <button
+                  type="button"
+                  className="buyticket-btn"
+                  onClick={() => setReserved(true)}
+                  disabled={selectedSeats.length === 0}
+                >
+                  Reservar butacas
                 </button>
 
               </form>

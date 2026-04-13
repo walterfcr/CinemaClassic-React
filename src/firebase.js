@@ -5,12 +5,12 @@ import { getAuth } from "firebase/auth";
 
 // Configuración que te dio Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyBndMhwUIz3VkiLWV0OlUcLBqCrNu9yM14",
-  authDomain: "cine-classic-app.firebaseapp.com",
-  projectId: "cine-classic-app",
-  storageBucket: "cine-classic-app.appspot.com",
-  messagingSenderId: "387956710366",
-  appId: "1:387956710366:web:113f5d7d47aace6bb09b4f"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 // Inicializa Firebase

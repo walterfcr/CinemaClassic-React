@@ -6,16 +6,16 @@ import { useAuth } from '../context/AuthContext';
 import './MyTickets.css';
 
 export default function MyTickets() {
-  const { user, userData, loading: authLoading } = useAuth(); // 🔥 FIX
+  const { user, userData, loading: authLoading } = useAuth();
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     if (authLoading) {
-      setLoading(true); // keep loading visible
+      setLoading(true);
       return;
-    } 
+    }
 
     const fetchTickets = async () => {
       if (!user) {
@@ -41,8 +41,9 @@ export default function MyTickets() {
         }));
 
         setTickets(ticketsList);
+
       } catch (err) {
-        console.error('REAL ERROR:', err);
+        console.error(err);
         setError('Error al cargar tus boletos');
       } finally {
         setLoading(false);
@@ -54,36 +55,37 @@ export default function MyTickets() {
 
   const isUpcoming = (ticketDate) => {
     if (!ticketDate) return false;
+
     const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    today.setHours(0,0,0,0);
 
     const ticket = new Date(ticketDate);
-    ticket.setHours(0, 0, 0, 0);
+    ticket.setHours(0,0,0,0);
 
     return ticket >= today;
   };
 
   if (authLoading) {
-      return (
-        <div className="mytickets-page">
-          <div className="mytickets-loading">
-            <div className="mytickets-spinner"></div>
-            <p>Verificando sesión...</p>
-          </div>
+    return (
+      <div className="mytickets-page">
+        <div className="mytickets-loading">
+          <div className="mytickets-spinner"></div>
+          <p>Verificando sesión...</p>
         </div>
-      );
-    }
+      </div>
+    );
+  }
 
-    if (loading) {
-      return (
-        <div className="mytickets-page">
-          <div className="mytickets-loading">
-            <div className="mytickets-spinner"></div>
-            <p>Cargando tus boletos...</p>
-          </div>
+  if (loading) {
+    return (
+      <div className="mytickets-page">
+        <div className="mytickets-loading">
+          <div className="mytickets-spinner"></div>
+          <p>Cargando tus boletos...</p>
         </div>
-      );
-    }
+      </div>
+    );
+  }
 
   const upcomingTickets = tickets.filter(t => isUpcoming(t.date));
   const pastTickets = tickets.filter(t => !isUpcoming(t.date));
@@ -91,6 +93,7 @@ export default function MyTickets() {
   return (
     <div className="mytickets-page">
       <div className="mytickets-container">
+
         <div className="mytickets-header">
           <h1>Mis Boletos</h1>
           <p>Bienvenido, {userData?.name || user?.displayName || 'Usuario'}</p>
@@ -109,6 +112,7 @@ export default function MyTickets() {
           </div>
         ) : (
           <>
+            {/* 🎬 UPCOMING */}
             {upcomingTickets.length > 0 && (
               <section className="tickets-section">
                 <h2 className="section-title">Próximas Funciones</h2>
@@ -120,6 +124,7 @@ export default function MyTickets() {
               </section>
             )}
 
+            {/* 📜 HISTORY */}
             {pastTickets.length > 0 && (
               <section className="tickets-section">
                 <h2 className="section-title">📜 Historial</h2>
@@ -138,8 +143,10 @@ export default function MyTickets() {
 }
 
 function TicketCard({ ticket, isUpcoming }) {
+
   const formatTicketDate = (dateStr) => {
     if (!dateStr) return 'N/A';
+
     const date = new Date(dateStr + 'T00:00:00');
 
     return new Intl.DateTimeFormat('es-CR', {
@@ -152,6 +159,8 @@ function TicketCard({ ticket, isUpcoming }) {
 
   return (
     <div className={`ticket-card ${isUpcoming ? 'upcoming' : 'past'}`}>
+
+      {/* IMAGE */}
       <div className="ticket-image">
         {ticket.movieBanner ? (
           <img src={ticket.movieBanner} alt={ticket.movieTitle} />
@@ -161,6 +170,7 @@ function TicketCard({ ticket, isUpcoming }) {
         {isUpcoming && <span className="ticket-badge">Próxima</span>}
       </div>
 
+      {/* DETAILS */}
       <div className="ticket-details">
         <h3 className="ticket-title">{ticket.movieTitle}</h3>
 
@@ -173,6 +183,14 @@ function TicketCard({ ticket, isUpcoming }) {
           </div>
         </div>
 
+        {/* 🔥 QR CODE */}
+        {ticket.qrImage && (
+          <div className="ticket-qr">
+            <img src={ticket.qrImage} alt="QR Code" />
+          </div>
+        )}
+
+        {/* FOOTER */}
         <div className="ticket-footer">
           <span className="ticket-total">
             Total: ¢{ticket.total?.toLocaleString()}
