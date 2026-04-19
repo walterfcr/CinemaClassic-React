@@ -1,5 +1,5 @@
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { movies } from "../moviesData";
 import { db } from "../firebase";
 import { 
@@ -10,7 +10,7 @@ import {
   getDoc,
   setDoc
 } from "firebase/firestore";
-import QRCode from "qrcode"; // 🔥 NEW
+import QRCode from "qrcode";
 import { useAuth } from "../context/AuthContext";
 import SeatSelectorModal from "./SeatSelectorModal";
 import "./BuyTicket.css";
@@ -29,7 +29,7 @@ const BuyTicket = () => {
     name: "",
     email: "",
     cinema: preselected?.cinema || "",
-    date: preselected?.date || "",
+    date: "",
     tanda: "",
   });
 
@@ -40,6 +40,33 @@ const BuyTicket = () => {
   const [reserved, setReserved] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  // 🎯 TIME SLOTS
+  const timeSlots = [
+    { label: "11 am", value: "11:00" },
+    { label: "3 pm", value: "15:00" },
+    { label: "7 pm", value: "19:00" },
+  ];
+
+  // ✅ FIX TIMEZONE
+  const formatLocalDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  };
+
+  // ⏰ CHECK PAST TIME
+  const isPastTime = (date, time) => {
+    if (!date) return false;
+
+    const now = new Date();
+    const selectedDateTime = new Date(`${date}T${time}:00`);
+
+    return selectedDateTime <= now;
+  };
+
+  // ✅ AUTO FILL USER
   useEffect(() => {
     if (user && userData) {
       setForm((prev) => ({
@@ -50,6 +77,44 @@ const BuyTicket = () => {
     }
   }, [user, userData]);
 
+  // 📅 AVAILABLE DATES
+  const availableDates = useMemo(() => {
+    if (!movie) return [];
+
+    const dates = [];
+    const today = new Date();
+
+    for (let i = 0; i < 30; i++) {
+      const d = new Date();
+      d.setDate(today.getDate() + i);
+
+      const day = d.getDay();
+
+      if (
+        movie.availableDays === "all" ||
+        movie.availableDays?.includes(day)
+      ) {
+        dates.push(formatLocalDate(d));
+      }
+    }
+
+    return dates;
+  }, [movie]);
+
+  // AUTO SELECT FIRST DATE
+  useEffect(() => {
+    if (!form.date && availableDates.length > 0) {
+      setForm(prev => ({ ...prev, date: availableDates[0] }));
+    }
+  }, [availableDates]);
+
+  // 🔥 RESET INVALID TIME
+  useEffect(() => {
+    if (form.tanda && isPastTime(form.date, form.tanda)) {
+      setForm(prev => ({ ...prev, tanda: "" }));
+    }
+  }, [form.date]);
+
   if (!movie) return null;
 
   const regularPrice = 3000;
@@ -59,7 +124,7 @@ const BuyTicket = () => {
     return acc + (seat.type === "vip" ? vipPrice : regularPrice);
   }, 0);
 
-  // 🎟 FINAL PURCHASE + QR
+  // 🎟 PURCHASE
   const handleSubmit = async () => {
     if (!user) {
       alert("Debes iniciar sesión para comprar");
@@ -96,7 +161,6 @@ const BuyTicket = () => {
         updatedAt: serverTimestamp()
       });
 
-      // 🎟 CREATE TICKET
       const ticketRef = await addDoc(collection(db, "tickets"), {
         userId: user.uid,
         userEmail: user.email,
@@ -109,7 +173,6 @@ const BuyTicket = () => {
         createdAt: serverTimestamp(),
       });
 
-      // 🔳 QR DATA
       const qrValue = JSON.stringify({
         ticketId: ticketRef.id,
         movie: movie.title,
@@ -118,10 +181,8 @@ const BuyTicket = () => {
         time: form.tanda,
       });
 
-      // 🔥 GENERATE QR IMAGE
       const qrImage = await QRCode.toDataURL(qrValue);
 
-      // 💾 SAVE QR INTO FIRESTORE
       await setDoc(ticketRef, {
         qrValue,
         qrImage
@@ -141,12 +202,10 @@ const BuyTicket = () => {
     <div className="buyticket-overlay">
       <div className="buyticket-modal">
 
-        {/* CLOSE */}
         <button className="buyticket-close" onClick={() => navigate(-1)}>
           ✕
         </button>
 
-        {/* 🎉 SUCCESS */}
         {submitted ? (
           <div className="buyticket-success">
             <h2>🎬 Entrada comprada</h2>
@@ -161,7 +220,6 @@ const BuyTicket = () => {
 
         ) : reserved ? (
 
-          // 🧾 RESUMEN
           <div className="buyticket-summary">
             <h2>Resumen de compra</h2>
 
@@ -223,26 +281,48 @@ const BuyTicket = () => {
                   <option>Cartago</option>
                 </select>
 
-                <input
-                  type="date"
-                  min={new Date().toISOString().split("T")[0]}
+                {/* 📅 DATE */}
+                <select
                   value={form.date}
                   onChange={(e) => setForm({ ...form, date: e.target.value })}
                   required
-                />
+                >
+                  <option value="">Selecciona fecha</option>
 
+                  {availableDates.map(date => (
+                    <option key={date} value={date}>
+                      {new Date(date + "T00:00:00").toLocaleDateString("es-CR", {
+                        weekday: "long",
+                        month: "short",
+                        day: "numeric"
+                      })}
+                    </option>
+                  ))}
+                </select>
+
+                {/* ⏰ TIME */}
                 <select
                   value={form.tanda}
                   onChange={(e) => setForm({ ...form, tanda: e.target.value })}
                   required
                 >
                   <option value="">Seleccione tanda</option>
-                  <option>11 am</option>
-                  <option>3 pm</option>
-                  <option>7 pm</option>
+
+                  {timeSlots.map(slot => {
+                    const disabled = isPastTime(form.date, slot.value);
+
+                    return (
+                      <option 
+                        key={slot.value} 
+                        value={slot.value}
+                        disabled={disabled}
+                      >
+                        {slot.label} {disabled ? "(no disponible)" : ""}
+                      </option>
+                    );
+                  })}
                 </select>
 
-                {/* SEATS */}
                 <button
                   type="button"
                   className="buyticket-btn"
@@ -256,7 +336,6 @@ const BuyTicket = () => {
                   Total: ¢{totalPrice}
                 </div>
 
-                {/* RESERVE */}
                 <button
                   type="button"
                   className="buyticket-btn"
@@ -272,7 +351,6 @@ const BuyTicket = () => {
         )}
       </div>
 
-      {/* SEAT MODAL */}
       {showSeats && (
         <SeatSelectorModal
           selectedSeats={selectedSeats}
