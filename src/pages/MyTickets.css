@@ -148,16 +148,12 @@
   opacity: 1;
 }
 
-.ticket-image {
-  width: 100%;
-  aspect-ratio: 2 / 3; /* 🎬 perfect poster ratio */
-  overflow: hidden;
-}
 
 .ticket-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-height: 320px;
+  object-fit: contain; /* 👈 prevents cropping */
+  background: #000;
 }
 
 .ticket-placeholder {
@@ -270,13 +266,74 @@
 }
 
 @media (max-width: 480px) {
+
   .ticket-card {
     flex-direction: column;
+    padding: 0.8rem;
+  }
+
+  /* 🔥 TOP SECTION (poster + info side by side) */
+  .ticket-top {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
   }
 
   .ticket-image {
-    width: 100%;
-    height: 160px;
+    flex-shrink: 0;
+  }
+
+  .ticket-image img {
+    width: 100px;   /* 👈 smaller, cleaner */
+    border-radius: 6px;
+  }
+
+  .ticket-details {
+    padding: 0;
+    flex: 1;
+    gap: 6px;
+  }
+
+  .ticket-title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .ticket-info {
+    gap: 4px;
+    margin: 0;
+  }
+
+  .info-row {
+    font-size: 0.8rem;
+  }
+
+  /* 🔥 QR inline with content */
+  .ticket-qr {
+    margin-top: 8px;
+    justify-content: left !important;
+  }
+
+  .ticket-qr img {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* 🔥 FOOTER */
+  .ticket-footer {
+    margin-top: 10px;
+    padding-top: 8px;
+    font-size: 0.8rem;
+  }
+
+  .ticket-total {
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .ticket-purchased {
+    font-size: 0.75rem;
+    opacity: 0.6;
   }
 }
 

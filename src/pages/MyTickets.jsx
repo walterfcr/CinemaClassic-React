@@ -161,6 +161,7 @@ function TicketCard({ ticket, isUpcoming }) {
     <div className={`ticket-card ${isUpcoming ? 'upcoming' : 'past'}`}>
 
       {/* IMAGE */}
+      <div className="ticket-top">
       <div className="ticket-image">
         {ticket.movieBanner ? (
           <img src={ticket.movieBanner} alt={ticket.movieTitle} />
@@ -182,6 +183,7 @@ function TicketCard({ ticket, isUpcoming }) {
             💺 {ticket.seats?.map(s => s.id).join(', ') || 'N/A'}
           </div>
         </div>
+       
 
         {/* 🔥 QR CODE */}
         {ticket.qrImage && (
@@ -206,6 +208,7 @@ function TicketCard({ ticket, isUpcoming }) {
             </span>
           )}
         </div>
+      </div>
       </div>
     </div>
   );

@@ -25,11 +25,12 @@ const BuyTicket = () => {
 
   const preselected = location.state?.preselected;
 
+  // ✅ FIX: use preselected date here
   const [form, setForm] = useState({
     name: "",
     email: "",
     cinema: preselected?.cinema || "",
-    date: "",
+    date: preselected?.date || "", // 🔥 IMPORTANT FIX
     tanda: "",
   });
 
@@ -40,29 +41,23 @@ const BuyTicket = () => {
   const [reserved, setReserved] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // 🎯 TIME SLOTS
   const timeSlots = [
     { label: "11 am", value: "11:00" },
     { label: "3 pm", value: "15:00" },
     { label: "7 pm", value: "19:00" },
   ];
 
-  // ✅ FIX TIMEZONE
   const formatLocalDate = (date) => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
-
     return `${year}-${month}-${day}`;
   };
 
-  // ⏰ CHECK PAST TIME
   const isPastTime = (date, time) => {
     if (!date) return false;
-
     const now = new Date();
     const selectedDateTime = new Date(`${date}T${time}:00`);
-
     return selectedDateTime <= now;
   };
 
@@ -101,14 +96,14 @@ const BuyTicket = () => {
     return dates;
   }, [movie]);
 
-  // AUTO SELECT FIRST DATE
+  // ✅ FIX: ONLY set default IF no preselected date
   useEffect(() => {
     if (!form.date && availableDates.length > 0) {
       setForm(prev => ({ ...prev, date: availableDates[0] }));
     }
   }, [availableDates]);
 
-  // 🔥 RESET INVALID TIME
+  // ⏰ RESET INVALID TIME
   useEffect(() => {
     if (form.tanda && isPastTime(form.date, form.tanda)) {
       setForm(prev => ({ ...prev, tanda: "" }));
@@ -124,7 +119,6 @@ const BuyTicket = () => {
     return acc + (seat.type === "vip" ? vipPrice : regularPrice);
   }, 0);
 
-  // 🎟 PURCHASE
   const handleSubmit = async () => {
     if (!user) {
       alert("Debes iniciar sesión para comprar");
@@ -219,7 +213,6 @@ const BuyTicket = () => {
           </div>
 
         ) : reserved ? (
-
           <div className="buyticket-summary">
             <h2>Resumen de compra</h2>
 
@@ -230,18 +223,11 @@ const BuyTicket = () => {
             <p><strong>Butacas:</strong> {selectedSeats.map(s => s.id).join(", ")}</p>
             <p><strong>Total:</strong> ¢{totalPrice}</p>
 
-            <button 
-              className="buyticket-btn"
-              onClick={handleSubmit}
-              disabled={loading}
-            >
+            <button className="buyticket-btn" onClick={handleSubmit} disabled={loading}>
               {loading ? "Procesando..." : "Confirmar compra"}
             </button>
 
-            <button 
-              className="buyticket-close"
-              onClick={() => setReserved(false)}
-            >
+            <button className="buyticket-close" onClick={() => setReserved(false)}>
               Editar selección
             </button>
           </div>
@@ -281,7 +267,7 @@ const BuyTicket = () => {
                   <option>Cartago</option>
                 </select>
 
-                {/* 📅 DATE */}
+                {/* DATE */}
                 <select
                   value={form.date}
                   onChange={(e) => setForm({ ...form, date: e.target.value })}
@@ -300,7 +286,7 @@ const BuyTicket = () => {
                   ))}
                 </select>
 
-                {/* ⏰ TIME */}
+                {/* TIME */}
                 <select
                   value={form.tanda}
                   onChange={(e) => setForm({ ...form, tanda: e.target.value })}
@@ -312,11 +298,7 @@ const BuyTicket = () => {
                     const disabled = isPastTime(form.date, slot.value);
 
                     return (
-                      <option 
-                        key={slot.value} 
-                        value={slot.value}
-                        disabled={disabled}
-                      >
+                      <option key={slot.value} value={slot.value} disabled={disabled}>
                         {slot.label} {disabled ? "(no disponible)" : ""}
                       </option>
                     );
