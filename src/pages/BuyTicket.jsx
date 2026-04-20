@@ -167,7 +167,7 @@ const BuyTicket = () => {
         createdAt: serverTimestamp(),
       });
 
-      const qrValue = `${window.location.origin}/ticket/${ticketRef.id}`;
+      const qrValue = `https://cinema-classic-react.vercel.app/ticket/${ticketRef.id}`;
 
       const qrImage = await QRCode.toDataURL(qrValue);
 
