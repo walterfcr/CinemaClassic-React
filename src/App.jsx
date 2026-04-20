@@ -21,6 +21,7 @@ import BuyTicket from "./pages/BuyTicket";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import MyTickets from './pages/MyTickets';
+import TicketPage from "./pages/TicketPage";
 import './App.css';
 import './responsive.css';
 
@@ -50,6 +51,7 @@ function App() {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Register />} />
+        <Route path="/ticket/:id" element={<TicketPage />} />
         <Route path="/mis-boletos" element={
           <ProtectedRoute>
             <MyTickets />

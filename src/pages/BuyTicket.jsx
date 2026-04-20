@@ -167,13 +167,7 @@ const BuyTicket = () => {
         createdAt: serverTimestamp(),
       });
 
-      const qrValue = JSON.stringify({
-        ticketId: ticketRef.id,
-        movie: movie.title,
-        seats: selectedIds,
-        date: form.date,
-        time: form.tanda,
-      });
+      const qrValue = `${window.location.origin}/ticket/${ticketRef.id}`;
 
       const qrImage = await QRCode.toDataURL(qrValue);
 
