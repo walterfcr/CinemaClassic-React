@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import "./TicketPage.css";
+import "./MyTickets.css";
 
 const TicketPage = () => {
   const { id } = useParams();
@@ -33,17 +34,51 @@ const TicketPage = () => {
 
   return (
     <div className="ticket-page">
-      <div className="ticket-page-card">
-        <h2>{ticket.movieTitle}</h2>
+  <div className="ticket-card upcoming"> {/* puedes quitar upcoming si quieres */}
 
-        <p><strong>Fecha:</strong> {ticket.date}</p>
-        <p><strong>Hora:</strong> {ticket.tanda}</p>
-        <p><strong>Cine:</strong> {ticket.cinema}</p>
-        <p><strong>Butacas:</strong> {ticket.seats.map(s => s.id).join(", ")}</p>
+    <div className="ticket-top">
+
+      {/* IMAGE */}
+      <div className="ticket-image">
+        {ticket.movieBanner ? (
+          <img src={ticket.movieBanner} alt={ticket.movieTitle} />
+        ) : (
+          <div className="ticket-placeholder">🎬</div>
+        )}
+      </div>
+
+      {/* DETAILS */}
+      <div className="ticket-details">
+        <h3 className="ticket-title">{ticket.movieTitle}</h3>
+
+        <div className="ticket-info">
+          <div className="info-row">📅 {ticket.date}</div>
+          <div className="info-row">🕐 {ticket.tanda}</div>
+          <div className="info-row">📍 {ticket.cinema}</div>
+          <div className="info-row">
+            💺 {ticket.seats?.map(s => s.id).join(", ") || "N/A"}
+          </div>
+        </div>
+
+        {/* QR */}
+        {ticket.qrImage && (
+          <div className="ticket-qr">
+            <img src={ticket.qrImage} alt="QR Code" />
+          </div>
+        )}
+
+        <div className="ticket-footer">
+          <span className="ticket-total">
+            ¢{ticket.total?.toLocaleString()}
+          </span>
+        </div>
 
         <p className="ticket-status">🎟 Ticket válido</p>
       </div>
+
     </div>
+  </div>
+</div>
   );
 };
 

@@ -6,17 +6,23 @@
   background: #0f0f0f;
 }
 
-.ticket-page-card {
-  background: #1a1a1a;
-  padding: 2rem;
-  border-radius: 12px;
-  color: white;
-  width: 90%;
-  max-width: 400px;
-}
-
 .ticket-status {
   margin-top: 1rem;
-  color: #4caf50;
+  color: var(--accent);
   font-weight: bold;
+} 
+
+
+.ticket-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Limita el ancho de la tarjeta */
+.ticket-page .ticket-card {
+  max-width: 420px;
+  width: 100%;
 }
