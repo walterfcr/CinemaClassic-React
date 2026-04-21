@@ -1,9 +1,15 @@
 .ticket-page {
   min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: #0f0f0f;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Limita el ancho de la tarjeta */
+.ticket-page .ticket-card {
+  max-width: 420px;
+  width: 100%;
 }
 
 .ticket-page-card {
@@ -22,16 +28,3 @@
 } 
 
 
-.ticket-page {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-/* Limita el ancho de la tarjeta */
-.ticket-page .ticket-card {
-  max-width: 420px;
-  width: 100%;
-}
