@@ -103,6 +103,7 @@ const BuyTicket = () => {
     }
   }, [availableDates]);
 
+  // ⏰ RESET INVALID TIME
   useEffect(() => {
     if (form.tanda && isPastTime(form.date, form.tanda)) {
       setForm(prev => ({ ...prev, tanda: "" }));
