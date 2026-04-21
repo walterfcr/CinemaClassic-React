@@ -1,10 +1,11 @@
 .ticket-page {
-  min-height: 80vh;
+  min-height: 800px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #0f0f0f;
 }
+
 
 .ticket-status {
   margin-top: 1rem;

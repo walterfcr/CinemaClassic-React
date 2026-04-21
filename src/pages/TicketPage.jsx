@@ -34,7 +34,6 @@ const TicketPage = () => {
 
   return (
     <div className="ticket-page">
-  <div className="ticket-card upcoming"> {/* puedes quitar upcoming si quieres */}
 
     <div className="ticket-top">
 
@@ -76,7 +75,7 @@ const TicketPage = () => {
         <p className="ticket-status">🎟 Ticket válido</p>
       </div>
 
-    </div>
+    
   </div>
 </div>
   );
