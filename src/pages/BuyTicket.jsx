@@ -8,8 +8,7 @@ import {
   serverTimestamp,
   doc,
   getDoc,
-  setDoc,
-  deleteDoc
+  setDoc
 } from "firebase/firestore";
 import QRCode from "qrcode";
 import { useAuth } from "../context/AuthContext";
@@ -17,7 +16,6 @@ import SeatSelectorModal from "./SeatSelectorModal";
 import "./BuyTicket.css";
 
 const BuyTicket = () => {
-
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,11 +25,12 @@ const BuyTicket = () => {
 
   const preselected = location.state?.preselected;
 
+  // ✅ FIX: use preselected date here
   const [form, setForm] = useState({
     name: "",
     email: "",
     cinema: preselected?.cinema || "",
-    date: preselected?.date || "",
+    date: preselected?.date || "", // 🔥 IMPORTANT FIX
     tanda: "",
   });
 
@@ -41,10 +40,6 @@ const BuyTicket = () => {
 
   const [reserved, setReserved] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  // 🔥 RESERVA REAL
-  const [reservation, setReservation] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(0);
 
   const timeSlots = [
     { label: "11 am", value: "11:00" },
@@ -66,7 +61,7 @@ const BuyTicket = () => {
     return selectedDateTime <= now;
   };
 
-  // AUTO FILL
+  // ✅ AUTO FILL USER
   useEffect(() => {
     if (user && userData) {
       setForm((prev) => ({
@@ -77,7 +72,7 @@ const BuyTicket = () => {
     }
   }, [user, userData]);
 
-  // 📅 DATES
+  // 📅 AVAILABLE DATES
   const availableDates = useMemo(() => {
     if (!movie) return [];
 
@@ -101,51 +96,19 @@ const BuyTicket = () => {
     return dates;
   }, [movie]);
 
+  // ✅ FIX: ONLY set default IF no preselected date
   useEffect(() => {
     if (!form.date && availableDates.length > 0) {
       setForm(prev => ({ ...prev, date: availableDates[0] }));
     }
   }, [availableDates]);
 
+  // ⏰ RESET INVALID TIME
   useEffect(() => {
     if (form.tanda && isPastTime(form.date, form.tanda)) {
       setForm(prev => ({ ...prev, tanda: "" }));
     }
   }, [form.date]);
-
-  // ⏳ TIMER REAL (UNO SOLO)
-  useEffect(() => {
-    if (!reservation) return;
-
-    const interval = setInterval(() => {
-      const remaining = Math.floor((reservation.expiresAt - Date.now()) / 1000);
-
-      setTimeLeft(remaining);
-
-      if (remaining <= 0) {
-        clearInterval(interval);
-        expireReservation();
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [reservation]);
-
-  const expireReservation = async () => {
-    try {
-      if (!reservation) return;
-
-      await deleteDoc(doc(db, "reservations", reservation.id));
-
-      setReservation(null);
-      setReserved(false);
-      setSelectedSeats([]);
-
-      alert("⏰ Reserva expirada");
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   if (!movie) return null;
 
@@ -205,17 +168,13 @@ const BuyTicket = () => {
       });
 
       const qrValue = `https://cinema-classic-react.vercel.app/ticket/${ticketRef.id}`;
+
       const qrImage = await QRCode.toDataURL(qrValue);
 
       await setDoc(ticketRef, {
         qrValue,
         qrImage
       }, { merge: true });
-
-      // 🔥 LIMPIAR RESERVA
-      if (reservation) {
-        await deleteDoc(doc(db, "reservations", reservation.id));
-      }
 
       setSubmitted(true);
 
@@ -251,11 +210,6 @@ const BuyTicket = () => {
           <div className="buyticket-summary">
             <h2>Resumen de compra</h2>
 
-            <p style={{ color: timeLeft < 60 ? "red" : "white" }}>
-              ⏳ Tiempo restante: {Math.floor(timeLeft / 60)}:
-              {(timeLeft % 60).toString().padStart(2, "0")}
-            </p>
-
             <p><strong>Película:</strong> {movie.title}</p>
             <p><strong>Cine:</strong> {form.cinema}</p>
             <p><strong>Fecha:</strong> {form.date}</p>
@@ -280,8 +234,6 @@ const BuyTicket = () => {
               <img src={movie.banner} alt={movie.title} />
 
               <form onSubmit={(e) => e.preventDefault()}>
-
-                {/* TU FORM ORIGINAL — INTACTO */}
 
                 <input
                   placeholder="Nombre"
@@ -309,6 +261,7 @@ const BuyTicket = () => {
                   <option>Cartago</option>
                 </select>
 
+                {/* DATE */}
                 <select
                   value={form.date}
                   onChange={(e) => setForm({ ...form, date: e.target.value })}
@@ -327,6 +280,7 @@ const BuyTicket = () => {
                   ))}
                 </select>
 
+                {/* TIME */}
                 <select
                   value={form.tanda}
                   onChange={(e) => setForm({ ...form, tanda: e.target.value })}
@@ -361,26 +315,7 @@ const BuyTicket = () => {
                 <button
                   type="button"
                   className="buyticket-btn"
-                  onClick={async () => {
-                    if (!user) return alert("Debes iniciar sesión");
-
-                    const expiresAt = Date.now() + 10 * 60 * 1000;
-
-                    const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
-
-                    const ref = await addDoc(collection(db, "reservations"), {
-                      userId: user.uid,
-                      showtimeId,
-                      seats: selectedSeats,
-                      expiresAt,
-                      status: "active",
-                      createdAt: serverTimestamp()
-                    });
-
-                    setReservation({ id: ref.id, expiresAt });
-                    setTimeLeft(10 * 60);
-                    setReserved(true);
-                  }}
+                  onClick={() => setReserved(true)}
                   disabled={selectedSeats.length === 0}
                 >
                   Reservar butacas

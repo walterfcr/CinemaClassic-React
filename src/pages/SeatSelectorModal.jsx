@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
-import { 
-  doc, 
-  onSnapshot, 
-  collection, 
-  query, 
-  where 
-} from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import "./SeatSelector.css";
 
 const rows = ["A","B","C","D","E","F","G","H"];
@@ -21,14 +15,12 @@ const SeatSelectorModal = ({
 }) => {
 
   const [occupiedSeats, setOccupiedSeats] = useState([]);
-  const [reservedSeats, setReservedSeats] = useState([]);
 
   useEffect(() => {
 
-    // 🛡️ VALIDACIÓN
+    // 🛡️ SAFETY CHECK
     if (!form || !form.date || !form.tanda || !form.cinema || !movie) {
       setOccupiedSeats([]);
-      setReservedSeats([]);
       return;
     }
 
@@ -38,18 +30,17 @@ const SeatSelectorModal = ({
     today.setHours(0,0,0,0);
     selectedDate.setHours(0,0,0,0);
 
+    // ❌ Ignore past dates
     if (selectedDate < today) {
       setOccupiedSeats([]);
-      setReservedSeats([]);
       return;
     }
 
     const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
+    const ref = doc(db, "showtimes", showtimeId);
 
-    // 🔴 OCUPADOS (tickets comprados)
-    const showtimeRef = doc(db, "showtimes", showtimeId);
-
-    const unsubscribeShowtime = onSnapshot(showtimeRef, (snap) => {
+    // 🔥 REAL-TIME LISTENER
+    const unsubscribe = onSnapshot(ref, (snap) => {
       if (snap.exists()) {
         setOccupiedSeats(snap.data().occupiedSeats || []);
       } else {
@@ -57,35 +48,8 @@ const SeatSelectorModal = ({
       }
     });
 
-    // 🟡 RESERVADOS (usuarios con timer activo)
-    const reservationsRef = collection(db, "reservations");
-
-    const q = query(
-      reservationsRef,
-      where("showtimeId", "==", showtimeId),
-      where("status", "==", "active")
-    );
-
-    const unsubscribeReservations = onSnapshot(q, (snap) => {
-      let seats = [];
-
-      snap.forEach(doc => {
-        const data = doc.data();
-
-        // ⏱ ignorar expiradas
-        if (data.expiresAt > Date.now()) {
-          seats.push(...data.seats.map(s => s.id));
-        }
-      });
-
-      setReservedSeats(seats);
-    });
-
     // 🧹 CLEANUP
-    return () => {
-      unsubscribeShowtime();
-      unsubscribeReservations();
-    };
+    return () => unsubscribe();
 
   }, [movie?.id, form?.date, form?.tanda, form?.cinema]);
 
@@ -93,11 +57,8 @@ const SeatSelectorModal = ({
     const id = `${row}${col}`;
     const isVip = row === "G" || row === "H";
 
-    // 🚫 BLOQUEO TOTAL
-    if (
-      occupiedSeats.includes(id) ||
-      reservedSeats.includes(id)
-    ) return;
+    // 🚫 Block occupied seats
+    if (occupiedSeats.includes(id)) return;
 
     const exists = selectedSeats.find(s => s.id === id);
 
@@ -123,38 +84,39 @@ const SeatSelectorModal = ({
     <div className="seat-overlay">
       <div className="seat-modal">
 
+        {/* CLOSE BUTTON */}
         <button className="seat-close" onClick={onClose}>
           ✕
         </button>
 
         <h3>Selecciona tus butacas (máx 10)</h3>
 
+        {/* SCREEN */}
         <div className="seat-screen"></div>
 
+        {/* LEGEND */}
         <div className="seat-prices">
           <span className="price-regular">🎟 Regular: ¢3000</span>
           <span className="price-vip">⭐ VIP (filas G–H): ¢5000</span>
         </div>
 
+        {/* GRID */}
         <div className="seat-grid">
           {rows.flatMap(row =>
             cols.map(col => {
               const id = `${row}${col}`;
               const isSelected = selectedSeats.some(s => s.id === id);
               const isVip = row === "G" || row === "H";
-
               const isOccupied = occupiedSeats.includes(id);
-              const isReserved = reservedSeats.includes(id);
 
               return (
                 <button
                   key={id}
-                  disabled={isOccupied || isReserved}
+                  disabled={isOccupied}
                   className={`seat 
                     ${isVip ? "vip" : ""} 
                     ${isSelected ? "selected" : ""} 
-                    ${isOccupied ? "occupied" : ""} 
-                    ${isReserved ? "reserved" : ""}
+                    ${isOccupied ? "occupied" : ""}
                   `}
                   onClick={() => toggleSeat(row, col)}
                 >
@@ -165,6 +127,7 @@ const SeatSelectorModal = ({
           )}
         </div>
 
+        {/* SELECTED SEATS */}
         <div style={{ marginBottom: "10px", textAlign: "center" }}>
           <strong>Butacas seleccionadas:</strong>{" "}
           {selectedSeats.length > 0
@@ -172,10 +135,12 @@ const SeatSelectorModal = ({
             : "Ninguna"}
         </div>
 
+        {/* TOTAL */}
         <div style={{ marginBottom: "15px", textAlign: "center" }}>
           <strong>Total:</strong> ¢{getTotal()}
         </div>
 
+        {/* CONFIRM */}
         <button className="seat-confirm" onClick={onClose}>
           Confirmar butacas
         </button>
