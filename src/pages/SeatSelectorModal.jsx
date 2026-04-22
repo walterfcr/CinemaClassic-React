@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
-import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
+import { 
+  doc, 
+  onSnapshot, 
+  collection, 
+  query, 
+  where 
+} from "firebase/firestore";
 import "./SeatSelector.css";
 
 const rows = ["A","B","C","D","E","F","G","H"];
@@ -20,7 +26,19 @@ const SeatSelectorModal = ({
   useEffect(() => {
 
     // 🛡️ VALIDACIÓN
-    if (!form?.date || !form?.tanda || !form?.cinema || !movie) {
+    if (!form || !form.date || !form.tanda || !form.cinema || !movie) {
+      setOccupiedSeats([]);
+      setReservedSeats([]);
+      return;
+    }
+
+    const today = new Date();
+    const selectedDate = new Date(form.date);
+
+    today.setHours(0,0,0,0);
+    selectedDate.setHours(0,0,0,0);
+
+    if (selectedDate < today) {
       setOccupiedSeats([]);
       setReservedSeats([]);
       return;
@@ -28,10 +46,10 @@ const SeatSelectorModal = ({
 
     const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
 
-    // 🎬 SHOWTIMES (asientos comprados)
+    // 🔴 OCUPADOS (tickets comprados)
     const showtimeRef = doc(db, "showtimes", showtimeId);
 
-    const unsubShowtime = onSnapshot(showtimeRef, (snap) => {
+    const unsubscribeShowtime = onSnapshot(showtimeRef, (snap) => {
       if (snap.exists()) {
         setOccupiedSeats(snap.data().occupiedSeats || []);
       } else {
@@ -39,32 +57,34 @@ const SeatSelectorModal = ({
       }
     });
 
-    // 🔥 RESERVATIONS (asientos bloqueados temporalmente)
+    // 🟡 RESERVADOS (usuarios con timer activo)
+    const reservationsRef = collection(db, "reservations");
+
     const q = query(
-      collection(db, "reservations"),
+      reservationsRef,
       where("showtimeId", "==", showtimeId),
       where("status", "==", "active")
     );
 
-    const unsubReservations = onSnapshot(q, (snapshot) => {
-      let temp = [];
+    const unsubscribeReservations = onSnapshot(q, (snap) => {
+      let seats = [];
 
-      snapshot.forEach(doc => {
+      snap.forEach(doc => {
         const data = doc.data();
 
-        // ⏰ ignorar reservas expiradas
+        // ⏱ ignorar expiradas
         if (data.expiresAt > Date.now()) {
-          const seats = data.seats.map(s => s.id);
-          temp.push(...seats);
+          seats.push(...data.seats.map(s => s.id));
         }
       });
 
-      setReservedSeats(temp);
+      setReservedSeats(seats);
     });
 
+    // 🧹 CLEANUP
     return () => {
-      unsubShowtime();
-      unsubReservations();
+      unsubscribeShowtime();
+      unsubscribeReservations();
     };
 
   }, [movie?.id, form?.date, form?.tanda, form?.cinema]);
@@ -73,8 +93,11 @@ const SeatSelectorModal = ({
     const id = `${row}${col}`;
     const isVip = row === "G" || row === "H";
 
-    // 🚫 bloqueado si está comprado o reservado
-    if (occupiedSeats.includes(id) || reservedSeats.includes(id)) return;
+    // 🚫 BLOQUEO TOTAL
+    if (
+      occupiedSeats.includes(id) ||
+      reservedSeats.includes(id)
+    ) return;
 
     const exists = selectedSeats.find(s => s.id === id);
 
@@ -100,29 +123,26 @@ const SeatSelectorModal = ({
     <div className="seat-overlay">
       <div className="seat-modal">
 
-        {/* CLOSE */}
         <button className="seat-close" onClick={onClose}>
           ✕
         </button>
 
         <h3>Selecciona tus butacas (máx 10)</h3>
 
-        {/* SCREEN */}
         <div className="seat-screen"></div>
 
-        {/* LEGEND */}
         <div className="seat-prices">
           <span className="price-regular">🎟 Regular: ¢3000</span>
           <span className="price-vip">⭐ VIP (filas G–H): ¢5000</span>
         </div>
 
-        {/* GRID */}
         <div className="seat-grid">
           {rows.flatMap(row =>
             cols.map(col => {
               const id = `${row}${col}`;
               const isSelected = selectedSeats.some(s => s.id === id);
               const isVip = row === "G" || row === "H";
+
               const isOccupied = occupiedSeats.includes(id);
               const isReserved = reservedSeats.includes(id);
 
@@ -145,7 +165,6 @@ const SeatSelectorModal = ({
           )}
         </div>
 
-        {/* SELECTED */}
         <div style={{ marginBottom: "10px", textAlign: "center" }}>
           <strong>Butacas seleccionadas:</strong>{" "}
           {selectedSeats.length > 0
@@ -153,12 +172,10 @@ const SeatSelectorModal = ({
             : "Ninguna"}
         </div>
 
-        {/* TOTAL */}
         <div style={{ marginBottom: "15px", textAlign: "center" }}>
           <strong>Total:</strong> ¢{getTotal()}
         </div>
 
-        {/* CONFIRM */}
         <button className="seat-confirm" onClick={onClose}>
           Confirmar butacas
         </button>

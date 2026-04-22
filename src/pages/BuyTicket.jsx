@@ -8,7 +8,8 @@ import {
   serverTimestamp,
   doc,
   getDoc,
-  setDoc
+  setDoc,
+  deleteDoc
 } from "firebase/firestore";
 import QRCode from "qrcode";
 import { useAuth } from "../context/AuthContext";
@@ -26,7 +27,6 @@ const BuyTicket = () => {
 
   const preselected = location.state?.preselected;
 
-  // 🔥 FORM
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -42,9 +42,9 @@ const BuyTicket = () => {
   const [reserved, setReserved] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // 🔥 TIMER (BIEN UBICADO)
+  // 🔥 RESERVA REAL
+  const [reservation, setReservation] = useState(null);
   const [timeLeft, setTimeLeft] = useState(0);
-  const [timerActive, setTimerActive] = useState(false);
 
   const timeSlots = [
     { label: "11 am", value: "11:00" },
@@ -66,7 +66,7 @@ const BuyTicket = () => {
     return selectedDateTime <= now;
   };
 
-  // AUTO FILL USER
+  // AUTO FILL
   useEffect(() => {
     if (user && userData) {
       setForm((prev) => ({
@@ -77,7 +77,7 @@ const BuyTicket = () => {
     }
   }, [user, userData]);
 
-  // AVAILABLE DATES
+  // 📅 DATES
   const availableDates = useMemo(() => {
     if (!movie) return [];
 
@@ -113,28 +113,39 @@ const BuyTicket = () => {
     }
   }, [form.date]);
 
-  // 🔥 TIMER LOGIC (CORRECTO)
+  // ⏳ TIMER REAL (UNO SOLO)
   useEffect(() => {
-    if (!timerActive) return;
+    if (!reservation) return;
 
     const interval = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev <= 1) {
-          clearInterval(interval);
+      const remaining = Math.floor((reservation.expiresAt - Date.now()) / 1000);
 
-          setTimerActive(false);
-          setReserved(false);
-          setSelectedSeats([]);
+      setTimeLeft(remaining);
 
-          alert("⏰ Tiempo agotado, selecciona nuevamente");
-          return 0;
-        }
-        return prev - 1;
-      });
+      if (remaining <= 0) {
+        clearInterval(interval);
+        expireReservation();
+      }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timerActive]);
+  }, [reservation]);
+
+  const expireReservation = async () => {
+    try {
+      if (!reservation) return;
+
+      await deleteDoc(doc(db, "reservations", reservation.id));
+
+      setReservation(null);
+      setReserved(false);
+      setSelectedSeats([]);
+
+      alert("⏰ Reserva expirada");
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   if (!movie) return null;
 
@@ -201,6 +212,11 @@ const BuyTicket = () => {
         qrImage
       }, { merge: true });
 
+      // 🔥 LIMPIAR RESERVA
+      if (reservation) {
+        await deleteDoc(doc(db, "reservations", reservation.id));
+      }
+
       setSubmitted(true);
 
     } catch (err) {
@@ -235,8 +251,7 @@ const BuyTicket = () => {
           <div className="buyticket-summary">
             <h2>Resumen de compra</h2>
 
-            {/* 🔥 TIMER UI */}
-            <p style={{ color: timeLeft < 10 ? "red" : "white" }}>
+            <p style={{ color: timeLeft < 60 ? "red" : "white" }}>
               ⏳ Tiempo restante: {Math.floor(timeLeft / 60)}:
               {(timeLeft % 60).toString().padStart(2, "0")}
             </p>
@@ -265,6 +280,8 @@ const BuyTicket = () => {
               <img src={movie.banner} alt={movie.title} />
 
               <form onSubmit={(e) => e.preventDefault()}>
+
+                {/* TU FORM ORIGINAL — INTACTO */}
 
                 <input
                   placeholder="Nombre"
@@ -344,10 +361,25 @@ const BuyTicket = () => {
                 <button
                   type="button"
                   className="buyticket-btn"
-                  onClick={() => {
+                  onClick={async () => {
+                    if (!user) return alert("Debes iniciar sesión");
+
+                    const expiresAt = Date.now() + 10 * 60 * 1000;
+
+                    const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
+
+                    const ref = await addDoc(collection(db, "reservations"), {
+                      userId: user.uid,
+                      showtimeId,
+                      seats: selectedSeats,
+                      expiresAt,
+                      status: "active",
+                      createdAt: serverTimestamp()
+                    });
+
+                    setReservation({ id: ref.id, expiresAt });
+                    setTimeLeft(10 * 60);
                     setReserved(true);
-                    setTimeLeft(60); // 🔥 1 minuto (cambia a 600 para 10 min)
-                    setTimerActive(true);
                   }}
                   disabled={selectedSeats.length === 0}
                 >
