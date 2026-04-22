@@ -16,6 +16,7 @@ import SeatSelectorModal from "./SeatSelectorModal";
 import "./BuyTicket.css";
 
 const BuyTicket = () => {
+
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,12 +26,12 @@ const BuyTicket = () => {
 
   const preselected = location.state?.preselected;
 
-  // ✅ FIX: use preselected date here
+  // 🔥 FORM
   const [form, setForm] = useState({
     name: "",
     email: "",
     cinema: preselected?.cinema || "",
-    date: preselected?.date || "", // 🔥 IMPORTANT FIX
+    date: preselected?.date || "",
     tanda: "",
   });
 
@@ -40,6 +41,10 @@ const BuyTicket = () => {
 
   const [reserved, setReserved] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  // 🔥 TIMER (BIEN UBICADO)
+  const [timeLeft, setTimeLeft] = useState(0);
+  const [timerActive, setTimerActive] = useState(false);
 
   const timeSlots = [
     { label: "11 am", value: "11:00" },
@@ -61,7 +66,7 @@ const BuyTicket = () => {
     return selectedDateTime <= now;
   };
 
-  // ✅ AUTO FILL USER
+  // AUTO FILL USER
   useEffect(() => {
     if (user && userData) {
       setForm((prev) => ({
@@ -72,7 +77,7 @@ const BuyTicket = () => {
     }
   }, [user, userData]);
 
-  // 📅 AVAILABLE DATES
+  // AVAILABLE DATES
   const availableDates = useMemo(() => {
     if (!movie) return [];
 
@@ -96,19 +101,40 @@ const BuyTicket = () => {
     return dates;
   }, [movie]);
 
-  // ✅ FIX: ONLY set default IF no preselected date
   useEffect(() => {
     if (!form.date && availableDates.length > 0) {
       setForm(prev => ({ ...prev, date: availableDates[0] }));
     }
   }, [availableDates]);
 
-  // ⏰ RESET INVALID TIME
   useEffect(() => {
     if (form.tanda && isPastTime(form.date, form.tanda)) {
       setForm(prev => ({ ...prev, tanda: "" }));
     }
   }, [form.date]);
+
+  // 🔥 TIMER LOGIC (CORRECTO)
+  useEffect(() => {
+    if (!timerActive) return;
+
+    const interval = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(interval);
+
+          setTimerActive(false);
+          setReserved(false);
+          setSelectedSeats([]);
+
+          alert("⏰ Tiempo agotado, selecciona nuevamente");
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [timerActive]);
 
   if (!movie) return null;
 
@@ -168,7 +194,6 @@ const BuyTicket = () => {
       });
 
       const qrValue = `https://cinema-classic-react.vercel.app/ticket/${ticketRef.id}`;
-
       const qrImage = await QRCode.toDataURL(qrValue);
 
       await setDoc(ticketRef, {
@@ -209,6 +234,12 @@ const BuyTicket = () => {
         ) : reserved ? (
           <div className="buyticket-summary">
             <h2>Resumen de compra</h2>
+
+            {/* 🔥 TIMER UI */}
+            <p style={{ color: timeLeft < 10 ? "red" : "white" }}>
+              ⏳ Tiempo restante: {Math.floor(timeLeft / 60)}:
+              {(timeLeft % 60).toString().padStart(2, "0")}
+            </p>
 
             <p><strong>Película:</strong> {movie.title}</p>
             <p><strong>Cine:</strong> {form.cinema}</p>
@@ -261,7 +292,6 @@ const BuyTicket = () => {
                   <option>Cartago</option>
                 </select>
 
-                {/* DATE */}
                 <select
                   value={form.date}
                   onChange={(e) => setForm({ ...form, date: e.target.value })}
@@ -280,7 +310,6 @@ const BuyTicket = () => {
                   ))}
                 </select>
 
-                {/* TIME */}
                 <select
                   value={form.tanda}
                   onChange={(e) => setForm({ ...form, tanda: e.target.value })}
@@ -315,7 +344,11 @@ const BuyTicket = () => {
                 <button
                   type="button"
                   className="buyticket-btn"
-                  onClick={() => setReserved(true)}
+                  onClick={() => {
+                    setReserved(true);
+                    setTimeLeft(60); // 🔥 1 minuto (cambia a 600 para 10 min)
+                    setTimerActive(true);
+                  }}
                   disabled={selectedSeats.length === 0}
                 >
                   Reservar butacas
