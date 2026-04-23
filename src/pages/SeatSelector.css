@@ -195,8 +195,3 @@
     font-size: 0.55rem;
   }
 }
-
-.seat.reserved {
-  background-color: orange;
-  cursor: not-allowed;
-}

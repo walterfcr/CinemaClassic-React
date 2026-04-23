@@ -42,7 +42,21 @@ const SeatSelectorModal = ({
     // 🔥 REAL-TIME LISTENER
     const unsubscribe = onSnapshot(ref, (snap) => {
       if (snap.exists()) {
-        setOccupiedSeats(snap.data().occupiedSeats || []);
+
+        const data = snap.data().occupiedSeats || [];
+        const now = Date.now();
+
+        // 🔥 FILTRO IMPORTANTE (aquí está la magia)
+        const validSeats = data.filter(seat => {
+          // mantener si:
+          // - está vendido
+          // - o no ha expirado
+          return seat.status === "sold" || seat.expiresAt > now;
+        });
+
+        // 👇 SOLO IDs
+        setOccupiedSeats(validSeats.map(seat => seat.id));
+
       } else {
         setOccupiedSeats([]);
       }
