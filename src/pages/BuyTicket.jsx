@@ -2,9 +2,9 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import { movies } from "../moviesData";
 import { db } from "../firebase";
-import { 
-  collection, 
-  addDoc, 
+import {
+  collection,
+  addDoc,
   serverTimestamp,
   doc,
   getDoc,
@@ -41,7 +41,6 @@ const BuyTicket = () => {
   const [reserved, setReserved] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // ⏱️ TIMER
   const [expiresAt, setExpiresAt] = useState(null);
   const [timeLeft, setTimeLeft] = useState(0);
 
@@ -100,17 +99,16 @@ const BuyTicket = () => {
 
   useEffect(() => {
     if (!form.date && availableDates.length > 0) {
-      setForm(prev => ({ ...prev, date: availableDates[0] }));
+      setForm((prev) => ({ ...prev, date: availableDates[0] }));
     }
   }, [availableDates]);
 
   useEffect(() => {
     if (form.tanda && isPastTime(form.date, form.tanda)) {
-      setForm(prev => ({ ...prev, tanda: "" }));
+      setForm((prev) => ({ ...prev, tanda: "" }));
     }
   }, [form.date]);
 
-  // ⏱️ TIMER
   useEffect(() => {
     if (!expiresAt) return;
 
@@ -140,7 +138,6 @@ const BuyTicket = () => {
     return acc + (seat.type === "vip" ? vipPrice : regularPrice);
   }, 0);
 
-  // 🟡 HOLD CON TRANSACTION
   const holdSeats = async () => {
     if (!user) {
       alert("Debes iniciar sesión");
@@ -153,25 +150,27 @@ const BuyTicket = () => {
       const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
       const ref = doc(db, "showtimes", showtimeId);
 
-      const selectedIds = selectedSeats.map(s => s.id);
+      const selectedIds = selectedSeats.map((s) => s.id);
       const expiration = Date.now() + 5 * 60 * 1000;
 
       await runTransaction(db, async (transaction) => {
-
         const snap = await transaction.get(ref);
 
         let seats = snap.exists() ? snap.data().occupiedSeats || [] : [];
 
-        // limpiar expirados
-        seats = seats.filter(s => s.expiresAt > Date.now());
+        const now = Date.now();
 
-        const conflict = seats.some(s => selectedIds.includes(s.id));
+        seats = seats.filter((s) => (s.expiresAt || 0) > now);
+
+        const conflict = seats.some((s) => {
+          return selectedIds.includes(s.id) && s.status === "held" && s.expiresAt > now;
+        });
 
         if (conflict) {
           throw new Error("Asientos ocupados");
         }
 
-        const newSeats = selectedSeats.map(s => ({
+        const newSeats = selectedSeats.map((s) => ({
           id: s.id,
           userId: user.uid,
           status: "held",
@@ -185,7 +184,6 @@ const BuyTicket = () => {
           cinema: form.cinema,
           occupiedSeats: [...seats, ...newSeats]
         }, { merge: true });
-
       });
 
       setReserved(true);
@@ -199,7 +197,6 @@ const BuyTicket = () => {
     }
   };
 
-  // 🔓 RELEASE
   const releaseSeats = async () => {
     const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
     const ref = doc(db, "showtimes", showtimeId);
@@ -209,14 +206,11 @@ const BuyTicket = () => {
 
     const seats = snap.data().occupiedSeats || [];
 
-    const filtered = seats.filter(s => {
-      return !(s.userId === user.uid && s.status === "held");
-    });
+    const filtered = seats.filter((s) => !(s.userId === user.uid && s.status === "held"));
 
     await setDoc(ref, { occupiedSeats: filtered }, { merge: true });
   };
 
-  // ✅ CONFIRMAR COMPRA
   const handleSubmit = async () => {
     setLoading(true);
 
@@ -225,14 +219,11 @@ const BuyTicket = () => {
       const ref = doc(db, "showtimes", showtimeId);
 
       const snap = await getDoc(ref);
-      let seats = snap.data().occupiedSeats || [];
+      let seats = snap.exists() ? snap.data().occupiedSeats || [] : [];
 
-      seats = seats.map(s => {
-        if (s.userId === user.uid && s.status === "held") {
-          return { ...s, status: "sold", expiresAt: null };
-        }
-        return s;
-      });
+      const now = Date.now();
+
+      seats = seats.filter((s) => s.status === "sold" || (s.expiresAt || 0) > now);
 
       await setDoc(ref, { occupiedSeats: seats }, { merge: true });
 
@@ -266,7 +257,6 @@ const BuyTicket = () => {
   return (
     <div className="buyticket-overlay">
       <div className="buyticket-modal">
-
         <button className="buyticket-close" onClick={() => navigate(-1)}>
           ✕
         </button>
@@ -275,14 +265,13 @@ const BuyTicket = () => {
           <div className="buyticket-success">
             <h2>🎬 Entrada comprada</h2>
             <p><strong>Película:</strong> {movie.title}</p>
-            <p><strong>Butacas:</strong> {selectedSeats.map(s => s.id).join(", ")}</p>
+            <p><strong>Butacas:</strong> {selectedSeats.map((s) => s.id).join(", ")}</p>
             <p><strong>Total:</strong> ¢{totalPrice}</p>
 
             <button className="buyticket-btn" onClick={() => navigate("/")}>
               Volver al inicio
             </button>
           </div>
-
         ) : reserved ? (
           <div className="buyticket-summary">
             <h2>Resumen de compra</h2>
@@ -291,7 +280,7 @@ const BuyTicket = () => {
             <p><strong>Cine:</strong> {form.cinema}</p>
             <p><strong>Fecha:</strong> {form.date}</p>
             <p><strong>Hora:</strong> {form.tanda}</p>
-            <p><strong>Butacas:</strong> {selectedSeats.map(s => s.id).join(", ")}</p>
+            <p><strong>Butacas:</strong> {selectedSeats.map((s) => s.id).join(", ")}</p>
             <p><strong>Total:</strong> ¢{totalPrice}</p>
 
             <p>
@@ -303,14 +292,16 @@ const BuyTicket = () => {
               {loading ? "Procesando..." : "Confirmar compra"}
             </button>
 
-            <button className="buyticket-close" onClick={() => {
-              releaseSeats();
-              setReserved(false);
-            }}>
+            <button
+              className="buyticket-close"
+              onClick={() => {
+                releaseSeats();
+                setReserved(false);
+              }}
+            >
               Cancelar
             </button>
           </div>
-
         ) : (
           <>
             <h2 className="buyticket-title">{movie.title}</h2>
@@ -319,7 +310,6 @@ const BuyTicket = () => {
               <img src={movie.banner} alt={movie.title} />
 
               <form onSubmit={(e) => e.preventDefault()}>
-
                 <input
                   placeholder="Nombre"
                   value={form.name}
@@ -353,12 +343,12 @@ const BuyTicket = () => {
                 >
                   <option value="">Selecciona fecha</option>
 
-                  {availableDates.map(date => (
+                  {availableDates.map((date) => (
                     <option key={date} value={date}>
                       {new Date(date + "T00:00:00").toLocaleDateString("es-CR", {
                         weekday: "long",
                         month: "short",
-                        day: "numeric"
+                        day: "numeric",
                       })}
                     </option>
                   ))}
@@ -370,16 +360,11 @@ const BuyTicket = () => {
                   required
                 >
                   <option value="">Seleccione tanda</option>
-
-                  {timeSlots.map(slot => {
-                    const disabled = isPastTime(form.date, slot.value);
-
-                    return (
-                      <option key={slot.value} value={slot.value} disabled={disabled}>
-                        {slot.label} {disabled ? "(no disponible)" : ""}
-                      </option>
-                    );
-                  })}
+                  {timeSlots.map((slot) => (
+                    <option key={slot.value} value={slot.value}>
+                      {slot.label}
+                    </option>
+                  ))}
                 </select>
 
                 <button
@@ -391,9 +376,7 @@ const BuyTicket = () => {
                   Elegir butacas ({selectedSeats.length})
                 </button>
 
-                <div className="buyticket-price">
-                  Total: ¢{totalPrice}
-                </div>
+                <div className="buyticket-price">Total: ¢{totalPrice}</div>
 
                 <button
                   type="button"
@@ -403,7 +386,6 @@ const BuyTicket = () => {
                 >
                   Reservar butacas
                 </button>
-
               </form>
             </div>
           </>

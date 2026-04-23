@@ -47,11 +47,9 @@ const SeatSelectorModal = ({
         const now = Date.now();
 
         // 🔥 FILTRO IMPORTANTE (aquí está la magia)
-        const validSeats = data.filter(seat => {
-          // mantener si:
-          // - está vendido
-          // - o no ha expirado
-          return seat.status === "sold" || seat.expiresAt > now;
+       const validSeats = data.filter(seat => {
+          const expires = seat.expiresAt?.toMillis?.() || 0;
+          return seat.status === "sold" || expires > now;
         });
 
         // 👇 SOLO IDs
