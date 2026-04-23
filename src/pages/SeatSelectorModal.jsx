@@ -65,6 +65,7 @@ const SeatSelectorModal = ({
 
       } else {
         setOccupiedSeats([]);
+        console.log("occupiedSeats: empty");
       }
     });
 
@@ -78,7 +79,9 @@ const SeatSelectorModal = ({
     const isVip = row === "G" || row === "H";
 
     // 🚫 Block occupied seats
-    if (occupiedSeats.includes(id)) return;
+    const seatStatus = occupiedSeats[id];
+
+    if (seatStatus === "sold" || seatStatus === "held") return;
 
     const exists = selectedSeats.find(s => s.id === id);
 
@@ -130,7 +133,8 @@ const SeatSelectorModal = ({
               const isSelected = selectedSeats.some(s => s.id === id);
               const isVip = row === "G" || row === "H";
               const seatStatus = occupiedSeats[id]; // undefined | held | sold
-              const isOccupied = !!seatStatus;
+
+              const isOccupied = seatStatus === "sold" || seatStatus === "held";
 
               return (
                 <button
