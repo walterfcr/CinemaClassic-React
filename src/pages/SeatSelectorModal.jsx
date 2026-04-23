@@ -20,7 +20,7 @@ const SeatSelectorModal = ({
 
     // 🛡️ SAFETY CHECK
     if (!form || !form.date || !form.tanda || !form.cinema || !movie) {
-      setOccupiedSeats([]);
+      setOccupiedSeats({});
       return;
     }
 
@@ -32,7 +32,7 @@ const SeatSelectorModal = ({
 
     // ❌ Ignore past dates
     if (selectedDate < today) {
-      setOccupiedSeats([]);
+      setOccupiedSeats({});
       return;
     }
 
@@ -64,7 +64,7 @@ const SeatSelectorModal = ({
         setOccupiedSeats(seatMap);
 
       } else {
-        setOccupiedSeats([]);
+        setOccupiedSeats({});
         console.log("occupiedSeats: empty");
       }
     });
