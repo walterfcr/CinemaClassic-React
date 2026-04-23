@@ -163,7 +163,12 @@ const BuyTicket = () => {
         seats = seats.filter((s) => (s.expiresAt || 0) > now);
 
         const conflict = seats.some((s) => {
-          return selectedIds.includes(s.id) && s.status === "held" && s.expiresAt > now;
+          return (
+            selectedIds.includes(s.id) &&
+            s.status === "held" &&
+            s.expiresAt > now &&
+            s.userId !== user.uid
+          );
         });
 
         if (conflict) {
@@ -223,7 +228,11 @@ const BuyTicket = () => {
 
       const now = Date.now();
 
-      seats = seats.filter((s) => s.status === "sold" || (s.expiresAt || 0) > now);
+      seats = seats.filter((s) => {
+        const expired = (s.expiresAt || 0) <= now;
+        if (s.status === "held" && expired) return false;
+        return true;
+      });
 
       await setDoc(ref, { occupiedSeats: seats }, { merge: true });
 
