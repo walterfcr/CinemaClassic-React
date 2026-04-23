@@ -2,14 +2,13 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import { movies } from "../moviesData";
 import { db } from "../firebase";
-import {
-  collection,
-  addDoc,
+import { 
+  collection, 
+  addDoc, 
   serverTimestamp,
   doc,
   getDoc,
-  setDoc,
-  runTransaction
+  setDoc
 } from "firebase/firestore";
 import QRCode from "qrcode";
 import { useAuth } from "../context/AuthContext";
@@ -26,11 +25,12 @@ const BuyTicket = () => {
 
   const preselected = location.state?.preselected;
 
+  // ✅ FIX: use preselected date here
   const [form, setForm] = useState({
     name: "",
     email: "",
     cinema: preselected?.cinema || "",
-    date: preselected?.date || "",
+    date: preselected?.date || "", // 🔥 IMPORTANT FIX
     tanda: "",
   });
 
@@ -40,9 +40,6 @@ const BuyTicket = () => {
 
   const [reserved, setReserved] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  const [expiresAt, setExpiresAt] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(0);
 
   const timeSlots = [
     { label: "11 am", value: "11:00" },
@@ -64,6 +61,7 @@ const BuyTicket = () => {
     return selectedDateTime <= now;
   };
 
+  // ✅ AUTO FILL USER
   useEffect(() => {
     if (user && userData) {
       setForm((prev) => ({
@@ -74,6 +72,7 @@ const BuyTicket = () => {
     }
   }, [user, userData]);
 
+  // 📅 AVAILABLE DATES
   const availableDates = useMemo(() => {
     if (!movie) return [];
 
@@ -97,37 +96,19 @@ const BuyTicket = () => {
     return dates;
   }, [movie]);
 
+  // ✅ FIX: ONLY set default IF no preselected date
   useEffect(() => {
     if (!form.date && availableDates.length > 0) {
-      setForm((prev) => ({ ...prev, date: availableDates[0] }));
+      setForm(prev => ({ ...prev, date: availableDates[0] }));
     }
   }, [availableDates]);
 
+  // ⏰ RESET INVALID TIME
   useEffect(() => {
     if (form.tanda && isPastTime(form.date, form.tanda)) {
-      setForm((prev) => ({ ...prev, tanda: "" }));
+      setForm(prev => ({ ...prev, tanda: "" }));
     }
   }, [form.date]);
-
-  useEffect(() => {
-    if (!expiresAt) return;
-
-    const interval = setInterval(() => {
-      const diff = expiresAt - Date.now();
-
-      if (diff <= 0) {
-        clearInterval(interval);
-        releaseSeats();
-        setReserved(false);
-        setSelectedSeats([]);
-        alert("⏰ Reserva expirada");
-      } else {
-        setTimeLeft(diff);
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [expiresAt]);
 
   if (!movie) return null;
 
@@ -138,9 +119,9 @@ const BuyTicket = () => {
     return acc + (seat.type === "vip" ? vipPrice : regularPrice);
   }, 0);
 
-  const holdSeats = async () => {
+  const handleSubmit = async () => {
     if (!user) {
-      alert("Debes iniciar sesión");
+      alert("Debes iniciar sesión para comprar");
       return;
     }
 
@@ -148,93 +129,31 @@ const BuyTicket = () => {
 
     try {
       const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
-      const ref = doc(db, "showtimes", showtimeId);
+      const showtimeRef = doc(db, "showtimes", showtimeId);
 
-      const selectedIds = selectedSeats.map((s) => s.id);
-      const expiration = Date.now() + 5 * 60 * 1000;
+      const snap = await getDoc(showtimeRef);
+      const existingSeats = snap.exists() ? snap.data().occupiedSeats || [] : [];
 
-      await runTransaction(db, async (transaction) => {
-        const snap = await transaction.get(ref);
+      const selectedIds = selectedSeats.map(s => s.id);
 
-        let seats = snap.exists() ? snap.data().occupiedSeats || [] : [];
+      const conflict = selectedIds.some(id => existingSeats.includes(id));
 
-        const now = Date.now();
+      if (conflict) {
+        alert("⚠️ Algunas butacas ya fueron reservadas");
+        setLoading(false);
+        return;
+      }
 
-        seats = seats.filter((s) => (s.expiresAt || 0) > now);
+      const updatedSeats = [...new Set([...existingSeats, ...selectedIds])];
 
-        const conflict = seats.some((s) => {
-          return (
-            selectedIds.includes(s.id) &&
-            s.status === "held" &&
-            s.expiresAt > now &&
-            s.userId !== user.uid
-          );
-        });
-
-        if (conflict) {
-          throw new Error("Asientos ocupados");
-        }
-
-        const newSeats = selectedSeats.map((s) => ({
-          id: s.id,
-          userId: user.uid,
-          status: "held",
-          expiresAt: expiration
-        }));
-
-        transaction.set(ref, {
-          movieId: movie.id,
-          date: form.date,
-          tanda: form.tanda,
-          cinema: form.cinema,
-          occupiedSeats: [...seats, ...newSeats]
-        }, { merge: true });
+      await setDoc(showtimeRef, {
+        movieId: movie.id,
+        date: form.date,
+        tanda: form.tanda,
+        cinema: form.cinema,
+        occupiedSeats: updatedSeats,
+        updatedAt: serverTimestamp()
       });
-
-      setReserved(true);
-      setExpiresAt(expiration);
-
-    } catch (err) {
-      console.error(err);
-      alert("⚠️ Algunos asientos ya fueron tomados");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const releaseSeats = async () => {
-    const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
-    const ref = doc(db, "showtimes", showtimeId);
-
-    const snap = await getDoc(ref);
-    if (!snap.exists()) return;
-
-    const seats = snap.data().occupiedSeats || [];
-
-    const filtered = seats.filter((s) => !(s.userId === user.uid && s.status === "held"));
-
-    await setDoc(ref, { occupiedSeats: filtered }, { merge: true });
-  };
-
-  const handleSubmit = async () => {
-    setLoading(true);
-
-    try {
-      const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
-      const ref = doc(db, "showtimes", showtimeId);
-
-      const snap = await getDoc(ref);
-      let seats = snap.exists() ? snap.data().occupiedSeats || [] : [];
-
-      const now = Date.now();
-
-      seats = seats.filter((s) => {
-        const expired = (s.expiresAt || 0) <= now;
-        if (s.status === "held" && expired) return false;
-        return true;
-      });
-
-      await setDoc(ref, { occupiedSeats: seats }, { merge: true });
 
       const ticketRef = await addDoc(collection(db, "tickets"), {
         userId: user.uid,
@@ -249,9 +168,13 @@ const BuyTicket = () => {
       });
 
       const qrValue = `https://cinema-classic-react.vercel.app/ticket/${ticketRef.id}`;
+
       const qrImage = await QRCode.toDataURL(qrValue);
 
-      await setDoc(ticketRef, { qrValue, qrImage }, { merge: true });
+      await setDoc(ticketRef, {
+        qrValue,
+        qrImage
+      }, { merge: true });
 
       setSubmitted(true);
 
@@ -266,6 +189,7 @@ const BuyTicket = () => {
   return (
     <div className="buyticket-overlay">
       <div className="buyticket-modal">
+
         <button className="buyticket-close" onClick={() => navigate(-1)}>
           ✕
         </button>
@@ -274,13 +198,14 @@ const BuyTicket = () => {
           <div className="buyticket-success">
             <h2>🎬 Entrada comprada</h2>
             <p><strong>Película:</strong> {movie.title}</p>
-            <p><strong>Butacas:</strong> {selectedSeats.map((s) => s.id).join(", ")}</p>
+            <p><strong>Butacas:</strong> {selectedSeats.map(s => s.id).join(", ")}</p>
             <p><strong>Total:</strong> ¢{totalPrice}</p>
 
             <button className="buyticket-btn" onClick={() => navigate("/")}>
               Volver al inicio
             </button>
           </div>
+
         ) : reserved ? (
           <div className="buyticket-summary">
             <h2>Resumen de compra</h2>
@@ -289,28 +214,18 @@ const BuyTicket = () => {
             <p><strong>Cine:</strong> {form.cinema}</p>
             <p><strong>Fecha:</strong> {form.date}</p>
             <p><strong>Hora:</strong> {form.tanda}</p>
-            <p><strong>Butacas:</strong> {selectedSeats.map((s) => s.id).join(", ")}</p>
+            <p><strong>Butacas:</strong> {selectedSeats.map(s => s.id).join(", ")}</p>
             <p><strong>Total:</strong> ¢{totalPrice}</p>
-
-            <p>
-              ⏳ Tiempo restante: {Math.floor(timeLeft / 60000)}:
-              {String(Math.floor((timeLeft % 60000) / 1000)).padStart(2, "0")}
-            </p>
 
             <button className="buyticket-btn" onClick={handleSubmit} disabled={loading}>
               {loading ? "Procesando..." : "Confirmar compra"}
             </button>
 
-            <button
-              className="buyticket-close"
-              onClick={() => {
-                releaseSeats();
-                setReserved(false);
-              }}
-            >
-              Cancelar
+            <button className="buyticket-close" onClick={() => setReserved(false)}>
+              Editar selección
             </button>
           </div>
+
         ) : (
           <>
             <h2 className="buyticket-title">{movie.title}</h2>
@@ -319,6 +234,7 @@ const BuyTicket = () => {
               <img src={movie.banner} alt={movie.title} />
 
               <form onSubmit={(e) => e.preventDefault()}>
+
                 <input
                   placeholder="Nombre"
                   value={form.name}
@@ -345,6 +261,7 @@ const BuyTicket = () => {
                   <option>Cartago</option>
                 </select>
 
+                {/* DATE */}
                 <select
                   value={form.date}
                   onChange={(e) => setForm({ ...form, date: e.target.value })}
@@ -352,28 +269,34 @@ const BuyTicket = () => {
                 >
                   <option value="">Selecciona fecha</option>
 
-                  {availableDates.map((date) => (
+                  {availableDates.map(date => (
                     <option key={date} value={date}>
                       {new Date(date + "T00:00:00").toLocaleDateString("es-CR", {
                         weekday: "long",
                         month: "short",
-                        day: "numeric",
+                        day: "numeric"
                       })}
                     </option>
                   ))}
                 </select>
 
+                {/* TIME */}
                 <select
                   value={form.tanda}
                   onChange={(e) => setForm({ ...form, tanda: e.target.value })}
                   required
                 >
                   <option value="">Seleccione tanda</option>
-                  {timeSlots.map((slot) => (
-                    <option key={slot.value} value={slot.value}>
-                      {slot.label}
-                    </option>
-                  ))}
+
+                  {timeSlots.map(slot => {
+                    const disabled = isPastTime(form.date, slot.value);
+
+                    return (
+                      <option key={slot.value} value={slot.value} disabled={disabled}>
+                        {slot.label} {disabled ? "(no disponible)" : ""}
+                      </option>
+                    );
+                  })}
                 </select>
 
                 <button
@@ -385,16 +308,19 @@ const BuyTicket = () => {
                   Elegir butacas ({selectedSeats.length})
                 </button>
 
-                <div className="buyticket-price">Total: ¢{totalPrice}</div>
+                <div className="buyticket-price">
+                  Total: ¢{totalPrice}
+                </div>
 
                 <button
                   type="button"
                   className="buyticket-btn"
-                  onClick={holdSeats}
+                  onClick={() => setReserved(true)}
                   disabled={selectedSeats.length === 0}
                 >
                   Reservar butacas
                 </button>
+
               </form>
             </div>
           </>
