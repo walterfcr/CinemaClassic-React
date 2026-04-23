@@ -14,7 +14,7 @@ const SeatSelectorModal = ({
   form 
 }) => {
 
-  const [occupiedSeats, setOccupiedSeats] = useState([]);
+  const [occupiedSeats, setOccupiedSeats] = useState({});
 
   useEffect(() => {
 
@@ -55,7 +55,13 @@ const SeatSelectorModal = ({
         });
 
         // 👇 SOLO IDs
-        setOccupiedSeats(validSeats.map(seat => seat.id));
+        const seatMap = {};
+
+        validSeats.forEach(seat => {
+          seatMap[seat.id] = seat.status; // "held" o "sold"
+        });
+
+        setOccupiedSeats(seatMap);
 
       } else {
         setOccupiedSeats([]);
@@ -112,6 +118,8 @@ const SeatSelectorModal = ({
         <div className="seat-prices">
           <span className="price-regular">🎟 Regular: ¢3000</span>
           <span className="price-vip">⭐ VIP (filas G–H): ¢5000</span>
+          <span style={{color:"#e6b800"}}>🟡 Reservado</span>
+          <span style={{color:"#777"}}>⚫ Ocupado</span>
         </div>
 
         {/* GRID */}
@@ -121,7 +129,8 @@ const SeatSelectorModal = ({
               const id = `${row}${col}`;
               const isSelected = selectedSeats.some(s => s.id === id);
               const isVip = row === "G" || row === "H";
-              const isOccupied = occupiedSeats.includes(id);
+              const seatStatus = occupiedSeats[id]; // undefined | held | sold
+              const isOccupied = !!seatStatus;
 
               return (
                 <button
@@ -130,7 +139,8 @@ const SeatSelectorModal = ({
                   className={`seat 
                     ${isVip ? "vip" : ""} 
                     ${isSelected ? "selected" : ""} 
-                    ${isOccupied ? "occupied" : ""}
+                    ${seatStatus === "held" ? "held" : ""} 
+                    ${seatStatus === "sold" ? "sold" : ""}
                   `}
                   onClick={() => toggleSeat(row, col)}
                 >
