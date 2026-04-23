@@ -6,19 +6,18 @@ import "./SeatSelector.css";
 const rows = ["A","B","C","D","E","F","G","H"];
 const cols = Array.from({ length: 15 }, (_, i) => i + 1);
 
-const SeatSelectorModal = ({ 
-  selectedSeats, 
-  setSelectedSeats, 
-  onClose, 
-  movie, 
-  form 
+const SeatSelectorModal = ({
+  selectedSeats,
+  setSelectedSeats,
+  onClose,
+  movie,
+  form
 }) => {
 
   const [occupiedSeats, setOccupiedSeats] = useState({});
 
   useEffect(() => {
 
-    // 🛡️ SAFETY CHECK
     if (!form || !form.date || !form.tanda || !form.cinema || !movie) {
       setOccupiedSeats({});
       return;
@@ -30,7 +29,6 @@ const SeatSelectorModal = ({
     today.setHours(0,0,0,0);
     selectedDate.setHours(0,0,0,0);
 
-    // ❌ Ignore past dates
     if (selectedDate < today) {
       setOccupiedSeats({});
       return;
@@ -39,23 +37,14 @@ const SeatSelectorModal = ({
     const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
     const ref = doc(db, "showtimes", showtimeId);
 
-    // 🔥 REAL-TIME LISTENER
     const unsubscribe = onSnapshot(ref, (snap) => {
       if (snap.exists()) {
 
         const data = snap.data().occupiedSeats || [];
-        const now = Date.now();
 
-        // 🔥 FILTRO IMPORTANTE (aquí está la magia)
-       const validSeats = data.filter(seat => {
-          const expires = seat.expiresAt || 0;
-          return seat.status === "sold" || expires > now;
-        });
-
-        // 👇 SOLO IDs
         const seatMap = {};
 
-        validSeats.forEach(seat => {
+        data.forEach(seat => {
           seatMap[seat.id] = seat.status; // "held" o "sold"
         });
 
@@ -63,11 +52,9 @@ const SeatSelectorModal = ({
 
       } else {
         setOccupiedSeats({});
-        console.log("occupiedSeats: empty");
       }
     });
 
-    // 🧹 CLEANUP
     return () => unsubscribe();
 
   }, [movie?.id, form?.date, form?.tanda, form?.cinema]);
@@ -76,7 +63,6 @@ const SeatSelectorModal = ({
     const id = `${row}${col}`;
     const isVip = row === "G" || row === "H";
 
-    // 🚫 Block occupied seats
     const seatStatus = occupiedSeats[id];
 
     if (seatStatus === "sold" || seatStatus === "held") return;
@@ -105,17 +91,14 @@ const SeatSelectorModal = ({
     <div className="seat-overlay">
       <div className="seat-modal">
 
-        {/* CLOSE BUTTON */}
         <button className="seat-close" onClick={onClose}>
           ✕
         </button>
 
         <h3>Selecciona tus butacas (máx 10)</h3>
 
-        {/* SCREEN */}
         <div className="seat-screen"></div>
 
-        {/* LEGEND */}
         <div className="seat-prices">
           <span className="price-regular">🎟 Regular: ¢3000</span>
           <span className="price-vip">⭐ VIP (filas G–H): ¢5000</span>
@@ -123,14 +106,13 @@ const SeatSelectorModal = ({
           <span style={{color:"#777"}}>⚫ Ocupado</span>
         </div>
 
-        {/* GRID */}
         <div className="seat-grid">
           {rows.flatMap(row =>
             cols.map(col => {
               const id = `${row}${col}`;
               const isSelected = selectedSeats.some(s => s.id === id);
               const isVip = row === "G" || row === "H";
-              const seatStatus = occupiedSeats[id]; // undefined | held | sold
+              const seatStatus = occupiedSeats[id];
 
               const isOccupied = seatStatus === "sold" || seatStatus === "held";
 
@@ -153,7 +135,6 @@ const SeatSelectorModal = ({
           )}
         </div>
 
-        {/* SELECTED SEATS */}
         <div style={{ marginBottom: "10px", textAlign: "center" }}>
           <strong>Butacas seleccionadas:</strong>{" "}
           {selectedSeats.length > 0
@@ -161,12 +142,10 @@ const SeatSelectorModal = ({
             : "Ninguna"}
         </div>
 
-        {/* TOTAL */}
         <div style={{ marginBottom: "15px", textAlign: "center" }}>
           <strong>Total:</strong> ¢{getTotal()}
         </div>
 
-        {/* CONFIRM */}
         <button className="seat-confirm" onClick={onClose}>
           Confirmar butacas
         </button>
