@@ -42,7 +42,23 @@ const SeatSelectorModal = ({
     // 🔥 REAL-TIME LISTENER
     const unsubscribe = onSnapshot(ref, (snap) => {
       if (snap.exists()) {
-        setOccupiedSeats(snap.data().occupiedSeats || []);
+        const data = snap.data();
+
+        const occupied = data.occupiedSeats || [];
+        const reserved = data.reservedSeats || [];
+
+        const now = Date.now();
+
+        // 🔥 quitar expirados
+        const activeReserved = reserved.filter(r => r.expiresAt > now);
+
+        // 🔥 bloquear ambos
+        const blockedSeats = [
+          ...occupied,
+          ...activeReserved.map(r => r.seatId)
+        ];
+
+        setOccupiedSeats(blockedSeats);
       } else {
         setOccupiedSeats([]);
       }
