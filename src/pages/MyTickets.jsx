@@ -53,16 +53,29 @@ export default function MyTickets() {
     fetchTickets();
   }, [user, authLoading]);
 
-  const isUpcoming = (ticketDate) => {
-    if (!ticketDate) return false;
+  // 🔥 FIXED: Date + Time logic
+  const getShowDateTime = (ticket) => {
+    if (!ticket.date || !ticket.tanda) return null;
+    return new Date(`${ticket.date}T${ticket.tanda}:00`);
+  };
 
-    const today = new Date();
-    today.setHours(0,0,0,0);
+  const isUpcoming = (ticket) => {
+    const showDate = getShowDateTime(ticket);
+    if (!showDate) return false;
+    return showDate > new Date();
+  };
 
-    const ticket = new Date(ticketDate);
-    ticket.setHours(0,0,0,0);
+  // 🔥 NEW: Status logic (Netflix-style)
+  const getTicketStatus = (ticket) => {
+    const showDate = getShowDateTime(ticket);
+    if (!showDate) return "past";
 
-    return ticket >= today;
+    const now = new Date();
+    const diffMinutes = (showDate - now) / (1000 * 60);
+
+    if (diffMinutes <= 0) return "past";
+    if (diffMinutes <= 30) return "starting";
+    return "upcoming";
   };
 
   if (authLoading) {
@@ -87,8 +100,8 @@ export default function MyTickets() {
     );
   }
 
-  const upcomingTickets = tickets.filter(t => isUpcoming(t.date));
-  const pastTickets = tickets.filter(t => !isUpcoming(t.date));
+  const upcomingTickets = tickets.filter(t => isUpcoming(t));
+  const pastTickets = tickets.filter(t => !isUpcoming(t));
 
   return (
     <div className="mytickets-page">
@@ -118,7 +131,7 @@ export default function MyTickets() {
                 <h2 className="section-title">Próximas Funciones</h2>
                 <div className="tickets-grid">
                   {upcomingTickets.map(ticket => (
-                    <TicketCard key={ticket.id} ticket={ticket} isUpcoming />
+                    <TicketCard key={ticket.id} ticket={ticket} getTicketStatus={getTicketStatus} />
                   ))}
                 </div>
               </section>
@@ -130,7 +143,7 @@ export default function MyTickets() {
                 <h2 className="section-title">📜 Historial</h2>
                 <div className="tickets-grid">
                   {pastTickets.map(ticket => (
-                    <TicketCard key={ticket.id} ticket={ticket} />
+                    <TicketCard key={ticket.id} ticket={ticket} getTicketStatus={getTicketStatus} />
                   ))}
                 </div>
               </section>
@@ -142,7 +155,10 @@ export default function MyTickets() {
   );
 }
 
-function TicketCard({ ticket, isUpcoming }) {
+// ===============================
+// 🎟 Ticket Card
+// ===============================
+function TicketCard({ ticket, getTicketStatus }) {
 
   const formatTicketDate = (dateStr) => {
     if (!dateStr) return 'N/A';
@@ -157,58 +173,65 @@ function TicketCard({ ticket, isUpcoming }) {
     }).format(date);
   };
 
+  const status = getTicketStatus(ticket);
+
   return (
-    <div className={`ticket-card ${isUpcoming ? 'upcoming' : 'past'}`}>
+    <div className={`ticket-card ${status}`}>
 
       {/* IMAGE */}
       <div className="ticket-top">
-      <div className="ticket-image">
-        {ticket.movieBanner ? (
-          <img src={ticket.movieBanner} alt={ticket.movieTitle} />
-        ) : (
-          <div className="ticket-placeholder">🎬</div>
-        )}
-        {isUpcoming && <span className="ticket-badge">Próxima</span>}
-      </div>
-
-      {/* DETAILS */}
-      <div className="ticket-details">
-        <h3 className="ticket-title">{ticket.movieTitle}</h3>
-
-        <div className="ticket-info">
-          <div className="info-row">📅 {formatTicketDate(ticket.date)}</div>
-          <div className="info-row">🕐 {ticket.tanda}</div>
-          <div className="info-row">📍 {ticket.cinema}</div>
-          <div className="info-row">
-            💺 {ticket.seats?.map(s => s.id).join(', ') || 'N/A'}
-          </div>
-        </div>
-       
-
-        {/* 🔥 QR CODE */}
-        {ticket.qrImage && (
-          <div className="ticket-qr">
-            <img src={ticket.qrImage} alt="QR Code" />
-          </div>
-        )}
-
-        {/* FOOTER */}
-        <div className="ticket-footer">
-          <span className="ticket-total">
-            Total: ¢{ticket.total?.toLocaleString()}
-          </span>
-
-          {ticket.createdAt && (
-            <span className="ticket-purchased">
-              Comprado:{' '}
-              {new Intl.DateTimeFormat('es-CR', {
-                month: 'short',
-                day: 'numeric'
-              }).format(ticket.createdAt)}
-            </span>
+        <div className="ticket-image">
+          {ticket.movieBanner ? (
+            <img src={ticket.movieBanner} alt={ticket.movieTitle} />
+          ) : (
+            <div className="ticket-placeholder">🎬</div>
           )}
+
+          {/* 🔥 NEW BADGE */}
+          <span className={`ticket-badge ${status}`}>
+            {status === "starting" && "🎬 Empieza pronto"}
+            {status === "upcoming" && "🟢 Próxima"}
+            {status === "past" && "Finalizada"}
+          </span>
         </div>
-      </div>
+
+        {/* DETAILS */}
+        <div className="ticket-details">
+          <h3 className="ticket-title">{ticket.movieTitle}</h3>
+
+          <div className="ticket-info">
+            <div className="info-row">📅 {formatTicketDate(ticket.date)}</div>
+            <div className="info-row">🕐 {ticket.tanda}</div>
+            <div className="info-row">📍 {ticket.cinema}</div>
+            <div className="info-row">
+              💺 {ticket.seats?.map(s => s.id).join(', ') || 'N/A'}
+            </div>
+          </div>
+
+          {/* QR */}
+          {ticket.qrImage && (
+            <div className="ticket-qr">
+              <img src={ticket.qrImage} alt="QR Code" />
+            </div>
+          )}
+
+          {/* FOOTER */}
+          <div className="ticket-footer">
+            <span className="ticket-total">
+              Total: ¢{ticket.total?.toLocaleString()}
+            </span>
+
+            {ticket.createdAt && (
+              <span className="ticket-purchased">
+                Comprado:{' '}
+                {new Intl.DateTimeFormat('es-CR', {
+                  month: 'short',
+                  day: 'numeric'
+                }).format(ticket.createdAt)}
+              </span>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

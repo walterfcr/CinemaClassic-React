@@ -351,3 +351,46 @@
   padding: 4px;
   border-radius: 8px;
 }
+
+.ticket-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px; /* 🔥 move to right like your old one */
+
+  background: #ff2e63; /* keep your red tone */
+  color: #fff;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  padding: 4px 8px;   /* 🔥 smaller */
+  border-radius: 6px; /* 🔥 not pill, more tag-like */
+
+  display: inline-block; /* 🔥 IMPORTANT (fix stretch issue) */
+
+  line-height: 1;
+  white-space: nowrap;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  letter-spacing: 0.5px;
+text-transform: uppercase;
+}
+
+.ticket-badge.upcoming {
+  background: #2ecc71;
+}
+
+.ticket-badge.starting {
+  background: #f39c12;
+  animation: pulse 1.5s infinite;
+}
+
+.ticket-badge.past {
+  background: #7f8c8d;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}

@@ -43,9 +43,7 @@ const BuyTicket = () => {
   const [timeLeft, setTimeLeft] = useState(0);
   const [errorMsg, setErrorMsg] = useState("");
 
-  // ===============================
-  // 🔥 RESERVE SEATS (FIX REAL)
-  // ===============================
+  
   const reserveSeats = async () => {
     if (!user) {
       alert("Debes iniciar sesión");
