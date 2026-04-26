@@ -5,6 +5,9 @@ export const movies = [
       title: "John Wick 4",
       director: "Chad Stahelski",
       country: "Estados Unidos",
+      duration: "169 minutos",
+      genre: "Acción, Suspenso, Neo-noir",
+      rating: "R",
       year: 2023,
       synopsis:
         "Una exploración de las aventuras, las desgarradoras experiencias y las hazañas del legendario asesino a sueldo, John Wick.",
@@ -23,6 +26,9 @@ export const movies = [
         title: "Ant-Man and the Wasp: Quantumania",
         director: "Peyton Reed",
         country: "Estados Unidos",
+        duration: "124 minutos",
+        genre: "Acción, ciencia ficción, comedia",
+        rating: "PG-13",
         year: 2023,
         synopsis:
           " Los superhéroes se encuentran accidentalmente atrapados en el reino cuántico y deben enfrentarse a un nuevo enemigo, Kang el Conquistador.",
@@ -41,6 +47,9 @@ export const movies = [
         title: "Scream 4",
         director: "Matt Bettinelli-Olpin",
         country: "Estados Unidos",
+        duration: "123 minutos",
+        genre: "Terror, misterio",
+        rating: "R",
         year: 2023,
         synopsis:
           " La trama principal sigue a los supervivientes de la matanza de Woodsboro en 2022 y como intentan seguir con su vida al mudarse de su pueblo natal.",
@@ -59,6 +68,9 @@ export const movies = [
       title: "Everything Everywhere All at Once",
       director: "Dan Kwan y Daniel Scheinert",
       country: "Estados Unidos",
+      duration: "139 minutos",
+      genre: "Ciencia ficción, comedia, drama",
+      rating: "R",
       year: 2022,
       synopsis:
         "Una heroína inesperada debe usar sus nuevos poderes para luchar contra los desconcertantes peligros del multiverso y así lograr salvar su mundo.",
@@ -77,6 +89,9 @@ export const movies = [
       title: "Demon Slayer",
       director: "Haruo Sotozaki",
       country: "Japón",
+      duration: "110 minutos",
+      genre: "Anime, acción, fantasía",
+      rating: "PG-13",
       year: 2023,
       synopsis:
         "La serie narra las desventuras de Tanjiro, un joven de un Japón feudal fantástico que se ve abocado a la venganza después de que un demonio acabe con toda su familia.",
@@ -95,6 +110,9 @@ export const movies = [
       title: "The Whale",
       director: "Darren Aronofsky",
       country: "Estados Unidos",
+      duration: "117 minutos",
+      genre: "Drama",
+      rating: "R",
       year: 2023,
       synopsis:
         "Un profesor de inglés, un tipo solitario que sufre obesidad mórbida, intenta restablecer el contacto con su hija en busca de perdón.",
@@ -113,6 +131,9 @@ export const movies = [
       title: "Shazam! Fury of the Gods",
       director: "David F. Sandberg",
       country: "Estados Unidos",
+      duration: "130 minutos",
+      genre: "Acción, comedia, fantasía",
+      rating: "PG-13",
       year: 2023,
       synopsis:
           "Billy Batson y sus hermanos adoptivos Freddy, Mary, Pedro, Eugene y Darla, también dotados de superpoderes, tienen que enfrentarse a las tres hijas de Atlas: Hespera, Kalypso y Anthea.",
@@ -131,6 +152,9 @@ export const movies = [
       title: "Super Mario",
       director: "Aaron Horvath, Michael Jelenic",
       country: "Estados Unidos",
+      duration: "92 minutos",
+      genre: "Animación, aventura, comedia",
+      rating: "PG",
       year: 2023,
       synopsis:
           " Un fontanero llamado Mario viaja por un laberinto subterráneo con su hermano, Luigi, intentando salvar a una princesa capturada.",
@@ -149,6 +173,9 @@ export const movies = [
         title: "Machuca",
         director: "Andrés Wood",
         country: "Chile",
+        duration: "121 minutos",
+        genre: "Drama histórico",
+        rating: "+ 13",
         year: 2004,
         synopsis:
           "Dos niños Chilenos de 12 años de diferentes clases sociales se hacen amigos en 1973. Ambos descubren el mundo del otro mientras aumentan las tensiones políticas en su país.",
@@ -167,6 +194,9 @@ export const movies = [
       title: "Nueve Reinas",
       director: "Fabián Bielinsky",
       country: "Argentina",
+      duration: "114 minutos",
+      genre: "Crimen, thriller ",
+      rating: "R / +13",
       year: 2000,
       synopsis:
         "Juan y Marcos son dos estafadores que casualmente se ven involucrados en un asunto que los puede convertir en millonarios: tienen menos de un día para llevar a cabo un engaño que no puede fallar.",
@@ -185,6 +215,9 @@ export const movies = [
       title: "Rudo & Cursi",
       director: "Carlos Cuarón",
       country: "Mexico",
+      duration: "103 Minutos",
+      genre: "Comedia, drama ",
+      rating: "R / +15",
       year: 2008,
       synopsis:
         " Dos hermanos, Beto, que quiere ser futbolista, y Toto, que sueña con ser cantante de música norteña, desean llevar a cabo sus sueños para mejorar su situación económica. Sin embargo, la rivalidad fraternal es lo que realmente los pone a prueba.",
@@ -202,7 +235,10 @@ export const movies = [
       id: "movie16",
       title: "13 Tzameti",
       director: "Géla Babluani",
-      country: "Francia",
+      country: "Francia", 
+      duration: "93 minutos",
+      genre: "Thriller, drama ",
+      rating: "R",
       year: 2006,
       synopsis:
         " Sebastien es un inmigrante de Georgia en Francia que toma un puesto de albañil por un poco de dinero. Después de que su empleador muere antes de pagarle, éste roba un boleto de tren y una carta con la que cree obtendrá dinero. Pero en lugar de eso, Sebastien se vuelve el último participante de un juego mortal en el cual los jugadores apuestan a la ruleta rusa.",
@@ -221,6 +257,9 @@ export const movies = [
       title: "Dogtooth",
       director: "Yorgos Lanthimos",
       country: "Grecia",
+      duration: "97 minutos",
+      genre: "Drama, thriller psicológico",
+      rating: "NC-17 / +18",
       year: 2009,
       synopsis:
         "Dogtooth (Kynódontas) es una película griega de 2009, dirigida por Yorgos Lanthimos acerca de una familia disfuncional en la que un esposo y una esposa mantienen a sus hijos ignorantes del mundo exterior en su propiedad hasta la edad adulta.",
@@ -239,6 +278,9 @@ export const movies = [
       title: "La Vita è Bella",
       director: "Roberto Benigni",
       country: "Italia",
+      duration: "116 minutos",
+      genre: "Drama, comedia, bélico",
+      rating: "PG-13",
       year: 1997,
       synopsis:
         "Un hombre construye una elaborada fantasía para proteger a su hijo en un campo de concentración nazi.",
@@ -257,6 +299,9 @@ export const movies = [
       title: "Parasite",
       director: "Bong Joon-ho",
       country: "Corea del Sur",
+      duration: "132 minutos",
+      genre: "Thriller, drama",
+      rating: "R",
       year: 2019,
       synopsis:
         "Tanto Gi Taek como su familia están sin trabajo. Cuando su hijo mayor, Gi Woo, empieza a impartir clases particulares en la adinerada casa de los Park, las dos familias, que tienen mucho en común pese a pertenecer a dos mundos totalmente distintos, entablan una relación de resultados imprevisibles.",
@@ -275,6 +320,9 @@ export const movies = [
       title: "Bar Bahar",
       director: "Maysaloun Hamoudr",
       country: "Palestina",
+      duration: "103 minutos",
+      genre: "Drama",
+      rating: "+16 / R",
       year: 2016,
       synopsis:
         "Bar Bahar (In Between) es una película franco-palestina escrita y dirigida por Maysaloun Hamoud, estrenada en 2016 en el Festival de Cine de Toronto.",
@@ -293,6 +341,9 @@ export const movies = [
       title: "Oldboy",
       director: "Chan-Wook Park",
       country: "Corea del Sur",
+      duration: "120 minutos",
+      genre: "Thriller, misterio, drama",
+      rating: "R / +18",
       year: 2003,
       synopsis:
         "Dae-Su es un hombre de negocios que, sin motivo aparente, es secuestrado y confinado en una celda con la única compañía de un televisor. Quince años más tarde, es liberado junto a una gran cantidad de dinero y un teléfono celular.",
@@ -311,6 +362,9 @@ export const movies = [
       title: "Persepolis",
       director: "Marjane Satrapi",
       country: "Francia",
+      duration: "96 minutos",
+      genre: "Animación, drama",
+      rating: "PG-13",
       year: 2007,
       synopsis:
         "Una niña iraní atestigua el control fundamentalista de su país y se rebela contra sus políticas estrictas, especialmente las referentes a las mujeres.",
@@ -329,6 +383,9 @@ export const movies = [
       title: "Mary and Max",
       director: " Adam Elliot",
       country: "Australia",
+      duration: "92 minutos",
+      genre: "Animación, comedia dramática",
+      rating: "PG-13",
       year: 2009,
       synopsis:
         "Una solitaria chica Australiana y un anciano judío desarrollan en Nueva York una singular amistad a través de cartas.",
@@ -347,6 +404,9 @@ export const movies = [
       title: "Le Magasin des Suicides",
       director: " Jean Teulé",
       country: "Francia",
+      duration: "79 minutos",
+      genre: "Animación, comedia negra, musical",
+      rating: "+12",
       year: 2006,
       synopsis:
         " The Suicide Shop es una novela de comedia negra de 2006 del escritor francés Jean Teulé. Está ambientado en una futura ciudad casi apocalíptica en un mundo que sufre los estragos del cambio climático severo, donde casi todo el mundo está deprimido.",
@@ -365,6 +425,9 @@ export const movies = [
       title: "Heat",
       director: "Michael Mann",
       country: "Estados Unidos",
+      duration: "170 minutos",
+      genre: "Crimen, drama, thriller",
+      rating: "R",
       year: 1995,
       synopsis:
         "Un veterano ladrón de bancos decide preparar un último y sofisticado robo con la intención de retirarse, pero un policía de métodos expeditivos, cuya vida privada es una pesadilla, se propone impedírselo.",
@@ -383,6 +446,9 @@ export const movies = [
       title: "Trainspotting",
       director: "Danny Boyle",
       country: "Reino Unido",
+      duration: "44 minutos",
+      genre: "Drama, crimen",
+      rating: "R",
       year: 1996,
       synopsis:
         "Unos jóvenes de Edimburgo mantienen una dependencia intermitente a la heroína. Basado en la novela de Irvine Welsh.",
@@ -401,6 +467,9 @@ export const movies = [
       title: "Pi: Faith in Chaos",
       director: "Darren Aronofsky",
       country: "Estados Unidos",
+      duration: "84 minutos",
+      genre: "Thriller psicológico, drama",
+      rating: "R",
       year: 1998,
       synopsis:
         "Max es un matemático que está a punto de decodificar el sistema numérico del mercado bursátil. Sin embargo, antes debe encontrar el valor del número pi. Una firma de Wall Street y una secta judía perseguirán a Max para quedarse con su descubrimiento.",
@@ -419,6 +488,9 @@ export const movies = [
       title: "Snatch",
       director: "Guy Ritchie",
       country: "Reino Unido",
+      duration: "Duración: 104 minutos",
+      genre: "Crimen, comedia",
+      rating: "R",
       year: 2000,
       synopsis:
         "Un grupo de ladrones lucha para encontrar un diamante robado de 84 quilates con un valor incalculable.",
@@ -437,6 +509,9 @@ export const movies = [
       title: "A Clockwork Orange",
       director: "Stanley Kubrick",
       country: "Reino Unido",
+      duration: "136 minutos",
+      genre: "Ciencia ficción, crimen, drama",
+      rating: "R",
       year: 1972,
       synopsis:
         "Un criminal en la Inglaterra del futuro pasa una serie de procesos experimentales para corregir sus impulsos violentos.",
@@ -455,6 +530,9 @@ export const movies = [
       title: "Braveheart",
       director: "Mel Gibson",
       country: "Estados Unidos",
+      duration: "178 minutos",
+      genre: "Crimen, drama, thriller",
+      rating: "R",
       year: 1995,
       synopsis:
         "William Wallace, un indómito rebelde escocés, dirige una revuelta contra los ingleses con el objetivo de independizar a Escocia de Inglaterra para librar a su pueblo de la tiranía del monarca Eduardo I.",
@@ -473,6 +551,9 @@ export const movies = [
         title: "Pulp Fiction",
         director: "Quentin Tarantino",
         country: "Estados Unidos",
+        duration: "154 minutos",
+        genre: "Crimen, drama",
+        rating: "R",
         year: 1994,
         synopsis:
           "La vida de un boxeador, dos sicarios, la esposa de un gánster y dos bandidos se entrelaza en una historia de violencia y redención.",
@@ -491,6 +572,9 @@ export const movies = [
       title: "Inglourious Basterds",
       director: "Quentin Tarantino",
       country: "Estados Unidos",
+      duration: "153 minutos",
+      genre: "Bélico, acción, drama",
+      rating: "R",
       year: 2009,
       synopsis:
         " El oficial aliado, teniente Aldo Raine, ensambla un equipo de soldados judíos para cometer actos violentos en contra de los nazis. Sus destinos convergen con la dueña de teatro Shosanna Dreyfus, quien busca vengar la ejecución de su familia.",
@@ -509,6 +593,9 @@ export const movies = [
       title: "Django Unchained",
       director: "Quentin Tarantino",
       country: "Estados Unidos",
+      duration: "165 minutos",
+      genre: "Drama histórico",
+      rating: "R",
       year: 2012,
       synopsis:
         ": Un exesclavo une fuerzas con un cazador de recompensas alemán que lo liberó y lo ayuda a buscar a los criminales más buscados del sur de los Estados Unidos, con la esperanza de reencontrarse con su esposa.",
@@ -527,6 +614,9 @@ export const movies = [
       title: "Wicked: For Good",
       director: "Jon M. Chu",
       country: "Estados Unidos",
+      duration: "137 minutos",
+      genre: "fantasía",
+      rating: "",
       year: 2025,
       synopsis:
         ": El panorama político de Oz está completamente establecido. Elphaba es conocida como la Bruja Mala del Oeste debido a su rebeldía contra el régimen del Mago y sus intentos por liberar a los animales que este ha encarcelado.",
@@ -545,6 +635,9 @@ export const movies = [
       title: "Weapons",
       director: "Zach Cregger",
       country: "Estados Unidos",
+      duration: "",
+      genre: "",
+      rating: "",
       year: 2025,
       synopsis:
         ": Cuando todos los niños de la misma clase, menos uno, desaparecen misteriosamente la misma noche y exactamente a la misma hora, una comunidad se pregunta quién o qué está detrás de su desaparición.",
@@ -563,6 +656,9 @@ export const movies = [
       title: "Superman",
       director: "James Gunn",
       country: "Estados Unidos",
+      duration: "",
+      genre: "",
+      rating: "",
       year: 2025,
       synopsis:
         ":  La trama se centra en cómo Superman equilibra su identidad secreta con sus deberes, enfrentando el cinismo global y la manipulación de Luthor para demostrar que la esperanza y la verdad aún existen",
@@ -581,6 +677,9 @@ export const movies = [
       title: "One Battle After Another",
       director: "Paul Thomas Anderson",
       country: "Estados Unidos",
+      duration: "",
+      genre: "",
+      rating: "",
       year: 2025,
       synopsis:
         ": Un ex-revolucionario arrastrado de nuevo al conflicto cuando su hija es secuestrada por un viejo enemigo, forzándolo a reunir a sus antiguos camaradas para luchar contra un oscuro complot supremacista",
@@ -599,6 +698,9 @@ export const movies = [
       title: "Plankton: The Movie",
       director: "Dave Needham",
       country: "Estados Unidos",
+      duration: "",
+      genre: "",
+      rating: "",
       year: 2025,
       synopsis:
         ": El astuto copépodo Sheldon J. Plankton lleva años fracasando en su intento de robar la fórmula de la Cangreburger. Ha llegado el momento de volver a intentarlo",
@@ -617,6 +719,9 @@ export const movies = [
       title: "Bugonia",
       director: "Yorgos Lanthimos",
       country: "Estados Unidos",
+      duration: "",
+      genre: "",
+      rating: "",
       year: 2025,
       synopsis:
         ": Dos primos conspiranoicos secuestran a una directora ejecutiva creyendo que es una alienígena que busca destruir la Tierra, torturándola para que los contacte con su raza.",
@@ -635,6 +740,9 @@ export const movies = [
       title: "Caught Stealing",
       director: "Darren Aronofsky",
       country: "Estados Unidos",
+      duration: "",
+      genre: "",
+      rating: "",
       year: 2025,
       synopsis:
         ":  Un exjugador de béisbol agotado, que, sin saberlo, se ve envuelto en una salvaje lucha por la supervivencia en el inframundo criminal del centro de la ciudad de Nueva York",
@@ -653,6 +761,9 @@ export const movies = [
       title: "Osiris",
       director: "William Kaufman",
       country: "Estados Unidos",
+      duration: "",
+      genre: "",
+      rating: "",
       year: 2025,
       synopsis:
         ":  Comandos de las Fuerzas Especiales son abducidos en plena operación por una misteriosa nave espacial y, al despertar, se encuentran presa de una implacable raza alienígena en una lucha por la supervivencia.",

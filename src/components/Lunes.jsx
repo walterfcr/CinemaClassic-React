@@ -29,7 +29,7 @@ function Lunes() {
                            <h3>Machuca</h3>
            
                            <div className="movie-actions">
-                             <Link to={`/movie/movie13`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                             <Link to={`/movie/movie13`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                              <Link to={`/buy/movie13`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                            </div>
                          </div>
@@ -41,7 +41,7 @@ function Lunes() {
                            <h3>Nueve Reinas</h3>
            
                            <div className="movie-actions">
-                             <Link to={`/movie/movie14`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                             <Link to={`/movie/movie14`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                              <Link to={`/buy/movie14`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                            </div>
                          </div>
@@ -53,7 +53,7 @@ function Lunes() {
                            <h3>Rudi & Cursi</h3>
            
                            <div className="movie-actions">
-                             <Link to={`/movie/movie15`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                             <Link to={`/movie/movie15`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                              <Link to={`/buy/movie15`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                            </div>
                          </div>

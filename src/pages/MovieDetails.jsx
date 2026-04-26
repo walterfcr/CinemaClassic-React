@@ -35,6 +35,9 @@ export default function MovieDetails() {
                 <p><strong>Director:</strong> {movie.director}</p>
                 <p><strong>País:</strong> {movie.country}</p>
                 <p><strong>Año:</strong> {movie.year}</p>
+                <p><strong>Duraciión:</strong> {movie.duration}</p>
+                <p><strong>Genero:</strong> {movie.genre}</p>
+                <p><strong>Clasificación:</strong> {movie.rating}</p>
                 <p><strong>Sinopsis:</strong> {movie.synopsis}</p>
               </div>
             </div>
@@ -47,10 +50,21 @@ export default function MovieDetails() {
                     <img src={actor.img} alt={actor.name} />
                   </div>
                 ))}
-              </div>
-              <div className="columnaEstreno test tab">
-                <a href="#"  onClick={(e) => {e.preventDefault(); setShowTrailer(true);}}className=" btnWarning">Ver Trailer</a>
-                <a href="#" onClick={(e) => {e.preventDefault(); navigate(`/buy/${movie.id}`, {state: { backgroundLocation: location }});}}className=" btnWarning">Comprar</a>
+              </div> 
+              <div className="modal-footer">
+                <button 
+                  onClick={() => setShowTrailer(true)} 
+                  className="btnSecondaryDetail"
+                >
+                  ▶ Ver trailer
+                </button>
+
+                <button 
+                  onClick={() => navigate(`/buy/${movie.id}`, { state: { backgroundLocation: location } })}
+                  className="btnPrimary"
+                >
+                  Comprar entrada
+                </button>
               </div>
             </div>
           </div>

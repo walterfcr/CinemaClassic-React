@@ -29,7 +29,7 @@ function Domingo() {
                             <h3>Pulp Fiction</h3>
             
                             <div className="movie-actions">
-                              <Link to={`/movie/movie31`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                              <Link to={`/movie/movie31`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                               <Link to={`/buy/movie31`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                             </div>
                           </div>
@@ -41,7 +41,7 @@ function Domingo() {
                             <h3>Inglourious Basterds</h3>
             
                             <div className="movie-actions">
-                              <Link to={`/movie/movie32`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                              <Link to={`/movie/movie32`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                               <Link to={`/buy/movie32`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                             </div>
                           </div>
@@ -53,7 +53,7 @@ function Domingo() {
                             <h3>Django Unchained</h3>
             
                             <div className="movie-actions">
-                              <Link to={`/movie/movie33`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                              <Link to={`/movie/movie33`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                               <Link to={`/buy/movie33`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                             </div>
                           </div>

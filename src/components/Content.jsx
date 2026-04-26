@@ -60,7 +60,7 @@ function Content() {
               <h3>Wicked Part 2</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie34`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie34`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie34`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -72,7 +72,7 @@ function Content() {
               <h3>Weapons</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie35`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie35`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie35`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -84,7 +84,7 @@ function Content() {
               <h3>Superman</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie36`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie36`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie36`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -96,7 +96,7 @@ function Content() {
               <h3>One Battle After Another</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie37`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie37`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie37`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -109,7 +109,7 @@ function Content() {
               <h3>Plankton: The Movie</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie38`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie38`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie38`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -121,7 +121,7 @@ function Content() {
               <h3>Bugonia</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie39`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie39`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie39`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -133,7 +133,7 @@ function Content() {
               <h3>Caught Stealing</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie40`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie40`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie40`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -145,7 +145,7 @@ function Content() {
               <h3>Osiris</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie41`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie41`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie41`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -162,7 +162,7 @@ function Content() {
               <h3>John Wick 4</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie01`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie01`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie01`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -174,7 +174,7 @@ function Content() {
               <h3>Ant-Man and the Wasp: Quantumania</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie02`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie02`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie02`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -186,7 +186,7 @@ function Content() {
               <h3>Scream 4</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie03`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie03`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie03`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -198,7 +198,7 @@ function Content() {
               <h3>Everything Everywhere All at Once</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie04`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie04`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie04`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -211,7 +211,7 @@ function Content() {
               <h3>Demon Slayer</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie05`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie05`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie05`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -223,7 +223,7 @@ function Content() {
               <h3>The Whale</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie06`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie06`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie06`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -235,7 +235,7 @@ function Content() {
               <h3>Shazam! Fury of the Gods</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie07`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie07`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie07`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -247,7 +247,7 @@ function Content() {
               <h3>Super Mario</h3>
 
               <div className="movie-actions">
-                <Link to={`/movie/movie08`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                <Link to={`/movie/movie08`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                 <Link to={`/buy/movie08`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
               </div>
             </div>
@@ -289,7 +289,7 @@ function Content() {
                 <h3>Pulp Fiction</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie31`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie31`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie31`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -301,7 +301,7 @@ function Content() {
                 <h3>Inglourious Basterds</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie32`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie32`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie32`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -313,7 +313,7 @@ function Content() {
                 <h3>Django Unchained</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie33`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie33`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie33`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -333,7 +333,7 @@ function Content() {
                 <h3>Machuca</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie13`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie13`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie13`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -345,7 +345,7 @@ function Content() {
                 <h3>Nueve Reinas</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie14`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie14`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie14`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -357,7 +357,7 @@ function Content() {
                 <h3>Rudi & Cursi</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie15`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie15`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie15`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -377,7 +377,7 @@ function Content() {
                 <h3>13 Tzameti</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie16`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie16`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie16`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -389,7 +389,7 @@ function Content() {
                 <h3>Kynódontas </h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie17`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie17`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie17`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -401,7 +401,7 @@ function Content() {
                 <h3>La Vita è Bella</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie18`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie18`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie18`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -421,7 +421,7 @@ function Content() {
                 <h3>Parasite</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie19`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie19`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie19`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -433,7 +433,7 @@ function Content() {
                 <h3>Bar Bahar</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie20`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie20`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie20`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -445,7 +445,7 @@ function Content() {
                 <h3>Oldboy</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie21`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie21`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie21`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -465,7 +465,7 @@ function Content() {
                 <h3>Persepolis</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie22`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie22`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie22`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -477,7 +477,7 @@ function Content() {
                 <h3>Mary and Max</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie23`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie23`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie23`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -489,7 +489,7 @@ function Content() {
                 <h3>Le Magasin des Suicides</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie24`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie24`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie24`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -509,7 +509,7 @@ function Content() {
                 <h3>Heat</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie25`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie25`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie25`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -521,7 +521,7 @@ function Content() {
                 <h3>Trainspotting</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie26`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie26`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie26`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -533,7 +533,7 @@ function Content() {
                 <h3>Pi: Faith in Chaos</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie27`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie27`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie27`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -553,7 +553,7 @@ function Content() {
                 <h3>Snatch</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie28`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie28`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie28`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -565,7 +565,7 @@ function Content() {
                 <h3>A Clockwork Orange</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie29`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie29`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie29`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -577,7 +577,7 @@ function Content() {
                 <h3>Braveheart</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie30`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie30`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie30`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>

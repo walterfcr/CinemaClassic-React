@@ -381,7 +381,7 @@ text-transform: uppercase;
 }
 
 .ticket-badge.starting {
-  background: #f39c12;
+  background: #ff2e63;
   animation: pulse 1.5s infinite;
 }
 

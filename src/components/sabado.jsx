@@ -29,7 +29,7 @@ function Sabado() {
                            <h3>Snatch</h3>
            
                            <div className="movie-actions">
-                             <Link to={`/movie/movie28`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                             <Link to={`/movie/movie28`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                              <Link to={`/buy/movie28`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                            </div>
                          </div>
@@ -41,7 +41,7 @@ function Sabado() {
                            <h3>A Clockwork Orange</h3>
            
                            <div className="movie-actions">
-                             <Link to={`/movie/movie29`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                             <Link to={`/movie/movie29`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                              <Link to={`/buy/movie29`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                            </div>
                          </div>
@@ -53,7 +53,7 @@ function Sabado() {
                            <h3>Braveheart</h3>
            
                            <div className="movie-actions">
-                             <Link to={`/movie/movie30`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                             <Link to={`/movie/movie30`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                              <Link to={`/buy/movie30`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                            </div>
                          </div>

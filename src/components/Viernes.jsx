@@ -29,7 +29,7 @@ function Viernes() {
                             <h3>Heat</h3>
             
                             <div className="movie-actions">
-                              <Link to={`/movie/movie25`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                              <Link to={`/movie/movie25`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                               <Link to={`/buy/movie25`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                             </div>
                           </div>
@@ -41,7 +41,7 @@ function Viernes() {
                             <h3>Trainspotting</h3>
             
                             <div className="movie-actions">
-                              <Link to={`/movie/movie26`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                              <Link to={`/movie/movie26`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                               <Link to={`/buy/movie26`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                             </div>
                           </div>
@@ -53,7 +53,7 @@ function Viernes() {
                             <h3>Pi: Faith in Chaos</h3>
             
                             <div className="movie-actions">
-                              <Link to={`/movie/movie27`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                              <Link to={`/movie/movie27`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                               <Link to={`/buy/movie27`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                             </div>
                           </div>

@@ -30,6 +30,24 @@
   transform: scale(1.05);
 }
 
+.btnSecondary {
+  text-decoration: none !important;
+  background:var(--bg-card);
+  border: 1px solid #ccc;
+  color: white !important;
+  padding: 9px 19px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.btnSecondary:hover {
+  background-color: #5e4d4d;
+  transform: scale(1.05);
+}
+
 .modal {
   position: fixed;
   top: 50%;
@@ -519,6 +537,11 @@ margin:30px 0;
 }
 
 .movie-actions .btnWarning {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+.movie-actions .btnSecondary {
   padding: 6px 12px;
   font-size: 0.85rem;
 }

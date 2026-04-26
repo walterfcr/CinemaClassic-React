@@ -29,7 +29,7 @@ function Jueves() {
                             <h3>Persepolis</h3>
             
                             <div className="movie-actions">
-                              <Link to={`/movie/movie22`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                              <Link to={`/movie/movie22`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                               <Link to={`/buy/movie22`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                             </div>
                           </div>
@@ -41,7 +41,7 @@ function Jueves() {
                             <h3>Mary and Max</h3>
             
                             <div className="movie-actions">
-                              <Link to={`/movie/movie23`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                              <Link to={`/movie/movie23`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                               <Link to={`/buy/movie23`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                             </div>
                           </div>
@@ -53,7 +53,7 @@ function Jueves() {
                             <h3>Le Magasin des Suicides</h3>
             
                             <div className="movie-actions">
-                              <Link to={`/movie/movie24`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                              <Link to={`/movie/movie24`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                               <Link to={`/buy/movie24`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                             </div>
                           </div>

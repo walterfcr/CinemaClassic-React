@@ -29,7 +29,7 @@ function Martes() {
                             <h3>13 Tzameti</h3>
             
                             <div className="movie-actions">
-                              <Link to={`/movie/movie16`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                              <Link to={`/movie/movie16`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                               <Link to={`/buy/movie16`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                             </div>
                           </div>
@@ -41,7 +41,7 @@ function Martes() {
                             <h3>Kynódontas </h3>
             
                             <div className="movie-actions">
-                              <Link to={`/movie/movie17`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                              <Link to={`/movie/movie17`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                               <Link to={`/buy/movie17`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                             </div>
                           </div>
@@ -53,7 +53,7 @@ function Martes() {
                             <h3>La Vita è Bella</h3>
             
                             <div className="movie-actions">
-                              <Link to={`/movie/movie18`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                              <Link to={`/movie/movie18`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                               <Link to={`/buy/movie18`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                             </div>
                           </div>

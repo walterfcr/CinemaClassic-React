@@ -29,7 +29,7 @@ function Miercoles() {
                 <h3>Parasite</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie19`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie19`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie19`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -41,7 +41,7 @@ function Miercoles() {
                 <h3>Bar Bahar</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie20`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie20`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie20`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
@@ -53,7 +53,7 @@ function Miercoles() {
                 <h3>Oldboy</h3>
 
                 <div className="movie-actions">
-                  <Link to={`/movie/movie21`} state={{ backgroundLocation: location }} className="btnWarning">Detalles</Link>
+                  <Link to={`/movie/movie21`} state={{ backgroundLocation: location }} className="btnSecondary">Detalles</Link>
                   <Link to={`/buy/movie21`} state={{ backgroundLocation: location }}className=" btnWarning">Comprar</Link>    
                 </div>
               </div>
