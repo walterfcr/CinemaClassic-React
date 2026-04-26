@@ -17,6 +17,7 @@
 .btnWarning {
   text-decoration: none !important;
   background-color: var(--primary);
+  font-weight: 600;
   color: white !important;
   padding: 10px 20px;
   border-radius: 8px;
@@ -33,6 +34,7 @@
 .btnSecondary {
   text-decoration: none !important;
   background:var(--bg-card);
+  font-weight: 500;
   border: 1px solid #ccc;
   color: white !important;
   padding: 9px 19px;
