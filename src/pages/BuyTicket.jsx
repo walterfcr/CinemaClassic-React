@@ -1,5 +1,5 @@
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect, useMemo } from "react";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect, useMemo, useRef  } from "react";
 import { movies } from "../moviesData";
 import { db } from "../firebase";
 import { onSnapshot } from "firebase/firestore";
@@ -18,6 +18,7 @@ import "./BuyTicket.css";
 
 const BuyTicket = () => {
 
+  const timerRef = useRef(null);
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -78,7 +79,7 @@ const BuyTicket = () => {
       const newReservations = selectedIds.map(id => ({
         seatId: id,
         userId: user.uid,
-        expiresAt: now + 5 * 60 * 1000
+        expiresAt: now + 5 * 1000
       }));
 
       // ✅ FIX: NO sobrescribir documento
@@ -87,6 +88,33 @@ const BuyTicket = () => {
         reservedSeats: [...validReserved, ...newReservations]
       });
 
+    });
+  };
+
+    const releaseSeats = async () => {
+    if (!user) return;
+
+    const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
+    const showtimeRef = doc(db, "showtimes", showtimeId);
+
+    await runTransaction(db, async (transaction) => {
+      const snap = await transaction.get(showtimeRef);
+      if (!snap.exists()) return;
+
+      const data = snap.data();
+      const reserved = data.reservedSeats || [];
+
+      const selectedIds = selectedSeats.map(s => s.id);
+
+      // 🔥 remove ONLY my reservations for those seats
+      const updatedReserved = reserved.filter(r =>
+        !(r.userId === user.uid && selectedIds.includes(r.seatId))
+      );
+
+      transaction.set(showtimeRef, {
+        ...data,
+        reservedSeats: updatedReserved
+      });
     });
   };
 
@@ -152,6 +180,18 @@ const BuyTicket = () => {
   }, [movie]);
 
   useEffect(() => {
+  if (!errorMsg) return;
+
+  const duration = errorMsg.includes("❌") ? 5000 : 3000;
+
+  const timeout = setTimeout(() => {
+    setErrorMsg("");
+  }, duration);
+
+    return () => clearTimeout(timeout);
+  }, [errorMsg]);
+
+  useEffect(() => {
     if (!form.date && availableDates.length > 0) {
       setForm(prev => ({ ...prev, date: availableDates[0] }));
     }
@@ -199,10 +239,20 @@ const BuyTicket = () => {
     };
 
     updateTimer();
-    const interval = setInterval(updateTimer, 1000);
+    if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
 
-    return () => clearInterval(interval);
-  });
+      timerRef.current = setInterval(updateTimer, 1000);
+
+      // cleanup when snapshot re-runs or component unmounts
+      return () => {
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+          timerRef.current = null;
+        }
+      };
+        });
 
   return () => unsubscribe();
 
@@ -375,7 +425,8 @@ const BuyTicket = () => {
             <button className="buyticket-btn" onClick={() => navigate("/")}>
               Volver al inicio
             </button>
-          </div>
+
+            </div>
 
         ) : reserved ? (
           <div className="buyticket-summary">
@@ -396,7 +447,14 @@ const BuyTicket = () => {
               ⏳ Tiempo restante: {formatTime(timeLeft)}
             </div>
 
-            <button className="btnEdit" onClick={() => setReserved(false)}>
+            <button
+              className="btnEdit"
+              onClick={async () => {
+                await releaseSeats(); // 🔥 key fix
+                setReserved(false);
+                setSelectedSeats([]);
+              }}
+            >
               Editar selección
             </button>
 
@@ -409,6 +467,11 @@ const BuyTicket = () => {
         ) : (
           <>
             <h2 className="buyticket-title">{movie.title}</h2>
+            {errorMsg && (
+              <div className="buyticket-error">
+                {errorMsg}
+              </div>
+            )}
 
             <div className="buyticket-body">
               <img src={movie.banner} alt={movie.title} />
@@ -480,7 +543,10 @@ const BuyTicket = () => {
                 <button
                   type="button"
                   className="buyticket-btn"
-                  onClick={() => setShowSeats(true)}
+                   onClick={() => {
+                    setErrorMsg("");   // 🔥 clear old error
+                    setShowSeats(true);
+                  }}
                   disabled={!form.cinema || !form.date || !form.tanda}
                 >
                   Elegir butacas ({selectedSeats.length})
