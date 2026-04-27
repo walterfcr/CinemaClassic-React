@@ -118,6 +118,12 @@ Solved edge cases for same-day bookings:
 
 ![Timer](./assets/gifs/reservation-timer.gif)
 
+## 🎟 Complete Booking Experience
+
+> From seat selection to QR-based ticket validation.
+
+![Booking Flow](./assets/gifs/booking-flow.gif)
+
 ---
 
 ## 🚧 Future Improvements
