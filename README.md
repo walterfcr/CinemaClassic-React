@@ -112,11 +112,19 @@ Solved edge cases for same-day bookings:
 
 ## 📸 Screenshots
 
+## ⚡ Real-Time Seat Locking
+
+> Seats update instantly across multiple users using Firestore real-time listeners.
+
+![Real-time](./assets/gifs/real-time-seat-lock.gif)
+
+
 ## ⏳ Reservation Expiration System
 
 > Seats are temporarily locked and automatically released if not purchased.
 
 ![Timer](./assets/gifs/reservation-timer.gif)
+
 
 ## 🎟 Complete Booking Experience
 
