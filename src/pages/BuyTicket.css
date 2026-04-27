@@ -54,6 +54,15 @@
 /* CLOSE BUTTON */
 /* ========================= */
 
+.buyticket-summary{
+  line-height: 35px;
+}
+
+.buyticket-summary h2 {
+  color:var(--accent);
+  padding:0 0 30px;
+}
+
 .buyticket-close {
   position: absolute;
   top: 15px;
@@ -63,6 +72,31 @@
   font-size: 1.5rem;
   color: #fff;
   cursor: pointer;
+
+}
+
+.buyticket-close:hover {
+  color: #ccc;
+}
+
+.btnEdit {
+  text-decoration: none !important;
+  background:var(--bg-card);
+  font-weight: 500;
+  border: 1px solid #ccc;
+  color: white !important;
+  padding: 9px 19px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin:0 20px 0 0;
+}
+
+
+.btnEdit:hover {
+  background-color: #5e4d4d;
+  transform: scale(1.05);
 }
 
 /* ========================= */

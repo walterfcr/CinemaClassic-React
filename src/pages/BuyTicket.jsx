@@ -396,13 +396,14 @@ const BuyTicket = () => {
               ⏳ Tiempo restante: {formatTime(timeLeft)}
             </div>
 
+            <button className="btnEdit" onClick={() => setReserved(false)}>
+              Editar selección
+            </button>
+
             <button className="buyticket-btn" onClick={handleSubmit} disabled={loading || selectedSeats.length === 0 || timeLeft === 0}>
               {loading ? "Procesando..." : "Confirmar compra"}
             </button>
 
-            <button className="buyticket-close" onClick={() => setReserved(false)}>
-              Editar selección
-            </button>
           </div>
 
         ) : (
