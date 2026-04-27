@@ -112,14 +112,11 @@ Solved edge cases for same-day bookings:
 
 ## 📸 Screenshots
 
-*(Add screenshots or GIFs here)*
+## ⏳ Reservation Expiration System
 
-Suggested:
+> Seats are temporarily locked and automatically released if not purchased.
 
-* Seat selection modal
-* Reservation countdown
-* Ticket with QR code
-* “Starting Soon” badge
+![Timer](./assets/gifs/reservation-timer.gif)
 
 ---
 
