@@ -79,7 +79,7 @@ const BuyTicket = () => {
       const newReservations = selectedIds.map(id => ({
         seatId: id,
         userId: user.uid,
-        expiresAt: now + 5 * 1000
+        expiresAt: now + 5 * 60 * 1000
       }));
 
       // ✅ FIX: NO sobrescribir documento
