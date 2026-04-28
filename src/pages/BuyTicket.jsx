@@ -16,7 +16,7 @@ import SeatSelectorModal from "./SeatSelectorModal";
 import { runTransaction } from "firebase/firestore";
 import "./BuyTicket.css";
 
-const BuyTicket = () => {
+  const BuyTicket = () => {
 
   const timerRef = useRef(null);
   const { id } = useParams();
