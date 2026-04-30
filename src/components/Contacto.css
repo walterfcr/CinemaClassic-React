@@ -27,7 +27,7 @@
   text-align: center;
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: var(--primary);
+  color: var(--text-main);
 }
 
 /* ========================= */
@@ -88,7 +88,7 @@
 .inputBox textarea:not(:placeholder-shown) + .text {
   top: -14px;
   font-size: 0.75rem;
-  color: var(--primary);
+  color: var(--text-secondary);
 }
 
 /* Line animation */
@@ -98,7 +98,7 @@
   left: 0;
   width: 0%;
   height: 2px;
-  background: var(--primary);
+  background: var(--text-secondary);
   transition: 0.3s;
 }
 

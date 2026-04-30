@@ -45,8 +45,12 @@
   color: #ccc;
 }
 
-h3, h4 {
-  color: var(--primary);
+h3 {
+  color: var(--text-main);
+}
+
+h4 {
+  color: var(--highlight);
 }
 
 /* ========================= */
@@ -76,7 +80,7 @@ h3, h4 {
 
 /* PRICE */
 .swal-price {
-  color: var(--primary) !important;
+  color: var(--highlight) !important;
   font-size: 1.8rem;
   margin-top: 10px;
 }

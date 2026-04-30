@@ -1,6 +1,6 @@
 :root {
   --secondary-menu-color: #361e1f;
-  --hover-color: var(--primary);
+  --hover-color: var(--hover-nav);
 }
 
 .navbar-container {
@@ -33,7 +33,7 @@
 }
 
 .logo-dec2 {
-  color: #e67e22;
+  color: var(--highlight);
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   letter-spacing: 0.15em;
@@ -82,7 +82,7 @@
 .nav-links a:hover,
 .dropdown-toggle:hover,
 .user-menu-toggle:hover {
-  color: var(--hover-color);
+  color: var(--text-muted);
 }
 
 .nav-links a::after,
@@ -148,7 +148,7 @@
 .dropdown-menu li a:hover,
 .dropdown-menu li button:hover{
   background-color: var(--hover-color) !important;
-  color: white;
+  color: var(--text-muted);
 }
 
 .dropdown-menu.show {
