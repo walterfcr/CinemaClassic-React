@@ -1,5 +1,5 @@
 import React from 'react';
-import Combos from './Combos';
+import Combos from '../components/Combos';
 import './Dulceria.css';
 
 function Dulceria() {

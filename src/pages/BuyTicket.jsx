@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import QRCode from "qrcode";
 import { useAuth } from "../context/AuthContext";
-import SeatSelectorModal from "./SeatSelectorModal";
+import SeatSelectorModal from "../components/SeatSelectorModal";
 import { runTransaction } from "firebase/firestore";
 import "./BuyTicket.css";
 

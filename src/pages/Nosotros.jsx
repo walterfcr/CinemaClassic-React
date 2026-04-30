@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Testimonials from './Testimonials';
+import Testimonials from '../components/Testimonials';
 import './Nosotros.css';
 
 const cinemas = {
