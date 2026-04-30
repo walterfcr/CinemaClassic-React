@@ -225,6 +225,12 @@
   }
 }
 
+@media (max-width: 480px) {
+  .columnaReparto h4 {
+  font-size: 0.7rem !important;
+  }
+}
+
   
   .close-button {
     position: absolute;
