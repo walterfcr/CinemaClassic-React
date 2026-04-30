@@ -23,7 +23,7 @@
 
 .ticket-status {
   margin-top: 1rem;
-  color: var(--accent);
+  color: var(--highlight);
   font-weight: bold;
 } 
 

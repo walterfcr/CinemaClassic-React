@@ -75,7 +75,7 @@
 }
 
 .price-vip {
-  color: var(--accent);
+  color: var(--highlight);
   font-weight: 600;
 }
 

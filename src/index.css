@@ -29,14 +29,17 @@ flex: 1; /* This makes the main content take up the remaining space */
   --bg-card: #1a1a1a;
   --primary: #e50914; /* strong cinema red */
   --primary-hover: #b20710;
-  --accent: #f5c518;
+  --border: #2a2a2a; 
+  --highlight: #f5c518;
   --text-main: #ffffff;
-  --text-secondary: #cccccc;
+  --text-secondary: #bdbdbd;
+  --text-muted: #7a7a7a;   /* 👈 for labels */
+  --text-soft: #9a9a9a;    /* 👈 optional mid tone */
 }
 
 header {
   background: var(--bg-card);
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 2px solid var(--border);
 }
 
 p {

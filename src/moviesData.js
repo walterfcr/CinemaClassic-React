@@ -619,7 +619,7 @@ export const movies = [
       rating: "",
       year: 2025,
       synopsis:
-        ": El panorama político de Oz está completamente establecido. Elphaba es conocida como la Bruja Mala del Oeste debido a su rebeldía contra el régimen del Mago y sus intentos por liberar a los animales que este ha encarcelado.",
+        "El panorama político de Oz está completamente establecido. Elphaba es conocida como la Bruja Mala del Oeste debido a su rebeldía contra el régimen del Mago y sus intentos por liberar a los animales que este ha encarcelado.",
       banner: "/images/movie34/movie34.webp",
       availableDays: "all", // any day
       trailer: "https://www.youtube.com/embed/I5FMRnh8-qs",
@@ -640,7 +640,7 @@ export const movies = [
       rating: "",
       year: 2025,
       synopsis:
-        ": Cuando todos los niños de la misma clase, menos uno, desaparecen misteriosamente la misma noche y exactamente a la misma hora, una comunidad se pregunta quién o qué está detrás de su desaparición.",
+        "Cuando todos los niños de la misma clase, menos uno, desaparecen misteriosamente la misma noche y exactamente a la misma hora, una comunidad se pregunta quién o qué está detrás de su desaparición.",
       banner: "/images/movie35/movie35.webp",
       availableDays: "all", // any day
       trailer: "https://www.youtube.com/embed/kRQp10hiShs",
@@ -661,7 +661,7 @@ export const movies = [
       rating: "",
       year: 2025,
       synopsis:
-        ":  La trama se centra en cómo Superman equilibra su identidad secreta con sus deberes, enfrentando el cinismo global y la manipulación de Luthor para demostrar que la esperanza y la verdad aún existen",
+        "La trama se centra en cómo Superman equilibra su identidad secreta con sus deberes, enfrentando el cinismo global y la manipulación de Luthor para demostrar que la esperanza y la verdad aún existen",
       banner: "/images/movie36/movie36.webp",
       availableDays: "all", // any day
       trailer: "https://www.youtube.com/embed/0X_kBulSMjQ",
@@ -682,7 +682,7 @@ export const movies = [
       rating: "",
       year: 2025,
       synopsis:
-        ": Un ex-revolucionario arrastrado de nuevo al conflicto cuando su hija es secuestrada por un viejo enemigo, forzándolo a reunir a sus antiguos camaradas para luchar contra un oscuro complot supremacista",
+        "Un ex-revolucionario arrastrado de nuevo al conflicto cuando su hija es secuestrada por un viejo enemigo, forzándolo a reunir a sus antiguos camaradas para luchar contra un oscuro complot supremacista",
       banner: "/images/movie37/movie37.webp",
       availableDays: "all", // any day
       trailer: "https://www.youtube.com/embed/feOQFKv2Lw4",
@@ -703,7 +703,7 @@ export const movies = [
       rating: "",
       year: 2025,
       synopsis:
-        ": El astuto copépodo Sheldon J. Plankton lleva años fracasando en su intento de robar la fórmula de la Cangreburger. Ha llegado el momento de volver a intentarlo",
+        "El astuto copépodo Sheldon J. Plankton lleva años fracasando en su intento de robar la fórmula de la Cangreburger. Ha llegado el momento de volver a intentarlo",
       banner: "/images/movie38/movie38.webp",
       availableDays: "all", // any day
       trailer: "https://www.youtube.com/embed/QjWQ58XHwg8",
@@ -724,7 +724,7 @@ export const movies = [
       rating: "",
       year: 2025,
       synopsis:
-        ": Dos primos conspiranoicos secuestran a una directora ejecutiva creyendo que es una alienígena que busca destruir la Tierra, torturándola para que los contacte con su raza.",
+        "Dos primos conspiranoicos secuestran a una directora ejecutiva creyendo que es una alienígena que busca destruir la Tierra, torturándola para que los contacte con su raza.",
       banner: "/images/movie39/movie39.webp",
       availableDays: "all", // any day
       trailer: "https://www.youtube.com/embed/ZHkNHsE7AH8",
@@ -745,7 +745,7 @@ export const movies = [
       rating: "",
       year: 2025,
       synopsis:
-        ":  Un exjugador de béisbol agotado, que, sin saberlo, se ve envuelto en una salvaje lucha por la supervivencia en el inframundo criminal del centro de la ciudad de Nueva York",
+        "Un exjugador de béisbol agotado, que, sin saberlo, se ve envuelto en una salvaje lucha por la supervivencia en el inframundo criminal del centro de la ciudad de Nueva York",
       banner: "/images/movie40/movie40.webp",
       availableDays: "all", // any day
       trailer: "https://www.youtube.com/embed/3Xr2HSVl3po",
@@ -766,7 +766,7 @@ export const movies = [
       rating: "",
       year: 2025,
       synopsis:
-        ":  Comandos de las Fuerzas Especiales son abducidos en plena operación por una misteriosa nave espacial y, al despertar, se encuentran presa de una implacable raza alienígena en una lucha por la supervivencia.",
+        "Comandos de las Fuerzas Especiales son abducidos en plena operación por una misteriosa nave espacial y, al despertar, se encuentran presa de una implacable raza alienígena en una lucha por la supervivencia.",
       banner: "/images/movie41/movie41.webp",
       availableDays: "all", // any day
       trailer: "https://www.youtube.com/embed/TwWPXJZzfq4",

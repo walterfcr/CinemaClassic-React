@@ -40,7 +40,7 @@
   object-fit: cover;
   margin: 0 auto 10px;
 
-  border: 2px solid var(--primary); /* 🔥 red accent */
+  border: 2px solid var(--primary); /* 🔥 red highlight */
 }
 
 /* NAME */
@@ -61,7 +61,7 @@
 
 /* STARS */
 .item i {
-  color: var(--accent); /* 🔥 yellow cinema color */
+  color: var(--highlight); /* 🔥 yellow cinema color */
   margin: 0 2px;
 }
 

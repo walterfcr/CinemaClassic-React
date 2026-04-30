@@ -61,7 +61,7 @@ const Navbar = () => {
           <li><Link to="/" onClick={closeSidebar}>Inicio</Link></li>
           <li><Link to="/nosotros" onClick={closeSidebar}>Nosotros</Link></li>
           <li className="dropdown">
-            <button className="dropdown-toggle" onClick={toggleDropdown}>
+            <button className="dropdown-toggle" onClick={toggleDropdown}> 
               Películas ▼
             </button>
             <ul className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>

@@ -219,7 +219,7 @@
 }
 
 .ticket-total {
-  color: var(--accent);
+  color: var(--highlight);
   font-weight: 700;
 }
 

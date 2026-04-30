@@ -59,7 +59,7 @@
 }
 
 .buyticket-summary h2 {
-  color:var(--accent);
+  color:var(--highlight);
   padding:0 0 30px;
 }
 
@@ -229,7 +229,7 @@
 .buyticket-price {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--highlight);
   margin-top: 0.3rem;
 }
 

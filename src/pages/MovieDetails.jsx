@@ -32,16 +32,16 @@ export default function MovieDetails() {
             </div>
             <div className="columnaMovie">
               <div className="info">
-                <p><strong>Director:</strong> {movie.director}</p>
-                <p><strong>País:</strong> {movie.country}</p>
-                <p><strong>Año:</strong> {movie.year}</p>
-                <p><strong>Duraciión:</strong> {movie.duration}</p>
-                <p><strong>Genero:</strong> {movie.genre}</p>
-                <p><strong>Clasificación:</strong> {movie.rating}</p>
-                <p><strong>Sinopsis:</strong> {movie.synopsis}</p>
+                <p><span className="label">Director</span> {movie.director}</p>
+                <p><span className="label">País:</span> {movie.country}</p>
+                <p><span className="label">Año:</span> {movie.year}</p>
+                <p><span className="label">Duraciión:</span> {movie.duration}</p>
+                <p><span className="label">Genero:</span> {movie.genre}</p>
+                <p><span className="label">Clasificación:</span> {movie.rating}</p>
+                <p><span className="label">Sinopsis:</span> {movie.synopsis}</p>
               </div>
             </div>
-            <div className="columnaMovie">
+            <div className="columnaMovie cast-section">
               <h2>Reparto</h2>
               <div className="contenedorReparto">
                 {movie.cast.map((actor, i) => (
@@ -51,7 +51,11 @@ export default function MovieDetails() {
                   </div>
                 ))}
               </div> 
-              <div className="modal-footer">
+              
+              
+            </div>
+          </div>
+                        <div className="modal-footer">
                 <button 
                   onClick={() => setShowTrailer(true)} 
                   className="btnSecondaryDetail"
@@ -66,8 +70,6 @@ export default function MovieDetails() {
                   Comprar entrada
                 </button>
               </div>
-            </div>
-          </div>
         </div>
       </div>
 
