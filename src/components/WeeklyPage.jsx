@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { weeklySchedule } from '../data/weeklySchedule';
-import { movies } from '../moviesData'; // Your central movie database
+import { movies } from '../data/moviesData'; // Your central movie database
 import Proximamente from '../components/Proximamente';
 
 function WeeklyPage() {

@@ -1,6 +1,6 @@
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
-import { movies } from "../moviesData";
+import { movies } from "../data/moviesData";
 import { useAuth } from "../context/AuthContext";
 import SeatSelectorModal from "../components/SeatSelectorModal";
 import { formatLocalDate, isPastTime, formatTime } from "../utils/dateUtils";
