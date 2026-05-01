@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Slider from './components/Slider';
 import Content from './components/Content';
 import Footer from './components/Footer';
+import WeeklyPage from './components/WeeklyPage';
 import Contacto from './pages/Contacto';
 import Nosotros from './pages/Nosotros';
 import Domingo from './pages/Domingo';
@@ -49,6 +50,7 @@ function App() {
         <Route path="/viernes" element={<Viernes />} />
         <Route path="/sabado" element={<Sabado />} />
         <Route path="/contacto" element={<Contacto />} />
+        <Route path="/semanal/:day" element={<WeeklyPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Register />} />
         <Route path="/ticket/:id" element={<TicketPage />} />

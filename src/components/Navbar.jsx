@@ -65,18 +65,17 @@ const Navbar = () => {
               Películas ▼
             </button>
             <ul className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
-              <li><Link to="/domingo" onClick={closeSidebar}>Domingo</Link></li>
-              <li><Link to="/lunes" onClick={closeSidebar}>Lunes</Link></li>
-              <li><Link to="/martes" onClick={closeSidebar}>Martes</Link></li>
-              <li><Link to="/miercoles" onClick={closeSidebar}>Miércoles</Link></li>
-              <li><Link to="/jueves" onClick={closeSidebar}>Jueves</Link></li>
-              <li><Link to="/viernes" onClick={closeSidebar}>Viernes</Link></li>
-              <li><Link to="/sabado" onClick={closeSidebar}>Sábado</Link></li>
+              <li><Link to="semanal/domingo" onClick={closeSidebar}>Domingo</Link></li>
+              <li><Link to="semanal/lunes" onClick={closeSidebar}>Lunes</Link></li>
+              <li><Link to="semanal/martes" onClick={closeSidebar}>Martes</Link></li>
+              <li><Link to="semanal/miercoles" onClick={closeSidebar}>Miércoles</Link></li>
+              <li><Link to="semanal/jueves" onClick={closeSidebar}>Jueves</Link></li>
+              <li><Link to="semanal/viernes" onClick={closeSidebar}>Viernes</Link></li>
+              <li><Link to="semanal/sabado" onClick={closeSidebar}>Sábado</Link></li>
             </ul>
           </li>
           <li><Link to="/dulceria" onClick={closeSidebar}>Dulcería</Link></li>
           <li><Link to="/contacto" onClick={closeSidebar}>Contacto</Link></li>
-          
           {/* Auth Section */}
           {isAuthenticated ? (
             <li className="user-menu-container" ref={userMenuRef}>

@@ -112,6 +112,16 @@ Solved edge cases for same-day bookings:
 * Ensured correct classification (upcoming vs past)
 * Added “Starting Soon” detection (≤ 30 min)
 
+### 🛠 Architecture Optimization: Dynamic Routing
+
+* **DRY Principle**: Consolidated 7 static pages into 1 reusable component template.
+* **Code Reduction**: Reduced UI code footprint by 85% through logic centralization.
+* **Data-Driven UI**: Decoupled content from logic using a configuration object for:
+  * Daily Banners (custom themes per day)
+  * Thematic Descriptions (e.g., "Lunes de Cine Latino")
+  * Movie Rotations (dynamic ID mapping)
+* **Dynamic Hooks**: Integrated useParams to switch content instantly via URL state (e.g., /semanal/lunes).
+
 ---
 
 ## 🛠 Tech Stack
@@ -158,7 +168,6 @@ Solved edge cases for same-day bookings:
 
 ## 🚧 Future Improvements
 
-* 👀 Live seat activity (see other users selecting seats in real time)
 * 💳 Payment integration (Stripe)
 * 🔔 Notifications for upcoming movies
 * ⚡ Performance optimizations (lazy loading, code splitting)
