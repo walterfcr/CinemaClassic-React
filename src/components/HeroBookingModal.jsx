@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { movies } from "../moviesData";
+import { movies } from '../data/moviesData';
 import "./HeroBookingModal.css";
 
 const HeroBookingModal = ({ onClose }) => {

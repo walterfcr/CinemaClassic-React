@@ -1,5 +1,5 @@
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { movies } from "../moviesData";
+import { movies } from '../data/moviesData';
 import { useEffect, useState } from "react";
 import "./MovieDetails.css";
 

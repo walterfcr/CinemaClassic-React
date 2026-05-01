@@ -9,13 +9,6 @@ import Footer from './components/Footer';
 import WeeklyPage from './components/WeeklyPage';
 import Contacto from './pages/Contacto';
 import Nosotros from './pages/Nosotros';
-import Domingo from './pages/Domingo';
-import Lunes from './pages/Lunes';
-import Martes from './pages/Martes';
-import Miercoles from './pages/Miercoles';
-import Jueves from './pages/jueves';
-import Viernes from './pages/Viernes';
-import Sabado from './pages/sabado';
 import Dulceria from './pages/Dulceria';
 import MovieDetails from './pages/MovieDetails';
 import BuyTicket from "./pages/BuyTicket";
@@ -42,13 +35,6 @@ function App() {
         <Route path="/" element={<><Slider /><Content /></>} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/dulceria" element={<Dulceria />} />
-        <Route path="/domingo" element={<Domingo />} />
-        <Route path="/lunes" element={<Lunes />} />
-        <Route path="/martes" element={<Martes />} />
-        <Route path="/miercoles" element={<Miercoles />} />
-        <Route path="/jueves" element={<Jueves />} />
-        <Route path="/viernes" element={<Viernes />} />
-        <Route path="/sabado" element={<Sabado />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/semanal/:day" element={<WeeklyPage />} />
         <Route path="/login" element={<Login />} />
