@@ -28,6 +28,22 @@ This project simulates a production-level movie ticket platform, focusing on **r
 
 ---
 
+## 🏗 Architecture Overview
+
+The application follows a modular and scalable structure:
+
+* **Pages** → Route-level views (BuyTicket, MovieDetails, Login)
+* **Components** → Reusable UI elements (Navbar, SeatSelectorModal)
+* **Hooks** → Encapsulated business logic (useSeatsReservation, useReservationTimer)
+* **Services** → Firestore interactions and transactional logic
+* **Utils** → Pure helper functions (date formatting, validation)
+* **Context** → Global state management (authentication)
+
+This separation ensures:
+* Clear responsibility boundaries
+* Easier maintenance and scaling
+* Improved testability and reusability
+
 ### 🎟 Ticketing System
 
 * QR code generated for each ticket
