@@ -112,6 +112,8 @@ Solved edge cases for same-day bookings:
 * Ensured correct classification (upcoming vs past)
 * Added “Starting Soon” detection (≤ 30 min)
 
+---
+
 ### 🛠 Architecture Optimization: Dynamic Routing
 
 * **DRY Principle**: Consolidated 7 static pages into 1 reusable component template.
