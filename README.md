@@ -122,29 +122,35 @@ Solved edge cases for same-day bookings:
 * **QR Generation:** qrcode library
 * **Routing:** React Router
 * **Styling:** Custom CSS (dark theme)
-* * **Hosting:** Vercel
+* **Hosting:** Vercel
 
 ---
 
-## 📸 Screenshots
+## 📸 Key System Behaviors
+**These animations demonstrate the core real-time and transactional logic of the application:**
 
-## ⚡ Real-Time Seat Locking
+## ⭐ Highlight Feature
 
-> Seats update instantly across multiple users using Firestore real-time listeners.
+## ⚡ Real-Time Seat Synchronization
+
+> Demonstrates concurrent users interacting with the same showtime.
+> Seat reservations are instantly reflected across sessions using Firestore real-time listeners.
 
 ![Real-time](./assets/gifs/real-time-seat-lock.gif)
 
 
 ## ⏳ Reservation Expiration System
 
-> Seats are temporarily locked and automatically released if not purchased.
+> Seats are temporarily locked and automatically released after a timeout.
+> Prevents stale reservations and ensures availability for other users.
 
 ![Timer](./assets/gifs/reservation-timer.gif)
 
 
 ## 🎟 Complete Booking Experience
 
-> From seat selection to QR-based ticket validation.
+> End-to-end ticket purchase experience:
+> selection → reservation → confirmation → QR-based ticket generation.
 
 ![Booking Flow](./assets/gifs/booking-flow.gif)
 
