@@ -1,7 +1,7 @@
 # 🎬 Cinema Classic React
 
 A **real-time cinema booking system** built with React and Firebase.
-This project simulates a production-level movie ticket platform, featuring **concurrent seat reservation, live updates, and QR-based ticket validation**.
+This project simulates a production-level movie ticket platform, focusing on **real-time synchronization, concurrency control, and time-based reservation systems**.
 
 ---
 

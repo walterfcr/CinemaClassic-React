@@ -1,24 +1,16 @@
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect, useMemo, useRef  } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { movies } from "../moviesData";
-import { db } from "../firebase";
-import { onSnapshot } from "firebase/firestore";
-import { 
-  collection, 
-  addDoc, 
-  serverTimestamp,
-  doc,
-  setDoc
-} from "firebase/firestore";
-import QRCode from "qrcode";
 import { useAuth } from "../context/AuthContext";
 import SeatSelectorModal from "../components/SeatSelectorModal";
-import { runTransaction } from "firebase/firestore";
+import { formatLocalDate, isPastTime, formatTime } from "../utils/dateUtils";
+import { confirmPurchaseService } from "../services/showtimeService";
+import { useReservationTimer } from "../hooks/useReservationTimer";
+import { useSeatsReservation } from "../hooks/useSeatsReservation";
 import "./BuyTicket.css";
 
-  const BuyTicket = () => {
+const BuyTicket = () => {
 
-  const timerRef = useRef(null);
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,87 +28,23 @@ import "./BuyTicket.css";
     tanda: "",
   });
 
-  const [selectedSeats, setSelectedSeats] = useState([]);
   const [showSeats, setShowSeats] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [reserved, setReserved] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(0);
   const [errorMsg, setErrorMsg] = useState("");
 
-  
-  const reserveSeats = async () => {
-    if (!user) {
-      alert("Debes iniciar sesión");
-      return;
-    }
 
-    const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
-    const showtimeRef = doc(db, "showtimes", showtimeId);
-
-    const selectedIds = selectedSeats.map(s => s.id);
-
-    await runTransaction(db, async (transaction) => {
-      const snap = await transaction.get(showtimeRef);
-      const data = snap.exists() ? snap.data() : {};
-
-      const occupied = data.occupiedSeats || [];
-      const reserved = data.reservedSeats || [];
-
-      const now = Date.now();
-
-      const validReserved = reserved.filter(r => r.expiresAt > now);
-
-      const conflict = selectedIds.some(id =>
-        occupied.includes(id) ||
-        validReserved.some(r => r.seatId === id)
-      );
-
-      if (conflict) {
-        throw new Error("Seats not available");
-      }
-
-      const newReservations = selectedIds.map(id => ({
-        seatId: id,
-        userId: user.uid,
-        expiresAt: now + 5 * 60 * 1000
-      }));
-
-      // ✅ FIX: NO sobrescribir documento
-      transaction.set(showtimeRef, {
-        ...data,
-        reservedSeats: [...validReserved, ...newReservations]
-      });
-
-    });
-  };
-
-    const releaseSeats = async () => {
-    if (!user) return;
-
-    const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
-    const showtimeRef = doc(db, "showtimes", showtimeId);
-
-    await runTransaction(db, async (transaction) => {
-      const snap = await transaction.get(showtimeRef);
-      if (!snap.exists()) return;
-
-      const data = snap.data();
-      const reserved = data.reservedSeats || [];
-
-      const selectedIds = selectedSeats.map(s => s.id);
-
-      // 🔥 remove ONLY my reservations for those seats
-      const updatedReserved = reserved.filter(r =>
-        !(r.userId === user.uid && selectedIds.includes(r.seatId))
-      );
-
-      transaction.set(showtimeRef, {
-        ...data,
-        reservedSeats: updatedReserved
-      });
-    });
-  };
+    const {
+    selectedSeats,
+    setSelectedSeats,
+    reserved,
+    reserveSeats,
+    releaseSeats
+  } = useSeatsReservation({
+    movie,
+    form,
+    user
+  });
 
   const timeSlots = [
     { label: "11 am", value: "11:00" },
@@ -124,25 +52,7 @@ import "./BuyTicket.css";
     { label: "7 pm", value: "19:00" },
   ];
 
-  const formatLocalDate = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
 
-  const isPastTime = (date, time) => {
-    if (!date) return false;
-    const now = new Date();
-    const selectedDateTime = new Date(`${date}T${time}:00`);
-    return selectedDateTime <= now;
-  };
-
-  const formatTime = (seconds) => {
-  const m = String(Math.floor(seconds / 60)).padStart(2, "0");
-  const s = String(seconds % 60).padStart(2, "0");
-  return `${m}:${s}`;
-  };
 
   // AUTO FILL
   useEffect(() => {
@@ -203,77 +113,25 @@ import "./BuyTicket.css";
     }
   }, [form.date]);
 
-  useEffect(() => {
-  if (!reserved || !user) return;
+const timeLeft = useReservationTimer({
+  reserved,
+  user,
+  movie,
+  form,
+  selectedSeats,
+  submitted
+});
 
-  const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
-  const ref = doc(db, "showtimes", showtimeId);
+        useEffect(() => {
+      if (submitted) return; // 🛑 CRITICAL FIX
 
-  const unsubscribe = onSnapshot(ref, (snap) => {
-    if (!snap.exists()) return;
-
-    const data = snap.data();
-    const reservedSeats = data.reservedSeats || [];
-
-    // 🔥 buscar MIS reservas
-    const selectedIds = selectedSeats.map(s => s.id);
-
-    const myReservations = reservedSeats.filter(r =>
-      r.userId === user.uid &&
-      selectedIds.includes(r.seatId)
-    );
-
-    if (myReservations.length === 0) {
-      if (submitted) {
-        setTimeLeft(0);
+      if (timeLeft === 0 && reserved) {
+        setErrorMsg("⏳ Tu reserva expiró");
+        releaseSeats();
       }
-      return;
-    }
+    }, [timeLeft, submitted]);
 
-    // tomar el primero (todos deberían tener mismo expiresAt)
-    const expiresAt = myReservations[0].expiresAt;
 
-    const updateTimer = () => {
-      const diff = expiresAt - Date.now();
-      setTimeLeft(diff > 0 ? Math.floor(diff / 1000) : 0);
-    };
-
-    updateTimer();
-    if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
-
-      timerRef.current = setInterval(updateTimer, 1000);
-
-      // cleanup when snapshot re-runs or component unmounts
-      return () => {
-        if (timerRef.current) {
-          clearInterval(timerRef.current);
-          timerRef.current = null;
-        }
-      };
-        });
-
-  return () => unsubscribe();
-
-}, [reserved, user, movie.id, form.date, form.tanda, form.cinema]);
-
-  useEffect(() => {
-  if (submitted) return; // 🚫 stop everything after purchase
-
-  if (timeLeft === 0 && reserved) {
-    setErrorMsg("⏳ Tu reserva expiró");
-    setReserved(false);
-    setSelectedSeats([]);
-  }
-}, [timeLeft, submitted]);
-
-  
-
-  useEffect(() => {
-  setSelectedSeats([]);
-  setReserved(false);
-  }, [form.date, form.tanda, form.cinema]);
 
   if (!movie) return null;
 
@@ -281,125 +139,49 @@ import "./BuyTicket.css";
     return acc + (seat.type === "vip" ? 5000 : 3000);
   }, 0);
 
-  // ===============================
-  // 🔥 CONFIRM PURCHASE (FIX REAL)
-  // ===============================
   const handleSubmit = async () => {
-    if (loading) return;
-    if (!user) {
-      alert("Debes iniciar sesión para comprar");
-      return;
-    }
+  if (loading) return;
 
-    if (timeLeft === 0) {
+  if (!user) {
+    alert("Debes iniciar sesión para comprar");
+    return;
+  }
+
+  if (timeLeft === 0) {
     alert("⏳ Tu reserva expiró");
     return;
+  }
+
+  setLoading(true);
+
+  try {
+    await confirmPurchaseService({
+      movie,
+      form,
+      selectedSeats,
+      user,
+      totalPrice
+    });
+
+    setSubmitted(true);
+
+  } catch (err) {
+    console.error(err);
+
+    if (err.message === "Reservation expired") {
+      setErrorMsg("⏳ Tu reserva expiró, intenta de nuevo");
+      await releaseSeats();
+    } else if (err.message === "Seats taken") {
+      setErrorMsg("⚠️ Algunos asientos ya no están disponibles. Elige otros.");
+      await releaseSeats();
+    } else {
+      setErrorMsg("❌ Error inesperado. Intenta de nuevo.");
     }
 
-    setLoading(true);
-
-    try {
-      const showtimeId = `${movie.id}_${form.date}_${form.tanda}_${form.cinema}`;
-      const showtimeRef = doc(db, "showtimes", showtimeId);
-
-      await runTransaction(db, async (transaction) => {
-        const snap = await transaction.get(showtimeRef);
-        const data = snap.exists() ? snap.data() : {};
-
-        const occupied = data.occupiedSeats || [];
-        const reserved = data.reservedSeats || [];
-
-        const selectedIds = selectedSeats.map(s => s.id);
-
-        const now = Date.now();
-
-        const validUserSeats = reserved.filter(r =>
-          r.userId === user.uid &&
-          selectedIds.includes(r.seatId) &&
-          r.expiresAt > now
-        );
-
-        if (validUserSeats.length !== selectedIds.length) {
-          throw new Error("Reservation expired");
-        }
-
-        if (validUserSeats.length === 0) {
-          throw new Error("Reservation expired");
-        }
-
-        // 🔥 VALIDACIÓN REAL
-        const expired = validUserSeats.some(r => r.expiresAt <= Date.now());
-
-        if (expired) {
-          throw new Error("Reservation expired");
-        }
-
-        const mySeatIds = validUserSeats.map(s => s.seatId);
-
-        if (mySeatIds.length === 0) {
-          throw new Error("Reservation expired");
-        }
-
-        const conflict = mySeatIds.some(id => occupied.includes(id));
-
-        if (conflict) {
-          throw new Error("Seats taken");
-        }
-
-        // ✅ FIX CLAVE: NO borrar reservas de otros
-        const remainingReserved = reserved.filter(r =>
-          !(r.userId === user.uid && mySeatIds.includes(r.seatId))
-        );
-
-        transaction.set(showtimeRef, {
-          ...data,
-          occupiedSeats: [...occupied, ...mySeatIds],
-          reservedSeats: remainingReserved,
-          updatedAt: serverTimestamp()
-        });
-      });
-
-      const ticketRef = await addDoc(collection(db, "tickets"), {
-        userId: user.uid,
-        userEmail: user.email,
-        movieId: movie.id,
-        movieTitle: movie.title,
-        movieBanner: movie.banner,
-        ...form,
-        seats: selectedSeats,
-        total: totalPrice,
-        createdAt: serverTimestamp(),
-      });
-
-      const qrValue = `https://cinema-classic-react.vercel.app/ticket/${ticketRef.id}`;
-      const qrImage = await QRCode.toDataURL(qrValue);
-
-      await setDoc(ticketRef, {
-        qrValue,
-        qrImage
-      }, { merge: true });
-
-      setSubmitted(true);
-
-    } catch (err) {
-      console.error(err);
-
-      if (err.message === "Reservation expired") {
-        setErrorMsg("⏳ Tu reserva expiró, intenta de nuevo");
-        setReserved(false);
-        setSelectedSeats([]);
-      } else if (err.message === "Seats taken") {
-        setErrorMsg("⚠️ Algunos asientos ya no están disponibles. Elige otros.");
-        setReserved(false);
-        setSelectedSeats([]);
-      } else {
-        setErrorMsg("❌ Error inesperado. Intenta de nuevo.");
-      }
-
-    } finally {
-      setLoading(false);
-    }
-  };
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="buyticket-overlay">
@@ -450,9 +232,7 @@ import "./BuyTicket.css";
             <button
               className="btnEdit"
               onClick={async () => {
-                await releaseSeats(); // 🔥 key fix
-                setReserved(false);
-                setSelectedSeats([]);
+                await releaseSeats();
               }}
             >
               Editar selección
@@ -559,13 +339,15 @@ import "./BuyTicket.css";
                 <button
                   type="button"
                   className="buyticket-btn"
-                  onClick={async () => {
+                 onClick={async () => {
                     try {
                       await reserveSeats();
-                      setReserved(true);
                     } catch (err) {
-                      console.error("reserveSeats error:", err);
-                      alert("⚠️ Algunas butacas ya no están disponibles");
+                      if (err.message === "NOT_AUTH") {
+                        alert("Debes iniciar sesión");
+                      } else {
+                        alert("⚠️ Algunas butacas no están disponibles");
+                      }
                     }
                   }}
                   disabled={selectedSeats.length === 0}
