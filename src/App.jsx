@@ -17,7 +17,6 @@ import Register from './pages/Register';
 import MyTickets from './pages/MyTickets';
 import TicketPage from "./pages/TicketPage";
 import './App.css';
-import './responsive.css';
 
 function App() {
   const location = useLocation();
