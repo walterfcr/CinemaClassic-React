@@ -6,12 +6,15 @@ export const formatLocalDate = (date) => {
 };
 
 export const isPastTime = (date, time) => {
-  if (!date) return false;
+  if (!date || !time) return false;
 
   const now = new Date();
   const selectedDateTime = new Date(`${date}T${time}:00`);
+  
+  // Restamos 15 minutos al tiempo actual para permitir compras de último minuto
+  const marginTime = new Date(now.getTime() - 15 * 60000); 
 
-  return selectedDateTime <= now;
+  return selectedDateTime <= marginTime;
 };
 
 export const formatTime = (seconds) => {
