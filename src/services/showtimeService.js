@@ -29,7 +29,7 @@ export const reserveSeatsService = async ({
 
     const now = Date.now();
 
-    const validReserved = reserved.filter(r => r.expiresAt > now);
+    const validReserved = reserved.filter(r => r.expiresAt > (now - 60000));
 
     const conflict = selectedIds.some(id =>
       occupied.includes(id) ||
