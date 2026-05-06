@@ -230,12 +230,20 @@
   font-size: 0.7rem !important;
   }
 
+  h1 {
+    font-size:1.4rem  !important;
+  }
+
+  h2 {
+    font-size:1.2rem  !important;
+  }
+
 }
 
 @media screen and (min-width: 376px) and (max-width: 480px){
 
-  .modal-content h1 {
-    font-size:1.2rem ;
+  .modal-content h1  {
+    font-size:1.2rem !important;;
   }
 
     .modal-content {
@@ -256,7 +264,7 @@
 @media screen and (min-width: 320px) and (max-width: 375px){
 
   .modal-content h1 {
-    font-size:1rem ;
+    font-size:1rem !important;;
   }
   
   .modal-content {
