@@ -229,6 +229,50 @@
   .columnaReparto h4 {
   font-size: 0.7rem !important;
   }
+
+}
+
+@media screen and (min-width: 376px) and (max-width: 480px){
+
+  .modal-content h1 {
+    font-size:1.2rem ;
+  }
+
+    .modal-content {
+    max-width: 90% !important;
+  }
+
+  .btnSecondaryDetail {
+  padding: 5px 10px !important;
+  border-radius: 8px;
+  }
+
+  .btnPrimary {
+    padding: 5px 10px;
+  }
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 375px){
+
+  .modal-content h1 {
+    font-size:1rem ;
+  }
+  
+  .modal-content {
+    max-width: 90% !important;
+  }
+
+  .btnSecondaryDetail {
+  padding: 5px 10px !important;
+  font-size: 0.6rem;
+  }
+
+  .btnPrimary {
+    padding: 5px 10px;
+    font-size: 0.6rem;
+  }
+
 }
 
   
@@ -272,7 +316,7 @@
   }
   
   .trailer-modal-content {
-    position: relative;
+    position: relative; 
     width: 90%;
     max-width: 800px;
     background-color: #000;

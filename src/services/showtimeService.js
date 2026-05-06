@@ -136,7 +136,7 @@ export const confirmPurchaseService = async ({
     });
   });
 
-  // 🎟️ CREATE TICKET
+  // CREATE TICKET
   const ticketRef = await addDoc(collection(db, "tickets"), {
     userId: user.uid,
     userEmail: user.email,
@@ -149,7 +149,7 @@ export const confirmPurchaseService = async ({
     createdAt: serverTimestamp(),
   });
 
-  // 🔳 GENERATE QR
+  // GENERATE QR
   const qrValue = `https://cinema-classic-react.vercel.app/ticket/${ticketRef.id}`;
   const qrImage = await QRCode.toDataURL(qrValue);
 
