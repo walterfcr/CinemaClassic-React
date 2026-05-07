@@ -77,7 +77,7 @@ function Content() {
               </div>
             </div>
           </div>
-                    <div className="movie-card">
+         <div className="movie-card" data-testid="movie-36" >
             <img src="/images/movie36/movie36.webp" alt="Movie 34" />
 
             <div className="movie-overlay">
