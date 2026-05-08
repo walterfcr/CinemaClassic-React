@@ -1,7 +1,7 @@
 # 🎬 Cinema Classic React
 
 A **real-time cinema booking system** built with React and Firebase.
-This project simulates a production-level movie ticket platform, focusing on **real-time synchronization, concurrency control, and time-based reservation systems**.
+This project is a production inspired movie ticket platform, focusing on **real-time synchronization, concurrency control, and time-based reservation systems**.
 
 ---
 
@@ -165,6 +165,26 @@ Solved edge cases for same-day bookings:
 > selection → reservation → confirmation → QR-based ticket generation.
 
 ![Booking Flow](./assets/gifs/booking-flow.gif)
+
+---
+
+## 🧪 Testing
+
+Implemented unit testing using Jest and React Testing Library.
+
+### Tested Features
+* Seat reservation hooks
+* Reservation expiration timers
+* Date/time utility logic
+* Reservation state transitions
+* Timer countdown behavior
+* Cleanup and subscription handling
+
+### Testing Techniques
+* Fake timers for deterministic countdown testing
+* Firebase service mocking
+* Hook testing with React Testing Library
+* Timezone-related edge case validation
 
 ---
 

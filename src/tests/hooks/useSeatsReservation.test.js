@@ -1,14 +1,14 @@
 import { renderHook, act } from '@testing-library/react';
-import { useSeatsReservation } from './useSeatsReservation';
+import { useSeatsReservation } from '../../hooks/useSeatsReservation';
 
 // ✅ Inline mock of the services so tests don’t hit Firestore
-jest.mock('../services/showtimeService', () => ({
+jest.mock('../../services/showtimeService', () => ({
   reserveSeatsService: jest.fn(),
   releaseSeatsService: jest.fn(),
 }));
 
 // Import the mocked functions so we can control them in tests
-import { reserveSeatsService, releaseSeatsService } from '../services/showtimeService';
+import { reserveSeatsService, releaseSeatsService } from '../../services/showtimeService';
 
 const movie = { id: 'movie1' };
 const form = { date: '2026-05-06', tanda: '7pm', cinema: 'Main' };
