@@ -1,7 +1,7 @@
 # 🎬 Cinema Classic React
 
 A **real-time cinema booking system** built with React and Firebase.
-This project is a production inspired movie ticket platform, focusing on **real-time synchronization, concurrency control, and time-based reservation systems**.
+This project is inspired by production-level movie ticket platforms, focusing on **real-time synchronization, concurrency control, and time-based reservation systems**.
 
 ---
 
@@ -216,18 +216,18 @@ npm install
 npm run dev
 ```
 
+## 🔑 Environment Variables
 
-=======
-🔑 Environment Variables
+Create a `.env` file in the root of the project and add your Firebase configuration:
 
-Create a .env file in the root of the project and add your Firebase configuration:
-
+```env
 VITE_FIREBASE_API_KEY=...
 VITE_FIREBASE_AUTH_DOMAIN=...
 VITE_FIREBASE_PROJECT_ID=...
 VITE_FIREBASE_STORAGE_BUCKET=...
 VITE_FIREBASE_MESSAGING_SENDER_ID=...
 VITE_FIREBASE_APP_ID=...
+```
 
 
 
