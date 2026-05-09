@@ -114,6 +114,16 @@ Solved edge cases for same-day bookings:
 
 ---
 
+### 🕒 Robust Timezone & Date Handling
+
+Solved a critical bug where same-day showtimes were incorrectly marked as "past" due to browser timezone offsets:
+
+* **The Challenge:** Standard ISO strings (e.g., `YYYY-MM-DD`) are often interpreted as UTC by browsers. For users in timezones like GMT-6, a movie for "today" was being treated as "yesterday", breaking the Firebase real-time listener for current showtimes.
+* **The Solution:** Refactored the `isPastTime` utility and modal logic to use component-based date constructors (`new Date(year, month, day)`). This bypassed UTC auto-conversions, ensuring consistent local-time comparisons.
+* **Impact:** Guaranteed 100% accuracy for same-day bookings and stable real-time seat synchronization regardless of the user's geographical location.
+
+---
+
 ### 🛠 Architecture Optimization: Dynamic Routing
 
 * **DRY Principle**: Consolidated 7 static pages into 1 reusable component template.
