@@ -108,13 +108,15 @@ const BuyTicket = () => {
   }, [availableDates]);
 
   useEffect(() => {
-  if (form.tanda && isPastTime(form.date, form.tanda)) {
-    // Solo borra si NO hay asientos seleccionados o reservados
-    if (selectedSeats.length === 0 && !reserved) {
-       setForm(prev => ({ ...prev, tanda: "" }));
+    // Solo ejecutar si tenemos fecha y tanda
+    if (form.date && form.tanda) {
+      if (isPastTime(form.date, form.tanda)) {
+        if (selectedSeats.length === 0 && !reserved) {
+          setForm(prev => ({ ...prev, tanda: "" }));
+        }
+      }
     }
-  }
-}, [form.date, reserved]);
+  }, [form.date, form.tanda, reserved]);
 
 const timeLeft = useReservationTimer({
   reserved,

@@ -24,11 +24,10 @@ const SeatSelectorModal = ({
       return;
     }
 
+    const [y, m, d] = form.date.split('-').map(Number);
+    const selectedDate = new Date(y, m - 1, d);
     const today = new Date();
-    const selectedDate = new Date(form.date);
-
-    today.setHours(0,0,0,0);
-    selectedDate.setHours(0,0,0,0);
+    today.setHours(0, 0, 0, 0);
 
     // ❌ Ignore past dates
     if (selectedDate < today) {
@@ -45,7 +44,7 @@ const SeatSelectorModal = ({
         const data = snap.data();
 
         const occupied = data.occupiedSeats || [];
-        const reserved = data.reservedSeats || [];
+        const reserved = data.reservedSeats || []; 
 
         const now = Date.now();
 

@@ -5,15 +5,21 @@ export const formatLocalDate = (date) => {
   return `${year}-${month}-${day}`;
 };
 
-export const isPastTime = (date, time) => {
-  if (!date || !time) return false;
+export const isPastTime = (dateStr, timeStr) => {
+  if (!dateStr || !timeStr) return false;
 
   const now = new Date();
-  const selectedDateTime = new Date(`${date}T${time}:00`);
   
-  // Margen de 15 minutos: permite comprar/ver asientos aunque la función ya haya empezado
+  // Dividimos el string "2026-05-09" y "15:00"
+  const [year, month, day] = dateStr.split('-').map(Number);
+  const [hour, minute] = timeStr.split(':').map(Number);
+
+  // Creamos la fecha usando componentes (esto es local y más seguro)
+  const selectedDateTime = new Date(year, month - 1, day, hour, minute);
+  
   const buffer = 15 * 60 * 1000; 
-  return selectedDateTime.getTime() + buffer <= now.getTime();
+  // Retorna true solo si ya pasaron más de 15 min del inicio
+  return (selectedDateTime.getTime() + buffer) < now.getTime();
 };
 
 export const formatTime = (seconds) => {
